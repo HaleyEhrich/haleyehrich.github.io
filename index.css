@@ -1,5 +1,5 @@
 body{
-    background-color: grey;
+    background-color: white;
     margin: 0%;
     padding: 0%;
     height: 100%;
@@ -8,40 +8,64 @@ body{
 }
 
 header{
-    background-color: #000000;
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    color:black;
+    font-family: 'Times New Roman', Times, serif;
     margin: 0%;
     padding: 0%;
     height: auto;
+
 }
 
-header div{
-    color: white;
-    font-size: 200%;
-    font-weight: bold;
-    font-family: cambria;
-    margin: 0%;
-    padding: 1%;
+#viewGithub{
+    background-color: #c0ebd7;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    padding: 10px;
+    position: absolute;
+    right: 20px;
+    text-decoration: none;
 }
+
+#githubIcon{
+    width: 32px;
+    height: 32px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+#webSiteName{   
+    font-size: 200%;
+    margin-left: 1%;
+    padding: 0px;
+    width: 500px;
+}
+
 
 
 nav{
+    font-family:'Times New Roman', Times, serif;
+    font-size: medium;
     margin: 0%;
     padding: 0%;
-    /* background-color: red; */
     height: auto;
+    
 }
 
 nav ul{
-    /*display: flex;*/
     flex-direction: row;
-    background-color: #f8f5f5;
+    background-color: #ffffff;
     margin: 0%;
     height: 40px;
     padding-left: 3%;
     align-items: center;
-    
 }
+
 nav ul li{
+    
     transform: translateY(50%);
     text-align: center;
     display: inline-block;
@@ -52,12 +76,28 @@ nav ul li{
     color: #000000;
 }
 
+.navtitle{
+    background-color: #ddd3df;
+    padding: 10px 20px;
+    border-radius: 30px;
+    color: black;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 30px;
+    text-decoration: none;
+}
+
+.navtitle:hover{
+    background-color: #555555;
+    color: #ffffff;
+}
+
 section{
+    background-color: white;
     height:auto;
 }
 
 footer{
-    background-color: #000000;
+    background-color: white;
     margin: 0%;
     padding: 0%;
     size: 5%;
@@ -65,9 +105,15 @@ footer{
 }
 
 footer div{
-    color:white;
-    font-family: cambria;
+    color:black;
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: bold;
     padding-top: 1px;
     padding-bottom: 1px;
-    text-align: center;
+    margin-left: 5%;
+    text-align: left;
 }
+
+
+
+
