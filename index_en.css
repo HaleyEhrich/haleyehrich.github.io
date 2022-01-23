@@ -1,16 +1,16 @@
 @font-face {
     font-family: "EDIX";
-    src: url(/resource/font/EDIX.ttf);
+    src: url(./resource/font/EDIX.ttf);
 }
 
 @font-face {
     font-family: "EDMorganite-BookIX";
-    src: url(/resource/font/Morganite-Book.ttf);
+    src: url(./resource/font/Morganite-Book.ttf);
 }
 
 @font-face {
     font-family: "HarmonyOS Sans Regular";
-    src: url(/resource/font/HarmonyOS_Sans_Naskh_Arabic_Regular.ttf);
+    src: url(./resource/font/HarmonyOS_Sans_Naskh_Arabic_Regular.ttf);
 }
 
 /* Main body css set */
@@ -26,7 +26,7 @@ body {
 header {
     align-items: center;
 
-    background-image: url(resource/img/background.jpg);
+    background-image: url(./resource/img/background.jpg);
     background-repeat: no-repeat;
     width: 100%;
 
