@@ -1,1249 +1,1929 @@
 <!DOCTYPE html>
 <html lang="ch-zh">
-
-<head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link href="../product.css" rel="stylesheet" />
-    <link rel="Shortcut Icon" href="../../resource/img/product/dvcc/web_icon.png" type="image/x-icon" />
-    <title>DVCC</title>
-
-    <link
-    rel="stylesheet"
-    href="https://cdn.jsdelivr.net/npm/katex@0.13.18/dist/katex.min.css"
-    />
-
-<style>
-    /**
-* prism.js Github theme based on GitHub's theme.
-* @author Sam Clarke
-*/
-    code[class*="language-"],
-    pre[class*="language-"] {
-        color: #333;
-        background: none;
-        font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
-        text-align: left;
-        white-space: pre;
-        word-spacing: normal;
-        word-break: normal;
-        word-wrap: normal;
-        line-height: 1.4;
-
-        -moz-tab-size: 8;
-        -o-tab-size: 8;
-        tab-size: 8;
-
-        -webkit-hyphens: none;
-        -moz-hyphens: none;
-        -ms-hyphens: none;
-        hyphens: none;
-    }
-
-    /* Code blocks */
-    pre[class*="language-"] {
-        padding: 0.8em;
-        overflow: auto;
-        /* border: 1px solid #ddd; */
-        border-radius: 3px;
-        /* background: #fff; */
-        background: #f5f5f5;
-    }
-
-    /* Inline code */
-    :not(pre) > code[class*="language-"] {
-        padding: 0.1em;
-        border-radius: 0.3em;
-        white-space: normal;
-        background: #f5f5f5;
-    }
-
-    .token.comment,
-    .token.blockquote {
-        color: #969896;
-    }
-
-    .token.cdata {
-        color: #183691;
-    }
-
-    .token.doctype,
-    .token.punctuation,
-    .token.variable,
-    .token.macro.property {
-        color: #333;
-    }
-
-    .token.operator,
-    .token.important,
-    .token.keyword,
-    .token.rule,
-    .token.builtin {
-        color: #a71d5d;
-    }
-
-    .token.string,
-    .token.url,
-    .token.regex,
-    .token.attr-value {
-        color: #183691;
-    }
-
-    .token.property,
-    .token.number,
-    .token.boolean,
-    .token.entity,
-    .token.atrule,
-    .token.constant,
-    .token.symbol,
-    .token.command,
-    .token.code {
-        color: #0086b3;
-    }
-
-    .token.tag,
-    .token.selector,
-    .token.prolog {
-        color: #63a35c;
-    }
-
-    .token.function,
-    .token.namespace,
-    .token.pseudo-element,
-    .token.class,
-    .token.class-name,
-    .token.pseudo-class,
-    .token.id,
-    .token.url-reference .token.variable,
-    .token.attr-name {
-        color: #795da3;
-    }
-
-    .token.entity {
-        cursor: help;
-    }
-
-    .token.title,
-    .token.title .token.punctuation {
-        font-weight: bold;
-        color: #1d3e81;
-    }
-
-    .token.list {
-        color: #ed6a43;
-    }
-
-    .token.inserted {
-        background-color: #eaffea;
-        color: #55a532;
-    }
-
-    .token.deleted {
-        background-color: #ffecec;
-        color: #bd2c00;
-    }
-
-    .token.bold {
-        font-weight: bold;
-    }
-
-    .token.italic {
-        font-style: italic;
-    }
-
-    /* JSON */
-    .language-json .token.property {
-        color: #183691;
-    }
-
-    .language-markup .token.tag .token.punctuation {
-        color: #333;
-    }
-
-    /* CSS */
-    code.language-css,
-    .language-css .token.function {
-        color: #0086b3;
-    }
-
-    /* YAML */
-    .language-yaml .token.atrule {
-        color: #63a35c;
-    }
-
-    code.language-yaml {
-        color: #183691;
-    }
-
-    /* Ruby */
-    .language-ruby .token.function {
-        color: #333;
-    }
-
-    /* Markdown */
-    .language-markdown .token.url {
-        color: #795da3;
-    }
-
-    /* Makefile */
-    .language-makefile .token.symbol {
-        color: #795da3;
-    }
-
-    .language-makefile .token.variable {
-        color: #183691;
-    }
-
-    .language-makefile .token.builtin {
-        color: #0086b3;
-    }
-
-    /* Bash */
-    .language-bash .token.keyword {
-        color: #0086b3;
-    }
-
-    /* highlight */
-    pre[data-line] {
-        position: relative;
-        padding: 1em 0 1em 3em;
-    }
-    pre[data-line] .line-highlight-wrapper {
-        position: absolute;
-        top: 0;
-        left: 0;
-        background-color: transparent;
-        display: block;
-        width: 100%;
-    }
-
-    pre[data-line] .line-highlight {
-        position: absolute;
-        left: 0;
-        right: 0;
-        padding: inherit 0;
-        margin-top: 1em;
-        background: hsla(24, 20%, 50%, 0.08);
-        background: linear-gradient(
-            to right,
-            hsla(24, 20%, 50%, 0.1) 70%,
-            hsla(24, 20%, 50%, 0)
-        );
-        pointer-events: none;
-        line-height: inherit;
-        white-space: pre;
-    }
-
-    pre[data-line] .line-highlight:before,
-    pre[data-line] .line-highlight[data-end]:after {
-        content: attr(data-start);
-        position: absolute;
-        top: 0.4em;
-        left: 0.6em;
-        min-width: 1em;
-        padding: 0 0.5em;
-        background-color: hsla(24, 20%, 50%, 0.4);
-        color: hsl(24, 20%, 95%);
-        font: bold 65%/1.5 sans-serif;
-        text-align: center;
-        vertical-align: 0.3em;
-        border-radius: 999px;
-        text-shadow: none;
-        box-shadow: 0 1px white;
-    }
-
-    pre[data-line] .line-highlight[data-end]:after {
-        content: attr(data-end);
-        top: auto;
-        bottom: 0.4em;
-    }
-    @font-face {
-        font-family: "Raleway";
-        font-style: italic;
-        font-weight: 400;
-        src: local("Raleway Italic"), local("Raleway-Italic"),
-            url(https://fonts.gstatic.com/s/raleway/v14/1Ptsg8zYS_SKggPNyCg4TYFv.ttf)
-                format("truetype");
-    }
-    @font-face {
-        font-family: "Raleway";
-        font-style: italic;
-        font-weight: 700;
-        src: local("Raleway Bold Italic"), local("Raleway-BoldItalic"),
-            url(https://fonts.gstatic.com/s/raleway/v14/1Ptpg8zYS_SKggPNyCgw9qR_AtCe.ttf)
-                format("truetype");
-    }
-    @font-face {
-        font-family: "Raleway";
-        font-style: normal;
-        font-weight: 400;
-        src: local("Raleway"), local("Raleway-Regular"),
-            url(https://fonts.gstatic.com/s/raleway/v14/1Ptug8zYS_SKggPNyC0ISg.ttf)
-                format("truetype");
-    }
-    @font-face {
-        font-family: "Raleway";
-        font-style: normal;
-        font-weight: 700;
-        src: local("Raleway Bold"), local("Raleway-Bold"),
-            url(https://fonts.gstatic.com/s/raleway/v14/1Ptrg8zYS_SKggPNwJYtWqZPBQ.ttf)
-                format("truetype");
-    }
-    body {
-        background: #fcfcfc;
-        color: #111;
-        font-family: "Raleway", sans-serif;
-        font-weight: 400;
-        font-size: 16px;
-    }
-    body h1,
-    body h2,
-    body h3,
-    body h4,
-    body h5,
-    body h6,
-    body table,
-    body li,
-    body .mathjax-exps,
-    body .math {
-        color: #111;
-        font-family: "Raleway", sans-serif;
-    }
-    body h1 {
-        font-weight: normal;
-        line-height: 4rem;
-        margin: 0 0 1.75rem;
-        padding: 20px 30px;
-        text-align: center;
-        text-transform: uppercase;
-        margin-top: 4rem;
-    }
-    body h2 {
-        font-weight: normal;
-        line-height: 3rem;
-        margin: 0 0 1.9375rem;
-        padding: 0 30px;
-        text-align: center;
-        text-transform: uppercase;
-        margin-top: 3rem;
-    }
-    body h3 {
-        font-weight: normal;
-    }
-    body h4 {
-        font-weight: normal;
-    }
-    body h5 {
-        font-size: 1.125rem;
-        font-weight: normal;
-    }
-    body h6 {
-        font-size: 1rem;
-        font-weight: bold;
-    }
-    body p {
-        color: #111;
-        font-size: 1rem;
-        line-height: 1.75rem;
-        margin: 0 0 1.25rem;
-    }
-    body blockquote {
-        margin-left: 1rem;
-        margin-right: 0;
-        padding: 0.5em;
-    }
-    body h1 {
-        font-size: 2.827rem;
-    }
-    body h2 {
-        font-size: 1.999rem;
-    }
-    body h3 {
-        font-size: 1.413rem;
-    }
-    body h4 {
-        font-size: 1.25rem;
-    }
-    body h5 {
-        font-size: 1.15rem;
-    }
-    body h6 {
-        font-size: 1rem;
-    }
-    body a {
-        color: #990000;
-        text-decoration: none;
-    }
-    body a:hover {
-        text-decoration: underline;
-    }
-    body table {
-        margin-bottom: 20px;
-    }
-    body table th,
-    body table td {
-        padding: 8px;
-        line-height: 1.25rem;
-        vertical-align: top;
-        border-top: 1px solid #ddd;
-    }
-    body table th {
-        font-weight: bold;
-    }
-    body table thead th {
-        vertical-align: bottom;
-    }
-    body table caption + thead tr:first-child th,
-    body table caption + thead tr:first-child td,
-    body table colgroup + thead tr:first-child th,
-    body table colgroup + thead tr:first-child td,
-    body table thead:first-child tr:first-child th,
-    body table thead:first-child tr:first-child td {
-        border-top: 0;
-    }
-    body table tbody + tbody {
-        border-top: 2px solid #ddd;
-    }
-    body code {
-        padding: 0.5em;
-        color: inherit;
-        border: 1px solid #ccc;
-        padding: 0.1em;
-        font-size: 0.9em;
-        margin-left: 0.2em;
-        margin-right: 0.2em;
-    }
-    body pre > code {
-        border: none;
-    }
-    body li > p {
-        margin-top: 0;
-        margin-bottom: 0;
-    }
-    body .task-list {
-        padding-left: 0;
-    }
-    body .task-list-item {
-        list-style: none;
-        margin-left: -2.4em;
-    }
-    body .task-list-item input {
-        top: 3px;
-        margin-right: 1.6em;
-    }
-    body .task-list-item input:before {
-        content: "";
-        display: inline-block;
-        width: 1rem;
-        height: 1rem;
-        vertical-align: middle;
-        text-align: center;
-        border: 1px solid gray;
-        background-color: #fdfdfd;
-        margin-left: 0;
-        margin-top: -0.8rem;
-    }
-    body .task-list-item input:checked:before,
-    body .task-list-item input[checked]:before {
-        content: "\25FC";
-        font-size: 0.8125rem;
-        line-height: 0.9375rem;
-        margin-top: -1rem;
-    }
-    @media screen and (-webkit-min-device-pixel-ratio: 0) and (min-resolution: 0.001dpcm) {
-        body .task-list-item input:before {
-            margin-top: -0.2rem;
-        }
-        body .task-list-item input:checked:before,
-        body .task-list-item input[checked]:before {
-            margin-top: -0.2rem;
-        }
-    }
-    body blockquote {
-        margin: 0 0 1.11111rem;
-        padding: 0.5rem 1.11111rem 0 1.05556rem;
-        border-left: 1px solid gray;
-        background-color: #ededed;
-    }
-    body blockquote,
-    body blockquote p {
-        line-height: 1.6;
-        color: #6f6f6f;
-    }
-    body img {
-        max-width: 100%;
-    }
-    body kbd {
-        color: #111;
-    }
-    .markdown-preview {
-        width: 100%;
-        height: 100%;
-        box-sizing: border-box;
-    }
-    .markdown-preview .pagebreak,
-    .markdown-preview .newpage {
-        page-break-before: always;
-    }
-    .markdown-preview pre.line-numbers {
-        position: relative;
-        padding-left: 3.8em;
-        counter-reset: linenumber;
-    }
-    .markdown-preview pre.line-numbers > code {
-        position: relative;
-    }
-    .markdown-preview pre.line-numbers .line-numbers-rows {
-        position: absolute;
-        pointer-events: none;
-        top: 1em;
-        font-size: 100%;
-        left: 0;
-        width: 3em;
-        letter-spacing: -1px;
-        border-right: 1px solid #999;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        -ms-user-select: none;
-        user-select: none;
-    }
-    .markdown-preview pre.line-numbers .line-numbers-rows > span {
-        pointer-events: none;
-        display: block;
-        counter-increment: linenumber;
-    }
-    .markdown-preview pre.line-numbers .line-numbers-rows > span:before {
-        content: counter(linenumber);
-        color: #999;
-        display: block;
-        padding-right: 0.8em;
-        text-align: right;
-    }
-    .markdown-preview .mathjax-exps .MathJax_Display {
-        text-align: center !important;
-    }
-    .markdown-preview:not([for="preview"]) .code-chunk .btn-group {
-        display: none;
-    }
-    .markdown-preview:not([for="preview"]) .code-chunk .status {
-        display: none;
-    }
-    .markdown-preview:not([for="preview"]) .code-chunk .output-div {
-        margin-bottom: 16px;
-    }
-    .scrollbar-style::-webkit-scrollbar {
-        width: 8px;
-    }
-    .scrollbar-style::-webkit-scrollbar-track {
-        border-radius: 10px;
-        background-color: transparent;
-    }
-    .scrollbar-style::-webkit-scrollbar-thumb {
-        border-radius: 5px;
-        background-color: rgba(150, 150, 150, 0.66);
-        border: 4px solid rgba(150, 150, 150, 0.66);
-        background-clip: content-box;
-    }
-    html body[for="html-export"]:not([data-presentation-mode]) {
-        position: relative;
-        width: 100%;
-        height: 100%;
-        top: 0;
-        left: 0;
-        margin: 0;
-        padding: 0;
-        overflow: auto;
-    }
-    html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview {
-        position: relative;
-        top: 0;
-    }
-    @media screen and (min-width: 914px) {
-        html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview {
-            padding: 2em calc(50% - 457px + 2em);
-        }
-    }
-    @media screen and (max-width: 914px) {
-        html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview {
-            padding: 2em;
-        }
-    }
-    @media screen and (max-width: 450px) {
-        html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview {
-            font-size: 14px !important;
-            padding: 1em;
-        }
-    }
-    @media print {
-        html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn {
-            display: none;
-        }
-    }
-    html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn {
-        position: fixed;
-        bottom: 8px;
-        left: 8px;
-        font-size: 28px;
-        cursor: pointer;
-        color: inherit;
-        z-index: 99;
-        width: 32px;
-        text-align: center;
-        opacity: 0.4;
-    }
-    html
-        body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc]
-        #sidebar-toc-btn {
-        opacity: 1;
-    }
-    html
-        body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc]
-        .md-sidebar-toc {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 300px;
-        height: 100%;
-        padding: 32px 0 48px 0;
-        font-size: 14px;
-        box-shadow: 0 0 4px rgba(150, 150, 150, 0.33);
-        box-sizing: border-box;
-        overflow: auto;
-        background-color: inherit;
-    }
-    html
-        body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc]
-        .md-sidebar-toc::-webkit-scrollbar {
-        width: 8px;
-    }
-    html
-        body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc]
-        .md-sidebar-toc::-webkit-scrollbar-track {
-        border-radius: 10px;
-        background-color: transparent;
-    }
-    html
-        body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc]
-        .md-sidebar-toc::-webkit-scrollbar-thumb {
-        border-radius: 5px;
-        background-color: rgba(150, 150, 150, 0.66);
-        border: 4px solid rgba(150, 150, 150, 0.66);
-        background-clip: content-box;
-    }
-    html
-        body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc]
-        .md-sidebar-toc
-        a {
-        text-decoration: none;
-    }
-    html
-        body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc]
-        .md-sidebar-toc
-        ul {
-        padding: 0 1.6em;
-        margin-top: 0.8em;
-    }
-    html
-        body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc]
-        .md-sidebar-toc
-        li {
-        margin-bottom: 0.8em;
-    }
-    html
-        body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc]
-        .md-sidebar-toc
-        ul {
-        list-style-type: none;
-    }
-    html
-        body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc]
-        .markdown-preview {
-        left: 300px;
-        width: calc(100% - 300px);
-        padding: 2em calc(50% - 457px - 150px);
-        margin: 0;
-        box-sizing: border-box;
-    }
-    @media screen and (max-width: 1274px) {
-        html
-            body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc]
-            .markdown-preview {
-            padding: 2em;
-        }
-    }
-    @media screen and (max-width: 450px) {
-        html
-            body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc]
-            .markdown-preview {
-            width: 100%;
-        }
-    }
-    html
-        body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc])
-        .markdown-preview {
-        left: 50%;
-        transform: translateX(-50%);
-    }
-    html
-        body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc])
-        .md-sidebar-toc {
-        display: none;
-    }
-    /* Please visit the URL below for more information: */
-    /*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
-</style>
-
-</head>
-
-<header>
-    <div class="page_header_con">
-        <h1 class="page_header_main_title">DVCC模拟实验环境</h1>
-        <h3 class="page_header_sub_title">最新版本下载地址</h3>
-        <div class="page_header_btn_con">
-            <a class="page_header_btn"
-                href="https://api.github.com/repos/HaleyEhrich/DvccSimulationEnvironment/zipball/v1.4.2.2">ZIP下载<br />Version
-                1.4.2.2</a>
-            <a class="page_header_btn"
-                href="https://api.github.com/repos/HaleyEhrich/DvccSimulationEnvironment/tarball/v1.4.2.2">源码下载<br />Version
-                1.4.4.2</a>
-        </div>
-    </div>
-</header>
-
-<body for="html-export">
-    <div class="mume markdown-preview">
-        <h1 class="mume-header undefined" id="content">CONTENT</h1>
-
-        <ul>
-            <li><a href="#1-%E7%AE%80%E4%BB%8B">1 &#x7B80;&#x4ECB;</a></li>
-            <li>
-                <a href="#2-dvcc%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C"
-                    >2 DVCC&#x4F7F;&#x7528;&#x624B;&#x518C;</a
-                >
-                <ul>
-                    <li>
-                        <a href="#21-%E7%95%8C%E9%9D%A2">2.1 &#x754C;&#x9762;</a>
-                        <ul>
-                            <li>
-                                <a href="#211-%E7%95%8C%E9%9D%A2%E6%A6%82%E8%BF%B0"
-                                    >2.1.1 &#x754C;&#x9762;&#x6982;&#x8FF0;</a
-                                >
-                            </li>
-                            <li>
-                                <a href="#212-%E8%8F%9C%E5%8D%95%E6%A0%8F%E4%BB%8B%E7%BB%8D"
-                                    >2.1.2 &#x83DC;&#x5355;&#x680F;&#x4ECB;&#x7ECD;</a
-                                >
-                            </li>
-                            <li>
-                                <a
-                                    href="#213-%E7%94%B5%E8%B7%AF%E5%9B%BE%E5%8C%BA%E5%9F%9F%E4%BB%8B%E7%BB%8D"
-                                    >2.1.3
-                                    &#x7535;&#x8DEF;&#x56FE;&#x533A;&#x57DF;&#x4ECB;&#x7ECD;</a
-                                >
-                            </li>
-                            <li>
-                                <a
-                                    href="#214-%E5%BE%AE%E6%8C%87%E4%BB%A4%E4%BF%A1%E6%81%AF%E5%8C%BA%E5%9F%9F"
-                                    >2.1.4
-                                    &#x5FAE;&#x6307;&#x4EE4;&#x4FE1;&#x606F;&#x533A;&#x57DF;</a
-                                >
-                            </li>
-                            <li>
-                                <a
-                                    href="#215-%E8%BF%90%E8%A1%8C%E7%8A%B6%E6%80%81%E5%8C%BA%E5%9F%9F"
-                                    >2.1.5 &#x8FD0;&#x884C;&#x72B6;&#x6001;&#x533A;&#x57DF;</a
-                                >
-                            </li>
-                            <li>
-                                <a
-                                    href="#216-%E5%BF%AB%E6%8D%B7%E6%8C%89%E9%92%AE%E4%BF%A1%E5%8F%B7%E6%8E%A7%E5%88%B6%E5%8C%BA%E5%9F%9F"
-                                    >2.1.6
-                                    &#x5FEB;&#x6377;&#x6309;&#x94AE;&amp;&#x4FE1;&#x53F7;&#x63A7;&#x5236;&#x533A;&#x57DF;</a
-                                >
-                            </li>
-                            <li>
-                                <a
-                                    href="#217-%E6%B5%AE%E5%8A%A8%E9%9D%A2%E6%9D%BF%E4%BB%8B%E7%BB%8D"
-                                    >2.1.7 &#x6D6E;&#x52A8;&#x9762;&#x677F;&#x4ECB;&#x7ECD;</a
-                                >
-                            </li>
-                            <li>
-                                <a href="#218-%E8%AE%BE%E7%BD%AE%E4%BD%BF%E7%94%A8"
-                                    >2.1.8 &#x8BBE;&#x7F6E;&#x4F7F;&#x7528;</a
-                                >
-                            </li>
-                            <li>
-                                <a href="#219-dvcc%E4%BF%A1%E5%8F%B7%E8%AF%A6%E8%A7%A3"
-                                    >2.1.9 DVCC&#x4FE1;&#x53F7;&#x8BE6;&#x89E3;</a
-                                >
-                            </li>
-                            <li>
-                                <a href="#2110-%E5%BE%AE%E4%BB%A3%E7%A0%81%E6%96%87%E4%BB%B6"
-                                    >2.1.10 &#x5FAE;&#x4EE3;&#x7801;&#x6587;&#x4EF6;</a
-                                >
-                            </li>
-                            <li>
-                                <a
-                                    href="#2111-dvcc%E8%AE%BE%E8%AE%A1%E5%99%A8-dvcc%E8%BD%AC%E6%8D%A2%E5%99%A8"
-                                    >2.1.11 DVCC&#x8BBE;&#x8BA1;&#x5668; &amp;&amp;
-                                    DVCC&#x8F6C;&#x6362;&#x5668;</a
-                                >
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
-            </li>
-            <li>
-                <a href="#3-%E9%A1%B9%E7%9B%AE%E4%BF%A1%E6%81%AF%E6%96%87%E4%BB%B6"
-                    >3 &#x9879;&#x76EE;&#x4FE1;&#x606F;&#x6587;&#x4EF6;</a
-                >
-            </li>
-        </ul>
-        <div class="divi_line"></div>
-        <h1 class="mume-header" id="1-%E7%AE%80%E4%BB%8B">1 &#x7B80;&#x4ECB;</h1>
-
-        <blockquote>
-            <p>
-                &#x6CE8;&#xFF1A;&#x8BE5;&#x90E8;&#x5206;&#x5185;&#x5BB9;&#x5927;&#x7EA6;
-                <i>120</i>
-                &#x5B57;&#xFF0C;&#x9605;&#x8BFB;&#x8BE5;&#x90E8;&#x5206;&#x5927;&#x7EA6;&#x9700;&#x8981;
-                <i>1</i> &#x5206;&#x949F;
-            </p>
-        </blockquote>
-        <p>
-            DVCC simulation
-            environment(&#x4EE5;&#x4E0B;&#x7B80;&#x79F0;DVCC)&#x662F;&#x4E00;&#x6B3E;&#x9002;&#x7528;&#x4E8E;&#x8BA1;&#x7B97;&#x673A;&#x7EC4;&#x6210;&#x539F;&#x7406;&#x8BFE;&#x7A0B;&#x7684;&#x6A21;&#x62DF;&#x8F6F;&#x4EF6;&#x3002;&#x4F7F;&#x7528;QT
-            C++&#x6784;&#x5EFA;&#x3002;&#x76F8;&#x8F83;&#x4E8E;&#x5176;&#x5B83;&#x7248;&#x672C;&#xFF0C;DVCC&#x53EF;&#x4EE5;&#x8131;&#x79BB;&#x786C;&#x4EF6;&#x8BBE;&#x5907;&#xFF0C;&#x72EC;&#x7ACB;&#x8FD0;&#x884C;&#x3002;&#x53EF;&#x4EE5;&#x9009;&#x62E9;&#x8BFB;&#x53D6;&#x5FAE;&#x4EE3;&#x7801;&#x6587;&#x4EF6;&#x81EA;&#x52A8;&#x8FD0;&#x884C;&#xFF0C;&#x4E5F;&#x53EF;&#x9009;&#x62E9;&#x624B;&#x52A8;&#x914D;&#x7F6E;&#x4FE1;&#x53F7;&#x8FD0;&#x884C;&#x3002;
-        </p>
-        <h1 class="mume-header" id="2-dvcc%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C">
-            2 DVCC&#x4F7F;&#x7528;&#x624B;&#x518C;
-        </h1>
-
-        <blockquote>
-            <p>
-                &#x6CE8;&#xFF1A;&#x8BE5;&#x90E8;&#x5206;&#x5185;&#x5BB9;&#x5927;&#x7EA6;
-                <i>10000</i>
-                &#x5B57;&#xFF0C;&#x9605;&#x8BFB;&#x8BE5;&#x90E8;&#x5206;&#x5927;&#x7EA6;&#x9700;&#x8981;
-                <i>25</i> &#x5206;&#x949F;
-            </p>
-        </blockquote>
-        <h2 class="mume-header" id="21-%E7%95%8C%E9%9D%A2">2.1 &#x754C;&#x9762;</h2>
-
-        <img
-            class="img"
-            src="../../resource/img/product/dvcc/window_1.png"
-            alt="&#x83DC;&#x5355;&#x680F;"
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link href="../product.css" rel="stylesheet" />
+        <link
+            rel="Shortcut Icon"
+            href="../../resource/img/product/dvcc/web_icon.png"
+            type="image/x-icon"
         />
-        <div class="note">
-            Fig-2-1 DVCC&#x754C;&#x9762;&#x529F;&#x80FD;&#x5212;&#x5206;&#x793A;&#x610F;&#x56FE;
+        <title>DVCC</title>
+
+    </head>
+
+    <header>
+        <div class="page_header_con">
+            <h1 class="page_header_main_title">DVCC模拟实验环境</h1>
+            <h3 class="page_header_sub_title">最新版本下载地址</h3>
+            <div class="page_header_btn_con">
+                <a
+                    class="page_header_btn"
+                    href="https://api.github.com/repos/HaleyEhrich/DvccSimulationEnvironment/zipball/v1.4.2.2"
+                    >ZIP下载<br />Version 1.4.2.2</a
+                >
+                <a
+                    class="page_header_btn"
+                    href="https://api.github.com/repos/HaleyEhrich/DvccSimulationEnvironment/tarball/v1.4.2.2"
+                    >源码下载<br />Version 1.4.4.2</a
+                >
+            </div>
         </div>
-        <h3 class="mume-header" id="211-%E7%95%8C%E9%9D%A2%E6%A6%82%E8%BF%B0">
-            2.1.1 &#x754C;&#x9762;&#x6982;&#x8FF0;
-        </h3>
+    </header>
 
-        <p>
-            &#x4E3B;&#x754C;&#x9762;&#x533A;&#x57DF;&#x5212;&#x5206;&#x793A;&#x610F;&#x56FE;&#x5982;
-            <i>Fig-2-1</i>
-            &#x6240;&#x793A;&#xFF0C;&#x754C;&#x9762;&#x5927;&#x81F4;&#x5212;&#x5206;&#x4E3A;5&#x4E2A;&#x533A;&#x57DF;&#xFF0C;&#x5206;&#x522B;&#x4E3A;:&#x83DC;&#x5355;&#x680F;&#x533A;&#x57DF;&#x3001;&#x7535;&#x8DEF;&#x56FE;&#x533A;&#x57DF;&#x3001;&#x5FAE;&#x6307;&#x4EE4;&#x4FE1;&#x606F;&#x533A;&#x57DF;&#x3001;&#x8FD0;&#x884C;&#x72B6;&#x6001;&#x533A;&#x57DF;&#x3001;&#x5FEB;&#x6377;&#x6309;&#x94AE;&amp;&#x4FE1;&#x53F7;&#x63A7;&#x5236;&#x533A;&#x57DF;&#x3002;
-        </p>
-        <h3 class="mume-header" id="212-%E8%8F%9C%E5%8D%95%E6%A0%8F%E4%BB%8B%E7%BB%8D">
-            2.1.2 &#x83DC;&#x5355;&#x680F;&#x4ECB;&#x7ECD;
-        </h3>
+    <body for="html-export">
+        <div class="mume markdown-preview">
+            <h1 class="mume-header undefined" id="content">CONTENT</h1>
 
-        <img
-            class="img"
-            src="../../resource/img/product/dvcc/menubar.png"
-            alt="&#x83DC;&#x5355;&#x680F;"
-        />
-        <div class="note">Fig-2-2 &#x83DC;&#x5355;&#x680F;</div>
-        <p>
+            <ul>
+                <li><a href="#%E4%B8%80-%E7%AE%80%E4%BB%8B">&#x4E00; &#x7B80;&#x4ECB;</a></li>
+                <li>
+                    <a href="#%E4%BA%8C-dvcc-%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C"
+                        >&#x4E8C; DVCC &#x4F7F;&#x7528;&#x624B;&#x518C;</a
+                    >
+                    <ul>
+                        <li>
+                            <a href="#21-%E7%95%8C%E9%9D%A2">2.1 &#x754C;&#x9762;</a>
+                            <ul>
+                                <li>
+                                    <a href="#211-%E7%95%8C%E9%9D%A2%E6%A6%82%E8%BF%B0"
+                                        >2.1.1 &#x754C;&#x9762;&#x6982;&#x8FF0;</a
+                                    >
+                                </li>
+                                <li>
+                                    <a href="#212-%E8%8F%9C%E5%8D%95%E6%A0%8F%E4%BB%8B%E7%BB%8D"
+                                        >2.1.2 &#x83DC;&#x5355;&#x680F;&#x4ECB;&#x7ECD;</a
+                                    >
+                                </li>
+                                <li>
+                                    <a
+                                        href="#213-%E7%94%B5%E8%B7%AF%E5%9B%BE%E5%8C%BA%E5%9F%9F%E4%BB%8B%E7%BB%8D"
+                                        >2.1.3
+                                        &#x7535;&#x8DEF;&#x56FE;&#x533A;&#x57DF;&#x4ECB;&#x7ECD;</a
+                                    >
+                                </li>
+                                <li>
+                                    <a
+                                        href="#214-%E5%BE%AE%E6%8C%87%E4%BB%A4%E4%BF%A1%E6%81%AF%E5%8C%BA%E5%9F%9F"
+                                        >2.1.4
+                                        &#x5FAE;&#x6307;&#x4EE4;&#x4FE1;&#x606F;&#x533A;&#x57DF;</a
+                                    >
+                                </li>
+                                <li>
+                                    <a
+                                        href="#215-%E8%BF%90%E8%A1%8C%E7%8A%B6%E6%80%81%E5%8C%BA%E5%9F%9F"
+                                        >2.1.5 &#x8FD0;&#x884C;&#x72B6;&#x6001;&#x533A;&#x57DF;</a
+                                    >
+                                </li>
+                                <li>
+                                    <a
+                                        href="#216-%E5%BF%AB%E6%8D%B7%E6%8C%89%E9%92%AE%E4%BF%A1%E5%8F%B7%E6%8E%A7%E5%88%B6%E5%8C%BA%E5%9F%9F"
+                                        >2.1.6
+                                        &#x5FEB;&#x6377;&#x6309;&#x94AE;&amp;&#x4FE1;&#x53F7;&#x63A7;&#x5236;&#x533A;&#x57DF;</a
+                                    >
+                                </li>
+                                <li>
+                                    <a
+                                        href="#217-%E6%B5%AE%E5%8A%A8%E9%9D%A2%E6%9D%BF%E4%BB%8B%E7%BB%8D"
+                                        >2.1.7 &#x6D6E;&#x52A8;&#x9762;&#x677F;&#x4ECB;&#x7ECD;</a
+                                    >
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#22-%E8%AE%BE%E7%BD%AE%E4%BD%BF%E7%94%A8"
+                                >2.2 &#x8BBE;&#x7F6E;&#x4F7F;&#x7528;</a
+                            >
+                            <ul>
+                                <li>
+                                    <a href="#221-%E9%80%9A%E7%94%A8%E8%AE%BE%E7%BD%AE"
+                                        >2.2.1 &#x901A;&#x7528;&#x8BBE;&#x7F6E;</a
+                                    >
+                                </li>
+                                <li>
+                                    <a href="#222-%E8%BF%90%E8%A1%8C%E8%AE%BE%E7%BD%AE"
+                                        >2.2.2 &#x8FD0;&#x884C;&#x8BBE;&#x7F6E;</a
+                                    >
+                                </li>
+                                <li>
+                                    <a href="#223-%E9%AB%98%E7%BA%A7%E8%AE%BE%E7%BD%AE"
+                                        >2.2.3 &#x9AD8;&#x7EA7;&#x8BBE;&#x7F6E;</a
+                                    >
+                                </li>
+                                <li>
+                                    <a href="#224-%E5%85%B6%E5%AE%83%E8%AE%BE%E7%BD%AE"
+                                        >2.2.4 &#x5176;&#x5B83;&#x8BBE;&#x7F6E;</a
+                                    >
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#23-dvcc-%E4%BF%A1%E5%8F%B7%E8%AF%A6%E8%A7%A3"
+                                >2.3 DVCC &#x4FE1;&#x53F7;&#x8BE6;&#x89E3;</a
+                            >
+                            <ul>
+                                <li>
+                                    <a
+                                        href="#231-24%E4%BD%8D%E5%BE%AE%E7%A8%8B%E5%BA%8F%E5%90%AB%E4%B9%89"
+                                        >2.3.1 24&#x4F4D;&#x5FAE;&#x7A0B;&#x5E8F;&#x542B;&#x4E49;</a
+                                    >
+                                </li>
+                                <li>
+                                    <a href="#232-alu%E5%8A%9F%E8%83%BD%E8%A1%A8"
+                                        >2.3.2 ALU&#x529F;&#x80FD;&#x8868;</a
+                                    >
+                                </li>
+                                <li><a href="#233-b1-b0">2.3.3 B1 B0</a></li>
+                                <li>
+                                    <a href="#234-a%E5%AD%97%E6%AE%B5%E5%8A%9F%E8%83%BD%E8%A1%A8"
+                                        >2.3.4 A&#x5B57;&#x6BB5;&#x529F;&#x80FD;&#x8868;</a
+                                    >
+                                </li>
+                                <li>
+                                    <a href="#235-b%E5%AD%97%E6%AE%B5%E5%8A%9F%E8%83%BD%E8%A1%A8"
+                                        >2.3.5 B&#x5B57;&#x6BB5;&#x529F;&#x80FD;&#x8868;</a
+                                    >
+                                </li>
+                                <li>
+                                    <a href="#236-c%E5%AD%97%E6%AE%B5%E5%8A%9F%E8%83%BD%E8%A1%A8"
+                                        >2.3.6 C&#x5B57;&#x6BB5;&#x529F;&#x80FD;&#x8868;</a
+                                    >
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#24-%E5%BE%AE%E4%BB%A3%E7%A0%81%E6%96%87%E4%BB%B6"
+                                >2.4 &#x5FAE;&#x4EE3;&#x7801;&#x6587;&#x4EF6;</a
+                            >
+                            <ul>
+                                <li>
+                                    <a href="#241-dvc%E5%BE%AE%E4%BB%A3%E7%A0%81%E6%96%87%E4%BB%B6"
+                                        >2.4.1 .dvc&#x5FAE;&#x4EE3;&#x7801;&#x6587;&#x4EF6;</a
+                                    >
+                                </li>
+                                <li>
+                                    <a href="#242-txt%E5%BE%AE%E4%BB%A3%E7%A0%81%E6%96%87%E4%BB%B6"
+                                        >2.4.2 .txt&#x5FAE;&#x4EE3;&#x7801;&#x6587;&#x4EF6;</a
+                                    >
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#%E4%B8%89-%E9%A1%B9%E7%9B%AE%E4%BF%A1%E6%81%AF%E6%96%87%E4%BB%B6"
+                        >&#x4E09; &#x9879;&#x76EE;&#x4FE1;&#x606F;&#x6587;&#x4EF6;</a
+                    >
+                    <ul>
+                        <li>
+                            <a href="#31-%E5%BC%80%E6%BA%90%E5%8D%8F%E8%AE%AE"
+                                >3.1 &#x5F00;&#x6E90;&#x534F;&#x8BAE;</a
+                            >
+                        </li>
+                        <li>
+                            <a href="#32-github-%E4%BB%93%E5%BA%93%E8%AF%B4%E6%98%8E"
+                                >3.2 Github &#x4ED3;&#x5E93;&#x8BF4;&#x660E;</a
+                            >
+                        </li>
+                        <li>
+                            <a
+                                href="#33-%E4%BA%8C%E6%AC%A1%E5%BC%80%E5%8F%91%E7%9B%B8%E5%85%B3%E4%BF%A1%E6%81%AF"
+                                >3.3
+                                &#x4E8C;&#x6B21;&#x5F00;&#x53D1;&#x76F8;&#x5173;&#x4FE1;&#x606F;</a
+                            >
+                            <ul>
+                                <li>
+                                    <a
+                                        href="#331-%E9%A1%B9%E7%9B%AE%E6%96%87%E4%BB%B6%E4%BF%A1%E6%81%AF"
+                                        >3.3.1 &#x9879;&#x76EE;&#x6587;&#x4EF6;&#x4FE1;&#x606F;</a
+                                    >
+                                </li>
+                                <li>
+                                    <a
+                                        href="#332-%E4%BA%8C%E6%AC%A1%E5%BC%80%E5%8F%91%E5%BB%BA%E8%AE%AE"
+                                        >3.3.2 &#x4E8C;&#x6B21;&#x5F00;&#x53D1;&#x5EFA;&#x8BAE;</a
+                                    >
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li><a href="#%E5%9B%9B-qa">&#x56DB; Q&amp;A</a></li>
+            </ul>
+            <div class="divi_line"></div>
+            <h1 class="mume-header" id="%E4%B8%80-%E7%AE%80%E4%BB%8B">&#x4E00; &#x7B80;&#x4ECB;</h1>
+
+            <blockquote>
+                <p>
+                    &#x6CE8;&#xFF1A;&#x8BE5;&#x90E8;&#x5206;&#x5185;&#x5BB9;&#x5927;&#x7EA6;
+                    <i>120</i>
+                    &#x5B57;&#xFF0C;&#x9605;&#x8BFB;&#x8BE5;&#x90E8;&#x5206;&#x5927;&#x7EA6;&#x9700;&#x8981;
+                    <i>1</i> &#x5206;&#x949F;
+                </p>
+            </blockquote>
+            <p>
+                DVCC simulation environment(&#x4EE5;&#x4E0B;&#x7B80;&#x79F0;
+                DVCC)&#x662F;&#x4E00;&#x6B3E;&#x9002;&#x7528;&#x4E8E;&#x8BA1;&#x7B97;&#x673A;&#x7EC4;&#x6210;&#x539F;&#x7406;&#x8BFE;&#x7A0B;&#x7684;&#x6A21;&#x62DF;&#x8F6F;&#x4EF6;&#x3002;&#x4F7F;&#x7528;
+                QT
+                C++&#x6784;&#x5EFA;&#x3002;&#x76F8;&#x8F83;&#x4E8E;&#x5176;&#x5B83;&#x7248;&#x672C;&#xFF0C;DVCC
+                &#x53EF;&#x4EE5;&#x8131;&#x79BB;&#x786C;&#x4EF6;&#x8BBE;&#x5907;&#xFF0C;&#x72EC;&#x7ACB;&#x8FD0;&#x884C;&#x3002;&#x53EF;&#x4EE5;&#x9009;&#x62E9;&#x8BFB;&#x53D6;&#x5FAE;&#x4EE3;&#x7801;&#x6587;&#x4EF6;&#x81EA;&#x52A8;&#x8FD0;&#x884C;&#xFF0C;&#x4E5F;&#x53EF;&#x9009;&#x62E9;&#x624B;&#x52A8;&#x914D;&#x7F6E;&#x4FE1;&#x53F7;&#x8FD0;&#x884C;&#x3002;
+            </p>
+            <h1 class="mume-header" id="%E4%BA%8C-dvcc-%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C">
+                &#x4E8C; DVCC &#x4F7F;&#x7528;&#x624B;&#x518C;
+            </h1>
+
+            <blockquote>
+                <p>
+                    &#x6CE8;&#xFF1A;&#x8BE5;&#x90E8;&#x5206;&#x5185;&#x5BB9;&#x5927;&#x7EA6;
+                    <i>10000</i>
+                    &#x5B57;&#xFF0C;&#x9605;&#x8BFB;&#x8BE5;&#x90E8;&#x5206;&#x5927;&#x7EA6;&#x9700;&#x8981;
+                    <i>25</i> &#x5206;&#x949F;
+                </p>
+            </blockquote>
+            <h2 class="mume-header" id="21-%E7%95%8C%E9%9D%A2">2.1 &#x754C;&#x9762;</h2>
+
+            <img
+                class="img"
+                src="../../resource/img/product/dvcc/window_1.png"
+                alt="&#x83DC;&#x5355;&#x680F;"
+            />
+            <div class="note">
+                Fig-2-1 DVCC&#x754C;&#x9762;&#x529F;&#x80FD;&#x5212;&#x5206;&#x793A;&#x610F;&#x56FE;
+            </div>
+            <ul>
+                <li>
+                    &#x754C;&#x9762;&#x4ECB;&#x7ECD;&#x5206;&#x4E3A;&#x4EE5;&#x4E0B; 6
+                    &#x90E8;&#x5206;&#xFF1A;
+                </li>
+            </ul>
+            <ol>
+                <li>
+                    <a href="#212-%E8%8F%9C%E5%8D%95%E6%A0%8F%E4%BB%8B%E7%BB%8D"
+                        >&#x83DC;&#x5355;&#x680F;</a
+                    >
+                </li>
+                <li>
+                    <a href="#213-%E7%94%B5%E8%B7%AF%E5%9B%BE%E5%8C%BA%E5%9F%9F%E4%BB%8B%E7%BB%8D"
+                        >&#x7535;&#x8DEF;&#x56FE;&#x663E;&#x793A;&#x533A;&#x57DF;</a
+                    >
+                </li>
+                <li>
+                    <a href="#214-%E5%BE%AE%E6%8C%87%E4%BB%A4%E4%BF%A1%E6%81%AF%E5%8C%BA%E5%9F%9F"
+                        >&#x5FAE;&#x6307;&#x4EE4;&#x4FE1;&#x606F;&#x663E;&#x793A;&#x6846;</a
+                    >
+                </li>
+                <li>
+                    <a href="#215-%E8%BF%90%E8%A1%8C%E7%8A%B6%E6%80%81%E5%8C%BA%E5%9F%9F"
+                        >&#x8FD0;&#x884C;&#x72B6;&#x6001;&#x72B6;&#x6001;&#x680F;</a
+                    >
+                </li>
+                <li>
+                    <a
+                        href="#216-%E5%BF%AB%E6%8D%B7%E6%8C%89%E9%92%AE&amp;%E4%BF%A1%E5%8F%B7%E6%8E%A7%E5%88%B6%E5%8C%BA%E5%9F%9F"
+                        >&#x5FEB;&#x6377;&#x6309;&#x94AE;&amp;&#x4FE1;&#x53F7;&#x63A7;&#x5236;&#x533A;&#x57DF;</a
+                    >
+                </li>
+                <li>
+                    <a href="#217-%E6%B5%AE%E5%8A%A8%E9%9D%A2%E6%9D%BF%E4%BB%8B%E7%BB%8D"
+                        >&#x6D6E;&#x52A8;&#x9762;&#x677F;</a
+                    >
+                </li>
+            </ol>
+            <h3 class="mume-header" id="211-%E7%95%8C%E9%9D%A2%E6%A6%82%E8%BF%B0">
+                2.1.1 &#x754C;&#x9762;&#x6982;&#x8FF0;
+            </h3>
+
+            <p>
+                &#x4E3B;&#x754C;&#x9762;&#x533A;&#x57DF;&#x5212;&#x5206;&#x793A;&#x610F;&#x56FE;&#x5982;
+                <i>Fig-2-1</i>
+                &#x6240;&#x793A;&#xFF0C;&#x754C;&#x9762;&#x5927;&#x81F4;&#x5212;&#x5206;&#x4E3A; 5
+                &#x4E2A;&#x533A;&#x57DF;&#xFF0C;&#x5206;&#x522B;&#x4E3A;:&#x83DC;&#x5355;&#x680F;&#x533A;&#x57DF;&#x3001;&#x7535;&#x8DEF;&#x56FE;&#x533A;&#x57DF;&#x3001;&#x5FAE;&#x6307;&#x4EE4;&#x4FE1;&#x606F;&#x533A;&#x57DF;&#x3001;&#x8FD0;&#x884C;&#x72B6;&#x6001;&#x533A;&#x57DF;&#x3001;&#x5FEB;&#x6377;&#x6309;&#x94AE;&amp;&#x4FE1;&#x53F7;&#x63A7;&#x5236;&#x533A;&#x57DF;&#x3002;
+            </p>
+            <h3 class="mume-header" id="212-%E8%8F%9C%E5%8D%95%E6%A0%8F%E4%BB%8B%E7%BB%8D">
+                2.1.2 &#x83DC;&#x5355;&#x680F;&#x4ECB;&#x7ECD;
+            </h3>
+
+            <img
+                class="img"
+                src="../../resource/img/product/dvcc/menubar.png"
+                alt="&#x83DC;&#x5355;&#x680F;"
+            />
+            <div class="note">Fig-2-2 &#x83DC;&#x5355;&#x680F;</div>
             &#x83DC;&#x5355;&#x680F;&#x5171;&#x6709;5&#x9879;&#xFF0C;&#x5206;&#x522B;&#x4E3A;&#x6587;&#x4EF6;&#x3001;&#x8FD0;&#x884C;&#x3001;&#x5DE5;&#x5177;&#x3001;&#x9009;&#x9879;&#x3001;&#x5173;&#x4E8E;&#x83DC;&#x5355;&#x680F;&#x3002;
-        </p>
-        <ol>
-            <li>
-                &#x6587;&#x4EF6;&#x83DC;&#x5355;&#x680F;&#xFF1A;<br />
-                &#x5728;&#x8BE5;&#x83DC;&#x5355;&#x680F;&#x4F60;&#x53EF;&#x4EE5;
-                <ul>
-                    <li>&#x9009;&#x62E9;&#x65B0;&#x5EFA;&#x4E00;&#x4E2A;&#x7A97;&#x53E3;</li>
-                    <li>
+            <h4 class="mume-header" id="2121-%E6%96%87%E4%BB%B6%E8%8F%9C%E5%8D%95%E6%A0%8F">
+                2.1.2.1 &#x6587;&#x4EF6;&#x83DC;&#x5355;&#x680F;
+            </h4>
+
+            <ul>
+                <li>
+                    <p>
+                        &#x65B0;&#x5EFA;&#x4E00;&#x4E2A;&#x7A97;&#x53E3;<br />
+                        &#x65B0;&#x5EFA;&#x7A97;&#x53E3;&#x72EC;&#x7ACB;&#x4E8E;&#x539F;&#x6709;&#x7A97;&#x53E3;&#x3002;
+                    </p>
+                </li>
+                <li>
+                    <p>
                         &#x6253;&#x5F00;&#x3001;&#x4FDD;&#x5B58;&#x3001;&#x53E6;&#x5B58;&#x5FAE;&#x4EE3;&#x7801;&#x6587;&#x4EF6;
-                        <blockquote>
-                            <p>
-                                &#x5FAE;&#x4EE3;&#x7801;&#x6587;&#x4EF6;&#x683C;&#x5F0F;&#x4E3A;
-                                <strong>.dvc</strong>/ <strong>.txt</strong><br />
-                                &#x4FDD;&#x5B58;&#x53EF;&#x4EE5;&#x5C06;&#x76EE;&#x524D;RAM&#x3001;ROM&#x5185;&#x5185;&#x5BB9;&#x4FDD;&#x5B58;&#x5230;&#x6253;&#x5F00;&#x7684;&#x5FAE;&#x4EE3;&#x7801;&#x6587;&#x4EF6;&#xFF08;&#x4FDD;&#x5B58;&#x6587;&#x4EF6;&#x683C;&#x5F0F;&#x4E3A;.dvc&#xFF0C;&#x6CE8;&#xFF1A;<mark>&#x975E;2&#x4F4D;&#x5730;&#x5740;&#x6807;&#x51C6;&#x7684;&#x5FAE;&#x4EE3;&#x7801;</mark>&#xFF0C;&#x800C;&#x662F;DVCC&#x4E13;&#x7528;4&#x5730;&#x5740;&#x5FAE;&#x4EE3;&#x7801;&#xFF09;
-                            </p>
-                        </blockquote>
-                    </li>
-                    <li>&#x9ECF;&#x8D34;&#x5FAE;&#x4EE3;&#x7801;</li>
-                    <li>
-                        &#x6253;&#x5F00;&#x5185;&#x5B58;&#x67E5;&#x770B;&#x5668;
-                        <blockquote>
-                            <p>
-                                (&#x5185;&#x5B58;&#x67E5;&#x770B;&#x5668;.&#x8BE6;&#x7EC6;&#x4FE1;&#x606F;&#x89C1;
-                                <a href="#2171-ram%E9%9D%A2%E6%9D%BF"
-                                    >2.1.7.1 RAM&#x9762;&#x677F;</a
-                                >
-                                &amp;&amp;
-                                <a href="#2172-rom%E9%9D%A2%E6%9D%BF"
-                                    >2.1.7.2 ROM&#x9762;&#x677F;</a
-                                >
-                                )
-                            </p>
-                        </blockquote>
-                    </li>
-                </ul>
-            </li>
-            <li>
-                &#x8FD0;&#x884C;&#x83DC;&#x5355;&#x680F;&#xFF1A;<br />
-                &#x5728;&#x8FD0;&#x884C;&#x83DC;&#x5355;&#x680F;&#x4E2D;&#x4F60;&#x53EF;&#x4EE5;
-                <ul>
-                    <li>
-                        &#x9009;&#x62E9;&#x6253;&#x5F00;&#x5173;&#x95ED;&#x5FAE;&#x4EE3;&#x7801;&#x4FE1;&#x606F;&#x6846;
-                        <blockquote>
-                            <p>
-                                (&#x5FAE;&#x4EE3;&#x7801;&#x4FE1;&#x606F;&#x6846;&#x89C1;
-                                <a
-                                    href="#214-%E5%BE%AE%E6%8C%87%E4%BB%A4%E4%BF%A1%E6%81%AF%E5%8C%BA%E5%9F%9F"
-                                    >2.1.4&#x5FAE;&#x4EE3;&#x7801;&#x4FE1;&#x606F;&#x6846;</a
-                                >
-                                )
-                            </p>
-                        </blockquote>
-                    </li>
-                    <li>
-                        &#x914D;&#x7F6E;&#x8FD0;&#x884C;&#x8BBE;&#x7F6E;(&#x5728;&#x7248;&#x672C;
+                    </p>
+                    <ul>
+                        <li>
+                            &#x5FAE;&#x4EE3;&#x7801;&#x6587;&#x4EF6;&#x683C;&#x5F0F;&#x4E3A;
+                            <code>.dvc / .txt</code>
+                        </li>
+                        <li>
+                            &#x4FDD;&#x5B58;&#x53EF;&#x4EE5;&#x5C06;&#x76EE;&#x524D; RAM&#x3001;ROM
+                            &#x5185;&#x5185;&#x5BB9;&#x4FDD;&#x5B58;&#x5230;&#x6253;&#x5F00;&#x7684;&#x5FAE;&#x4EE3;&#x7801;&#x6587;&#x4EF6;&#xFF0C;&#x4E5F;&#x53EF;&#x4EE5;&#x5728;&#x672A;&#x6253;&#x5F00;&#x6587;&#x4EF6;&#x65F6;&#xFF0C;&#x4FDD;&#x5B58;&#x5230;&#x65B0;&#x5EFA;&#x6587;&#x4EF6;&#x5185;&#x3002;<br />
+                            (&#x4FDD;&#x5B58;&#x6587;&#x4EF6;&#x683C;&#x5F0F;&#x4E3A;<code>.dvc</code>&#xFF0C;&#x6CE8;&#xFF1A;<mark
+                                >&#x975E; 2
+                                &#x4F4D;&#x5730;&#x5740;&#x6807;&#x51C6;&#x7684;&#x5FAE;&#x4EE3;&#x7801;</mark
+                            >&#xFF0C;&#x800C;&#x662F; DVCC &#x4E13;&#x7528; 4
+                            &#x5730;&#x5740;&#x5FAE;&#x4EE3;&#x7801;)
+                        </li>
+                        <li>
+                            &#x53E6;&#x5B58;&#x6587;&#x4EF6;&#x3002;&#x53E6;&#x5B58;&#x9ED8;&#x8BA4;&#x4FDD;&#x5B58;&#x5230;<code>txt</code>&#x683C;&#x5F0F;&#xFF0C;&#x540C;&#x65F6;&#x4FDD;&#x5B58;&#x7684;&#x5FAE;&#x4EE3;&#x7801;&#x683C;&#x5F0F;&#x4E3A;
+                            2
+                            &#x4E3A;&#x5730;&#x5740;&#x7684;&#x6807;&#x51C6;&#x7684;&#x5FAE;&#x4EE3;&#x7801;&#x3002;&#x6587;&#x4EF6;&#x540D;&#x4E3A;(<code>Stander_file_ave_yy-mm-dd_hh-mm-ss.txt</code>)
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <p>
+                        &#x9ECF;&#x8D34;&#x5FAE;&#x4EE3;&#x7801;<br />
+                        &#x9ECF;&#x8D34;&#x7684;&#x5FAE;&#x4EE3;&#x7801;&#x5E94;&#x8BE5;&#x4E3A;&#x5FAE;&#x4EE3;&#x7801;&#x6587;&#x4EF6;&#x5185;&#x5BB9;&#x3002;
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        &#x6253;&#x5F00;&#x5185;&#x5B58;&#x67E5;&#x770B;&#x5668;<br />
+                        &#x5185;&#x5B58;&#x67E5;&#x770B;&#x5668;&#x8BE6;&#x7EC6;&#x4FE1;&#x606F;&#x89C1;
+                        <a href="#2171-ram%E9%9D%A2%E6%9D%BF">2.1.7.1 RAM &#x9762;&#x677F;</a>
+                        &amp;&amp;
+                        <a href="#2172-rom%E9%9D%A2%E6%9D%BF">2.1.7.2 ROM &#x9762;&#x677F;</a>
+                    </p>
+                </li>
+            </ul>
+            <h4 class="mume-header" id="2122-%E8%BF%90%E8%A1%8C%E8%8F%9C%E5%8D%95%E6%A0%8F">
+                2.1.2.2 &#x8FD0;&#x884C;&#x83DC;&#x5355;&#x680F;
+            </h4>
+
+            <ul>
+                <li>
+                    <p>
+                        &#x9009;&#x62E9;&#x6253;&#x5F00;&#x5173;&#x95ED;&#x5FAE;&#x4EE3;&#x7801;&#x4FE1;&#x606F;&#x6846;<br />
+                        &#x5FAE;&#x4EE3;&#x7801;&#x4FE1;&#x606F;&#x6846;&#x89C1;
+                        <a
+                            href="#214-%E5%BE%AE%E6%8C%87%E4%BB%A4%E4%BF%A1%E6%81%AF%E5%8C%BA%E5%9F%9F"
+                            >2.1.4 &#x5FAE;&#x4EE3;&#x7801;&#x4FE1;&#x606F;&#x6846;</a
+                        >
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        &#x914D;&#x7F6E;&#x8FD0;&#x884C;&#x8BBE;&#x7F6E;<br />
+                        &#x5728;&#x7248;&#x672C;
                         <i>1.4.2.2</i>
-                        &#x8BE5;&#x83DC;&#x5355;&#x9879;&#x4EC5;&#x80FD;&#x914D;&#x7F6E;&#x6307;&#x4EE4;&#x8FD0;&#x884C;&#x7684;&#x95F4;&#x9694;&#x65F6;&#x95F4;)
-                    </li>
-                    <li>
-                        &#x6253;&#x5F00;&#x8FD0;&#x884C;&#x65E5;&#x5FD7;&#x6D6E;&#x52A8;&#x9762;&#x677F;
-                    </li>
-                    <li>&#x4FDD;&#x5B58;&#x8FD0;&#x884C;&#x65E5;&#x5FD7;</li>
-                </ul>
-            </li>
-            <li>
-                &#x5DE5;&#x5177;&#x83DC;&#x5355;&#x680F;&#xFF1A;
-                <ul>
-                    <li>RAM/ROM&#x67E5;&#x770B;&#x5668;&#x9762;&#x677F;</li>
-                    <li>
-                        &#x90E8;&#x4EF6;&#x9009;&#x62E9;
-                        <blockquote>
-                            <p>
-                                &#x9009;&#x62E9;&#x52A0;&#x8F7D;&#x7684;&#x90E8;&#x4EF6;&#xFF0C;&#x672A;&#x52A0;&#x8F7D;&#x7684;&#x90E8;&#x4EF6;&#x5728;&#x8FD0;&#x884C;&#x8FC7;&#x7A0B;&#x4E2D;&#x6240;&#x6709;&#x7684;&#x64CD;&#x4F5C;&#x5C06;&#x88AB;&#x5FFD;&#x7565;&#x3002;
-                            </p>
-                        </blockquote>
-                    </li>
-                    <li>
-                        &#x5FAE;&#x6307;&#x4EE4;&#x8F6C;&#x6362;&#x5668;
-                        <blockquote>
-                            <p>
-                                &#x5B9E;&#x73B0;DVCC 4
-                                &#x5730;&#x5740;&#x5FAE;&#x4EE3;&#x7801;&#x8F6C;&#x4E3A;&#x6807;&#x51C6;
-                                2 &#x4F4D;&#x5730;&#x5740;&#x5FAE;&#x4EE3;&#x7801;<br />
-                                (&#x8F6C;&#x6362;&#x5668;&#x4F7F;&#x7528;&#x8BF4;&#x660E;&#x89C1;
-                                <a href="#21112-dvcc%E8%BD%AC%E6%8D%A2%E5%99%A8"
-                                    >2.1.11.2 DVCC&#x8F6C;&#x6362;&#x5668;</a
-                                >
-                                )
-                            </p>
-                        </blockquote>
-                    </li>
-                    <li>
+                        &#x8BE5;&#x83DC;&#x5355;&#x9879;&#x4EC5;&#x80FD;&#x914D;&#x7F6E;&#x6307;&#x4EE4;&#x8FD0;&#x884C;&#x7684;&#x95F4;&#x9694;&#x65F6;&#x95F4;
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        &#x6253;&#x5F00;&#x8FD0;&#x884C;&#x65E5;&#x5FD7;&#x6D6E;&#x52A8;&#x9762;&#x677F;<br />
+                        &#x65E5;&#x5FD7;&#x6D6E;&#x52A8;&#x9762;&#x677F;&#x89C1;
+                        <a href="#2173-%E8%BF%90%E8%A1%8C%E6%97%A5%E5%BF%97"
+                            >2.1.7.3 &#x8FD0;&#x884C;&#x65E5;&#x5FD7;</a
+                        >
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        &#x4FDD;&#x5B58;&#x8FD0;&#x884C;&#x65E5;&#x5FD7;<br />
+                        &#x4FDD;&#x5B58;&#x7684;&#x6587;&#x4EF6;&#x540D;&#x683C;&#x5F0F;&#x4E3A;<code
+                            >log_save_file_yy-mm-dd_hh-mm-ss.txt</code
+                        >
+                    </p>
+                </li>
+            </ul>
+            <h4 class="mume-header" id="2123-%E5%B7%A5%E5%85%B7%E8%8F%9C%E5%8D%95%E6%A0%8F">
+                2.1.2.3 &#x5DE5;&#x5177;&#x83DC;&#x5355;&#x680F;
+            </h4>
+
+            <ul>
+                <li>
+                    <p>
+                        RAM/ROM &#x67E5;&#x770B;&#x5668;&#x9762;&#x677F;<br />
+                        &#x5185;&#x5B58;&#x67E5;&#x770B;&#x5668;&#x8BE6;&#x7EC6;&#x4FE1;&#x606F;&#x89C1;
+                        <a href="#2171-ram%E9%9D%A2%E6%9D%BF">2.1.7.1 RAM &#x9762;&#x677F;</a>
+                        &amp;&amp;
+                        <a href="#2172-rom%E9%9D%A2%E6%9D%BF">2.1.7.2 ROM &#x9762;&#x677F;</a>
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        &#x90E8;&#x4EF6;&#x9009;&#x62E9;<br />
+                        &#x9009;&#x62E9;&#x52A0;&#x8F7D;&#x7684;&#x90E8;&#x4EF6;&#xFF0C;&#x672A;&#x52A0;&#x8F7D;&#x7684;&#x90E8;&#x4EF6;&#x5728;&#x8FD0;&#x884C;&#x8FC7;&#x7A0B;&#x4E2D;&#x6240;&#x6709;&#x7684;&#x64CD;&#x4F5C;&#x5C06;&#x88AB;&#x5FFD;&#x7565;&#x3002;
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        &#x5FAE;&#x6307;&#x4EE4;&#x8F6C;&#x6362;&#x5668;<br />
+                        &#x8F6C;&#x6362;&#x5668;&#x4F7F;&#x7528;&#x8BF4;&#x660E;&#x89C1;
+                        <a href="#252-dvcc%E8%BD%AC%E6%8D%A2%E5%99%A8"
+                            >2.5.2 DVCC &#x8F6C;&#x6362;&#x5668;</a
+                        >
+                    </p>
+                </li>
+                <li>
+                    <p>
                         &#x5176;&#x5B83;&#x9762;&#x677F;<br />
                         &#x6CE8;:<mark
                             >&#x76EE;&#x524D;&#x672A;&#x6709;&#x4EFB;&#x4F55;&#x529F;&#x80FD;</mark
                         >
-                    </li>
-                </ul>
-            </li>
-            <li>
-                &#x9009;&#x9879;&#x83DC;&#x5355;&#x680F;&#xFF1A;
-                <ul>
-                    <li>
-                        &#x6062;&#x590D;&#x9ED8;&#x8BA4;&#x7A97;&#x53E3;&#x5927;&#x5C0F;
-                        <blockquote>
-                            <p>
-                                &#x5C06;&#x5E94;&#x7528;&#x7A97;&#x53E3;&#x6062;&#x590D;&#x4E3A;&#x8BBE;&#x7F6E;&#x7684;&#x5927;&#x5C0F;
-                                (&#x63A8;&#x8350;&#x5927;&#x5C0F;&#x4E3A;1500x900)<br />
-                                &#x9ED8;&#x8BA4;&#x7A97;&#x53E3;&#x5927;&#x5C0F;&#x8BBE;&#x7F6E;&#x8DEF;&#x5F84;&#x4E3A;:
-                                &#x9009;&#x9879;&#x83DC;&#x5355;&#x680F;-&gt;&#x8BBE;&#x7F6E;-&gt;&#x901A;&#x7528;-&gt;&#x9ED8;&#x8BA4;&#x7A97;&#x53E3;&#x5927;&#x5C0F;
-                            </p>
-                        </blockquote>
-                    </li>
-                    <li>
-                        &#x5B57;&#x4F53;&#x8BBE;&#x7F6E;<br />
-                        &#x5BF9;&#x76EE;&#x524D;&#x8FD0;&#x884C;&#x7684;&#x7A97;&#x53E3;&#x8BBE;&#x7F6E;&#x5B57;&#x4F53;
-                        (&#x6CE8;&#xFF1A;&#x8BE5;&#x5B57;&#x4F53;&#x66F4;&#x6539;&#x4E0D;&#x4F1A;&#x5F71;&#x54CD;&#x9ED8;&#x8BA4;&#x8BBE;&#x7F6E;)<br />
-                        <mark
-                            >&#x6CE8;&#xFF1A;&#x8BF7;&#x6CE8;&#x610F;&#xFF0C;&#x9009;&#x62E9;&#x7684;&#x81EA;&#x5B9A;&#x5B57;&#x4F53;&#x6CE8;&#x610F;&#x4FB5;&#x6743;&#x95EE;&#x9898;&#xFF0C;&#x63A8;&#x8350;&#x4F7F;&#x7528;&quot;Harmony
-                            OS Sans SC&quot;&#x4F5C;&#x4E3A;&#x5B57;&#x4F53;</mark
-                        >
-                    </li>
-                    <li>
-                        &#x4E3B;&#x9898;&#x8BBE;&#x7F6E;<br />
-                        &#x5BF9;&#x76EE;&#x524D;&#x8FD0;&#x884C;&#x7684;&#x7A97;&#x53E3;&#x8BBE;&#x7F6E;&#x4E3B;&#x9898;
-                        (&#x6CE8;&#xFF1A;&#x8BE5;&#x4E3B;&#x9898;&#x66F4;&#x6539;&#x4E0D;&#x4F1A;&#x5F71;&#x54CD;&#x9ED8;&#x8BA4;&#x8BBE;&#x7F6E;)
-                    </li>
-                    <li>
-                        &#x8BBE;&#x7F6E;<br />
-                        &#x8BE6;&#x7EC6;&#x4FE1;&#x606F;&#x89C1;
-                    </li>
-                </ul>
-            </li>
-            <li>&#x5173;&#x4E8E;&#x83DC;&#x5355;&#x680F;</li>
-        </ol>
-        <h3
-            class="mume-header"
-            id="213-%E7%94%B5%E8%B7%AF%E5%9B%BE%E5%8C%BA%E5%9F%9F%E4%BB%8B%E7%BB%8D"
-        >
-            2.1.3 &#x7535;&#x8DEF;&#x56FE;&#x533A;&#x57DF;&#x4ECB;&#x7ECD;
-        </h3>
+                    </p>
+                </li>
+            </ul>
+            <h4 class="mume-header" id="2124-%E9%80%89%E9%A1%B9%E8%8F%9C%E5%8D%95%E6%A0%8F">
+                2.1.2.4 &#x9009;&#x9879;&#x83DC;&#x5355;&#x680F;
+            </h4>
 
-        <img
-            class="img"
-            src="../../resource/img/product/dvcc/cir_dia.png"
-            alt="&#x7535;&#x8DEF;&#x56FE;"
-        />
-        <div class="note">Fig-2-3 &#x7535;&#x8DEF;&#x56FE;</div>
-        <p>
-            &#x5728;&#x7535;&#x8DEF;&#x56FE;&#x533A;&#x57DF;,&#x5404;&#x90E8;&#x4EF6;&#x7684;&#x6570;&#x636E;&#x4F4D;&#x4E8E;&#x5176;&#x4E2D;&#x5FC3;,&#x9700;&#x8981;&#x6CE8;&#x610F;,&#x6CE8;&#x5165;ALU&#x7B49;&#x5355;&#x5143;&#x4EC5;&#x5728;&#x8F93;&#x51FA;&#x7ED3;&#x679C;&#x6216;&#x8F93;&#x5165;&#x6570;&#x636E;&#x65F6;&#x624D;&#x4F1A;&#x663E;&#x793A;&#x6570;&#x636E;&#x3002;
-        </p>
-        <p>
-            &#x5404;&#x4E2A;&#x4FE1;&#x53F7;&#x7684;&#x6807;&#x6CE8;&#x4E3A;&#x8BE5;&#x4FE1;&#x53F7;&#x662F;&#x5426;&#x6709;&#x6548;&#xFF0C;&#x4F8B;&#x5982;<code
-                >LDDR1: 1</code
-            >&#x8868;&#x793A;&#x4E3A;LDDR1&#x4FE1;&#x53F7;&#x6709;&#x6548;&#x3002;
-        </p>
-        <p>
-            &#x7279;&#x4F8B;&#xFF1A;CN&#x5728;&#x6709;&#x6548;&#x65F6;&#x8868;&#x793A;&#x65E0;&#x8FDB;&#x4F4D;&#x3002;
-        </p>
-        <h3
-            class="mume-header"
-            id="214-%E5%BE%AE%E6%8C%87%E4%BB%A4%E4%BF%A1%E6%81%AF%E5%8C%BA%E5%9F%9F"
-        >
-            2.1.4 &#x5FAE;&#x6307;&#x4EE4;&#x4FE1;&#x606F;&#x533A;&#x57DF;
-        </h3>
+            <ul>
+                <li>
+                    &#x6062;&#x590D;&#x9ED8;&#x8BA4;&#x7A97;&#x53E3;&#x5927;&#x5C0F;<br />
+                    &#x5C06;&#x5E94;&#x7528;&#x7A97;&#x53E3;&#x6062;&#x590D;&#x4E3A;&#x8BBE;&#x7F6E;&#x7684;&#x5927;&#x5C0F;
+                    (&#x63A8;&#x8350;&#x5927;&#x5C0F;&#x4E3A; 1500x900)<br />
+                    &#x9ED8;&#x8BA4;&#x7A97;&#x53E3;&#x5927;&#x5C0F;&#x8BBE;&#x7F6E;&#x8DEF;&#x5F84;&#x4E3A;:
+                    <code
+                        >&#x9009;&#x9879;&#x83DC;&#x5355;&#x680F;-&gt;&#x8BBE;&#x7F6E;-&gt;&#x901A;&#x7528;-&gt;&#x9ED8;&#x8BA4;&#x7A97;&#x53E3;&#x5927;&#x5C0F;</code
+                    >
+                </li>
+                <li>
+                    &#x5B57;&#x4F53;&#x8BBE;&#x7F6E;<br />
+                    &#x5BF9;&#x76EE;&#x524D;&#x8FD0;&#x884C;&#x7684;&#x7A97;&#x53E3;&#x8BBE;&#x7F6E;&#x5B57;&#x4F53;
+                    (&#x6CE8;&#xFF1A;&#x8BE5;&#x5B57;&#x4F53;&#x66F4;&#x6539;&#x4E0D;&#x4F1A;&#x5F71;&#x54CD;&#x9ED8;&#x8BA4;&#x8BBE;&#x7F6E;)<br />
+                    <mark
+                        >&#x6CE8;&#xFF1A;&#x8BF7;&#x6CE8;&#x610F;&#xFF0C;&#x9009;&#x62E9;&#x7684;&#x81EA;&#x5B9A;&#x5B57;&#x4F53;&#x6CE8;&#x610F;&#x4FB5;&#x6743;&#x95EE;&#x9898;&#xFF0C;&#x63A8;&#x8350;&#x4F7F;&#x7528;&quot;Harmony
+                        OS Sans SC&quot;&#x4F5C;&#x4E3A;&#x5B57;&#x4F53;</mark
+                    >
+                </li>
+                <li>
+                    &#x4E3B;&#x9898;&#x8BBE;&#x7F6E;<br />
+                    &#x5BF9;&#x76EE;&#x524D;&#x8FD0;&#x884C;&#x7684;&#x7A97;&#x53E3;&#x8BBE;&#x7F6E;&#x4E3B;&#x9898;
+                    (&#x6CE8;&#xFF1A;&#x8BE5;&#x4E3B;&#x9898;&#x66F4;&#x6539;&#x4E0D;&#x4F1A;&#x5F71;&#x54CD;&#x9ED8;&#x8BA4;&#x8BBE;&#x7F6E;)
+                </li>
+                <li>
+                    &#x8BBE;&#x7F6E;<br />
+                    &#x8BE6;&#x7EC6;&#x4FE1;&#x606F;&#x89C1;
+                    <a href="#22-%E8%AE%BE%E7%BD%AE%E4%BD%BF%E7%94%A8"
+                        >2.2 &#x8BBE;&#x7F6E;&#x4F7F;&#x7528;</a
+                    >
+                </li>
+            </ul>
+            <h4 class="mume-header" id="2125-%E5%85%B3%E4%BA%8E%E8%8F%9C%E5%8D%95%E6%A0%8F">
+                2.1.2.5 &#x5173;&#x4E8E;&#x83DC;&#x5355;&#x680F;
+            </h4>
 
-        <img
-            class="img"
-            src="../../resource/img/product/dvcc/microCodeInfoTable.png"
-            alt="&#x5FAE;&#x6307;&#x4EE4;&#x4FE1;&#x606F;&#x6846;"
-        />
-        <div class="note">Fig-2-4 &#x5FAE;&#x6307;&#x4EE4;&#x4FE1;&#x606F;&#x6846;</div>
-        <p>
-            &#x5FAE;&#x6307;&#x4EE4;&#x4FE1;&#x606F;&#x6846;&#x5185;&#x6709;&#x76EE;&#x524D;&#x6B63;&#x5728;&#x6267;&#x884C;&#x7684;&#x5FAE;&#x4EE3;&#x7801;&#x4EE5;&#x53CA;&#x63A5;&#x4E0B;&#x6765;&#x4E00;&#x6761;&#x5FAE;&#x4EE3;&#x7801;&#x3002;
-        </p>
-        <p>
-            &#x5728;&#x5FAE;&#x4EE3;&#x7801;&#x4FE1;&#x606F;&#x6846;&#x5185;&#x5217;&#x7684;&#x542B;&#x4E49;&#x4F9D;&#x6B21;&#x4E3A;&#xFF1A;&#x5FAE;&#x6307;&#x4EE4;&#x5E8F;&#x53F7;&#x3001;&#x5FAE;&#x6307;&#x4EE4;6&#x4F4D;16&#x8FDB;&#x5236;&#x5185;&#x5BB9;&#x3001;M&#x4FE1;&#x53F7;&#x3001;CN&#x4FE1;&#x53F7;&#x3001;WE&#x4FE1;&#x53F7;&#x3001;B1B0&#x4FE1;&#x53F7;&#x3001;A&#x5B57;&#x6BB5;&#x5185;&#x5BB9;&#x3001;B&#x5B57;&#x6BB5;&#x5185;&#x5BB9;&#x3001;C&#x5B57;&#x6BB5;&#x5185;&#x5BB9;&#x3001;U5-U0&#x5185;&#x5BB9;&#x3001;&#x8F93;&#x51FA;&#x6570;&#x636E;&#x5230;&#x603B;&#x7EBF;&#x7684;&#x90E8;&#x4EF6;&#x3001;&#x4ECE;&#x603B;&#x7EBF;&#x8F93;&#x5165;&#x6570;&#x636E;&#x7684;&#x90E8;&#x4EF6;&#x3001;&#x8DF3;&#x8F6C;&#x65B9;&#x5F0F;&#x3002;
-        </p>
-        <p>
-            <mark>-&#x6CE8;-</mark
-            >&#xFF1A;U5-U0&#x4E3A;&#x5FAE;&#x4EE3;&#x7801;&#x6240;&#x586B;&#x5165;&#x7684;&#x8F6C;&#x79FB;&#x5730;&#x5740;(&#x5E8F;&#x53F7;)&#xFF0C;&#x4E0D;&#x4E00;&#x5B9A;&#x4E3A;&#x4E0B;&#x4E00;&#x6761;&#x5FAE;&#x6307;&#x4EE4;&#x5730;&#x5740;(&#x5E8F;&#x53F7;)&#x3002;
-        </p>
-        <h3 class="mume-header" id="215-%E8%BF%90%E8%A1%8C%E7%8A%B6%E6%80%81%E5%8C%BA%E5%9F%9F">
-            2.1.5 &#x8FD0;&#x884C;&#x72B6;&#x6001;&#x533A;&#x57DF;
-        </h3>
+            <p>&#x7565;</p>
+            <h3
+                class="mume-header"
+                id="213-%E7%94%B5%E8%B7%AF%E5%9B%BE%E5%8C%BA%E5%9F%9F%E4%BB%8B%E7%BB%8D"
+            >
+                2.1.3 &#x7535;&#x8DEF;&#x56FE;&#x533A;&#x57DF;&#x4ECB;&#x7ECD;
+            </h3>
 
-        <img
-            class="img"
-            src="../../resource/img/product/dvcc/statuBar.png"
-            alt="&#x8FD0;&#x884C;&#x72B6;&#x6001;&#x680F;"
-        />
-        <div class="note">Fig-2-5 &#x8FD0;&#x884C;&#x72B6;&#x6001;&#x680F;</div>
-        <h3
-            class="mume-header"
-            id="216-%E5%BF%AB%E6%8D%B7%E6%8C%89%E9%92%AE%E4%BF%A1%E5%8F%B7%E6%8E%A7%E5%88%B6%E5%8C%BA%E5%9F%9F"
-        >
-            2.1.6
-            &#x5FEB;&#x6377;&#x6309;&#x94AE;&amp;&#x4FE1;&#x53F7;&#x63A7;&#x5236;&#x533A;&#x57DF;
-        </h3>
+            <img
+                class="img"
+                src="../../resource/img/product/dvcc/cir_dia.png"
+                alt="&#x7535;&#x8DEF;&#x56FE;"
+            />
+            <div class="note">Fig-2-3 &#x7535;&#x8DEF;&#x56FE;</div>
+            <p>
+                &#x5728;&#x7535;&#x8DEF;&#x56FE;&#x533A;&#x57DF;,&#x5404;&#x90E8;&#x4EF6;&#x7684;&#x6570;&#x636E;&#x4F4D;&#x4E8E;&#x5176;&#x4E2D;&#x5FC3;,&#x9700;&#x8981;&#x6CE8;&#x610F;,&#x6CE8;&#x5165;
+                ALU
+                &#x7B49;&#x5355;&#x5143;&#x4EC5;&#x5728;&#x8F93;&#x51FA;&#x7ED3;&#x679C;&#x6216;&#x8F93;&#x5165;&#x6570;&#x636E;&#x65F6;&#x624D;&#x4F1A;&#x663E;&#x793A;&#x6570;&#x636E;&#x3002;
+            </p>
+            <p>
+                &#x5404;&#x4E2A;&#x4FE1;&#x53F7;&#x7684;&#x6807;&#x6CE8;&#x4E3A;&#x8BE5;&#x4FE1;&#x53F7;&#x662F;&#x5426;&#x6709;&#x6548;&#xFF0C;&#x4F8B;&#x5982;<code
+                    >LDDR1: 1</code
+                >&#x8868;&#x793A;&#x4E3A; LDDR1
+                &#x4FE1;&#x53F7;&#x6709;&#x6548;&#x3002;&#x4E0D;&#x53EF;&#x7B80;&#x5355;&#x7684;&#x5C06;&#x4FE1;&#x53F7;&#x6709;&#x6548;&#x4E0E;&#x5FAE;&#x4EE3;&#x7801;&#x4E3A;
+                1 &#x7B49;&#x4EF7;&#x3002;
+            </p>
+            <p>
+                &#x6CE8;&#x610F;&#xFF1A;CN
+                &#x5728;&#x6709;&#x6548;&#x65F6;&#x8868;&#x793A;&#x65E0;&#x8FDB;&#x4F4D;&#x3002;<br />
+                DVCC &#x4FE1;&#x53F7;&#x8BE6;&#x7EC6;&#x4FE1;&#x606F;&#x89C1;
+                <a href="#23-DVCC%E4%BF%A1%E5%8F%B7%E8%AF%A6%E8%A7%A3"
+                    >2.3 DVCC &#x4FE1;&#x53F7;&#x8BE6;&#x89E3;</a
+                >
+                &#x3002;
+            </p>
+            <h3
+                class="mume-header"
+                id="214-%E5%BE%AE%E6%8C%87%E4%BB%A4%E4%BF%A1%E6%81%AF%E5%8C%BA%E5%9F%9F"
+            >
+                2.1.4 &#x5FAE;&#x6307;&#x4EE4;&#x4FE1;&#x606F;&#x533A;&#x57DF;
+            </h3>
 
-        <h4 class="mume-header" id="2161-%E5%BF%AB%E6%8D%B7%E6%8C%89%E9%92%AE">
-            2.1.6.1 &#x5FEB;&#x6377;&#x6309;&#x94AE;
-        </h4>
+            <img
+                class="img"
+                src="../../resource/img/product/dvcc/microCodeInfoTable.png"
+                alt="&#x5FAE;&#x6307;&#x4EE4;&#x4FE1;&#x606F;&#x6846;"
+            />
+            <div class="note">Fig-2-4 &#x5FAE;&#x6307;&#x4EE4;&#x4FE1;&#x606F;&#x6846;</div>
+            <p>
+                &#x5FAE;&#x6307;&#x4EE4;&#x4FE1;&#x606F;&#x6846;&#x5185;&#x6709;&#x76EE;&#x524D;&#x6B63;&#x5728;&#x6267;&#x884C;&#x7684;&#x5FAE;&#x4EE3;&#x7801;&#x4EE5;&#x53CA;&#x63A5;&#x4E0B;&#x6765;&#x4E00;&#x6761;&#x5FAE;&#x4EE3;&#x7801;&#x3002;
+            </p>
+            <p>
+                &#x5728;&#x5FAE;&#x4EE3;&#x7801;&#x4FE1;&#x606F;&#x6846;&#x5185;&#x5217;&#x7684;&#x542B;&#x4E49;&#x4F9D;&#x6B21;&#x4E3A;&#xFF1A;&#x5FAE;&#x6307;&#x4EE4;&#x5E8F;&#x53F7;&#x3001;&#x5FAE;&#x6307;&#x4EE4;
+                6 &#x4F4D; 16 &#x8FDB;&#x5236;&#x5185;&#x5BB9;&#x3001;M &#x4FE1;&#x53F7;&#x3001;CN
+                &#x4FE1;&#x53F7;&#x3001;WE &#x4FE1;&#x53F7;&#x3001;B1B0 &#x4FE1;&#x53F7;&#x3001;A
+                &#x5B57;&#x6BB5;&#x5185;&#x5BB9;&#x3001;B &#x5B57;&#x6BB5;&#x5185;&#x5BB9;&#x3001;C
+                &#x5B57;&#x6BB5;&#x5185;&#x5BB9;&#x3001;U5-U0
+                &#x5185;&#x5BB9;&#x3001;&#x8F93;&#x51FA;&#x6570;&#x636E;&#x5230;&#x603B;&#x7EBF;&#x7684;&#x90E8;&#x4EF6;&#x3001;&#x4ECE;&#x603B;&#x7EBF;&#x8F93;&#x5165;&#x6570;&#x636E;&#x7684;&#x90E8;&#x4EF6;&#x3001;&#x8DF3;&#x8F6C;&#x65B9;&#x5F0F;&#x3002;
+            </p>
+            <p>
+                <code>&#x6CE8;</code>&#xFF1A;U5-U0
+                &#x4E3A;&#x5FAE;&#x4EE3;&#x7801;&#x6240;&#x586B;&#x5165;&#x7684;&#x8F6C;&#x79FB;&#x5730;&#x5740;(&#x5E8F;&#x53F7;)&#xFF0C;&#x4E0D;&#x4E00;&#x5B9A;&#x4E3A;&#x4E0B;&#x4E00;&#x6761;&#x5FAE;&#x6307;&#x4EE4;&#x5730;&#x5740;(&#x5E8F;&#x53F7;)&#x3002;
+            </p>
+            <p>
+                DVCC &#x4FE1;&#x53F7;&#x8BE6;&#x7EC6;&#x4FE1;&#x606F;&#x89C1;
+                <a href="#23-DVCC%E4%BF%A1%E5%8F%B7%E8%AF%A6%E8%A7%A3"
+                    >2.3 DVCC &#x4FE1;&#x53F7;&#x8BE6;&#x89E3;</a
+                >
+                &#x3002;
+            </p>
+            <h3 class="mume-header" id="215-%E8%BF%90%E8%A1%8C%E7%8A%B6%E6%80%81%E5%8C%BA%E5%9F%9F">
+                2.1.5 &#x8FD0;&#x884C;&#x72B6;&#x6001;&#x533A;&#x57DF;
+            </h3>
 
-        <h4
-            class="mume-header"
-            id="2162-%E4%BF%A1%E5%8F%B7%E6%8E%A7%E5%88%B6%E6%8C%89%E9%92%AE"
-        >
-            2.1.6.2 &#x4FE1;&#x53F7;&#x63A7;&#x5236;&#x6309;&#x94AE;
-        </h4>
+            <img
+                class="img"
+                src="../../resource/img/product/dvcc/statuBar.png"
+                alt="&#x8FD0;&#x884C;&#x72B6;&#x6001;&#x680F;"
+            />
+            <div class="note">Fig-2-5 &#x8FD0;&#x884C;&#x72B6;&#x6001;&#x680F;</div>
+            <p>
+                &#x5728;&#x8BE5;&#x533A;&#x57DF;&#x663E;&#x793A;&#x76EE;&#x524D;&#x8F6F;&#x4EF6;&#x8FD0;&#x884C;&#x4FE1;&#x606F;&#xFF0C;&#x5E38;&#x89C1;&#x7684;&#x4FE1;&#x606F;&#x6709;&#xFF1A;
+            </p>
+            <ul>
+                <li>
+                    &#x5FAE;&#x4EE3;&#x7801;&#x6587;&#x4EF6;&#x8F7D;&#x5165;&#x6210;&#x529F;&#x63D0;&#x793A;&#x4FE1;&#x606F;
+                </li>
+                <li>
+                    &#x624B;&#x52A8;&#x4FE1;&#x53F7;&#x63A7;&#x5236;&#x53CC;&#x91CD;&#x8F93;&#x51FA;&#x63D0;&#x793A;
+                </li>
+            </ul>
+            <h3
+                class="mume-header"
+                id="216-%E5%BF%AB%E6%8D%B7%E6%8C%89%E9%92%AE%E4%BF%A1%E5%8F%B7%E6%8E%A7%E5%88%B6%E5%8C%BA%E5%9F%9F"
+            >
+                2.1.6
+                &#x5FEB;&#x6377;&#x6309;&#x94AE;&amp;&#x4FE1;&#x53F7;&#x63A7;&#x5236;&#x533A;&#x57DF;
+            </h3>
 
-        <h4
-            class="mume-header"
-            id="2163-%E6%95%B0%E6%8D%AE%E8%BE%93%E5%85%A5%E5%8C%BA%E5%9F%9F"
-        >
-            2.1.6.3 &#x6570;&#x636E;&#x8F93;&#x5165;&#x533A;&#x57DF;
-        </h4>
+            <h4 class="mume-header" id="2161-%E5%BF%AB%E6%8D%B7%E6%8C%89%E9%92%AE">
+                2.1.6.1 &#x5FEB;&#x6377;&#x6309;&#x94AE;
+            </h4>
 
-        <h3 class="mume-header" id="217-%E6%B5%AE%E5%8A%A8%E9%9D%A2%E6%9D%BF%E4%BB%8B%E7%BB%8D">
-            2.1.7 &#x6D6E;&#x52A8;&#x9762;&#x677F;&#x4ECB;&#x7ECD;
-        </h3>
+            <img
+                class="img"
+                src="../../resource/img/product/dvcc/quickBtn.png"
+                alt="&#x5FEB;&#x6377;&#x6309;&#x94AE;"
+            />
+            <div class="note">Fig-2-6 &#x5FEB;&#x6377;&#x6309;&#x94AE;</div>
+            <ul>
+                <li>
+                    <p>
+                        &#x5FEB;&#x6377;&#x6309;&#x94AE;<br />
+                        &#x5FEB;&#x6377;&#x6309;&#x94AE;&#x4E0E;&#x524D;&#x6587;&#x83DC;&#x5355;&#x680F;&#x529F;&#x80FD;&#x4E00;&#x81F4;&#xFF0C;&#x6B64;&#x5904;&#x4E0D;&#x518D;&#x91CD;&#x590D;&#x63CF;&#x8FF0;&#x3002;
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        &#x8F7D;&#x5165;&#x9884;&#x8BBE;<br />
+                        &#x901A;&#x8FC7;&#x5DE6;&#x4FA7;&#x7684;&#x4E0B;&#x62C9;&#x6846;&#x53EF;&#x4EE5;&#x9009;&#x62E9;&#x9700;&#x8981;&#x5BFC;&#x5165;&#x7684;&#x5FAE;&#x4EE3;&#x7801;&#x6587;&#x4EF6;&#xFF0C;&#x518D;&#x70B9;&#x51FB;&#x8F7D;&#x5165;&#x6309;&#x94AE;&#x5373;&#x53EF;&#x8F7D;&#x5165;&#x9884;&#x8BBE;&#xFF0C;&#x540C;&#x65F6;&#x9700;&#x8981;&#x6CE8;&#x610F;&#x4E00;&#x4E0B;&#x51E0;&#x70B9;&#xFF1A;
+                    </p>
+                    <ul>
+                        <li>
+                            &#x8F7D;&#x5165;&#x9884;&#x8BBE;&#x4E0D;&#x4F1A;&#x6253;&#x5F00;&#x5FAE;&#x4EE3;&#x7801;&#x6587;&#x4EF6;
+                        </li>
+                        <li>
+                            &#x8F7D;&#x5165;&#x9884;&#x8BBE;&#x5728;&#x4F7F;&#x7528;<code>&#x5355;&#x6B65;(&#x6307;&#x4EE4;)</code>&#x6309;&#x94AE;&#x65F6;&#x4F1A;&#x63D0;&#x793A;&#x4F1A;&#x9020;&#x6210;&#x4E0D;&#x53EF;&#x9884;&#x671F;&#x7684;&#x9519;&#x8BEF;(&#x5728;&#x672A;&#x6765;&#x7248;&#x672C;&#x53EF;&#x80FD;&#x4F1A;&#x53D6;&#x6D88;&#x8BE5;&#x63D0;&#x9192;)&#x3002;
+                        </li>
+                        <li>
+                            &#x4F60;&#x4E5F;&#x53EF;&#x4EE5;&#x8F7D;&#x5165;&#x81EA;&#x5DF1;&#x7684;&#x6587;&#x4EF6;&#xFF0C;&#x5C06;&#x4F60;&#x7684;dvc&#x6587;&#x4EF6;&#x590D;&#x5236;&#x5230;&#x7A0B;&#x5E8F;&#x76EE;&#x5F55;&#x4E0B;&#x7684;<code>presetcode</code>&#x6587;&#x4EF6;&#x5939;(&#x5177;&#x4F53;&#x8DEF;&#x5F84;&#x4E3A;<code>./resource/file_resource/presetcode/</code>)&#x3002;
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <p>Auto Run</p>
+                    <ul>
+                        <li>
+                            &#x2611;
+                            &#x4EE3;&#x8868;&#x9009;&#x4E2D;&#x81EA;&#x52A8;&#x8FD0;&#x884C;&#xFF0C;&#x6B64;&#x65F6;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x70B9;&#x51FB;&#x5355;&#x6B65;(&#x6307;&#x4EE4;)&#x3001;&#x5355;&#x6B65;(&#x5FAE;&#x6307;&#x4EE4;)&#x8BFB;&#x53D6;ROM&#x4EE5;&#x53CA;IR&#x7B49;&#x5185;&#x5BB9;&#x81EA;&#x52A8;&#x8FD0;&#x884C;&#x3002;
+                        </li>
+                        <li>
+                            &#x25A2;
+                            &#x4EE3;&#x8868;&#x672A;&#x9009;&#x4E2D;&#xFF0C;&#x9700;&#x8981;&#x624B;&#x52A8;&#x8BBE;&#x7F6E;&#x4FE1;&#x53F7;&#xFF0C;&#x7136;&#x540E;&#x70B9;&#x51FB;&#x624B;&#x52A8;&#x8109;&#x51B2;&#x6309;&#x94AE;&#x5B9E;&#x73B0;&#x8FD0;&#x884C;&#x3002;<br />
+                            &#x2003;&#x8BF7;&#x6CE8;&#x610F;&#xFF0C;DVCC&#x4E0E;&#x542F;&#x52A8;&#x786C;&#x4EF6;&#x8BBE;&#x5907;&#x6240;&#x4E0D;&#x540C;&#x4E4B;&#x5904;&#xFF1B;DVCC&#x5C06;T4&#x8109;&#x51B2;&#x3001;T3&#x8109;&#x51B2;&#x5408;&#x5E76;&#x4E3A;&#x624B;&#x52A8;&#x8109;&#x51B2;&#xFF0C;&#x5728;&#x8FDB;&#x884C;RAM&#x5B58;&#x50A8;&#x5B9E;&#x9A8C;&#xFF0C;T3&#x8109;&#x51B2;&#x9009;&#x62E9;&#x624B;&#x52A8;&#x8109;&#x51B2;&#x5373;&#x53EF;&#x3002;<br />
+                            &#x2003;(&#x6CE8;&#xFF1A;&#x5728;&#x5B9E;&#x65F6;&#x5237;&#x65B0;&#x4E0B;&#xFF0C;&#x4EC5;&#x4F1A;&#x66F4;&#x65B0;&#x90E8;&#x4EF6;&#xFF0C;&#x4F46;&#x662F;&#x4E0D;&#x4F1A;&#x66F4;&#x65B0;&#xFF0C;&#x4F8B;&#x5982;&#xFF0C;&#x5B9E;&#x65F6;&#x66F4;&#x65B0;&#x4E0B;&#xFF0C;&#x6570;&#x636E;&#x5F00;&#x5173;&#x6570;&#x636E;&#x53D8;&#x5316;&#x4F1A;&#x5B9E;&#x65F6;&#x66F4;&#x65B0;&#x5230;&#x7535;&#x8DEF;&#x56FE;&#x4E2D;&#xFF0C;&#x4F46;&#x662F;&#x4E0D;&#x4F1A;&#x5C06;&#x6570;&#x636E;&#x8F93;&#x9001;&#x5230;&#x603B;&#x7EBF;&#xFF0C;&#x4E5F;&#x4E0D;&#x4F1A;&#x5C06;&#x6570;&#x636E;&#x7531;&#x603B;&#x7EBF;&#x66F4;&#x65B0;&#x5230;&#x4F60;&#x9884;&#x671F;&#x7684;&#x8F93;&#x5165;&#x90E8;&#x4EF6;)&#x3002;
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <p>
+                        SWC SWA<br />
+                        &#x63A7;&#x5236;&#x53F0;SWC&#x3001;SWA&#x5F00;&#x5173;&#xFF0C;&#x2611;
+                        &#x4EE3;&#x8868;&#x6709;&#x6548;(&#x9AD8;&#x7535;&#x5E73;)&#x3002;&#x53CD;&#x4E4B;&#x4E3A;&#x65E0;&#x6548;(&#x4F4E;&#x7535;&#x5E73;)&#x3002;
+                    </p>
+                </li>
+            </ul>
+            <h4
+                class="mume-header"
+                id="2162-%E4%BF%A1%E5%8F%B7%E6%8E%A7%E5%88%B6%E6%8C%89%E9%92%AE"
+            >
+                2.1.6.2 &#x4FE1;&#x53F7;&#x63A7;&#x5236;&#x6309;&#x94AE;
+            </h4>
 
-        <img
-            class="img"
-            src="../../resource/img/product/dvcc/ram_rom_pannel.png"
-            alt="ram rom &#x9762;&#x677F;"
-        />
-        <div class="note">
-            Fig-2- Ram Rom &#x5185;&#x5B58;&#x9762;&#x677F;(&#x975E;&#x7F16;&#x8F91;&#x6001;)
+            <img
+                class="img"
+                src="../../resource/img/product/dvcc/signalsBtn.png"
+                alt="&#x4FE1;&#x53F7;&#x63A7;&#x5236;&#x6309;&#x94AE;"
+            />
+            <div class="note">Fig-2-7 &#x4FE1;&#x53F7;&#x63A7;&#x5236;&#x6309;&#x94AE;</div>
+            <table>
+                <thead>
+                    <tr>
+                        <th style="text-align: center">&#x6309;&#x94AE;</th>
+                        <th style="text-align: center">&#x542B;&#x4E49;</th>
+                        <th style="text-align: center">&#x5907;&#x6CE8;</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td style="text-align: center">&#x603B;&#x6E05;</td>
+                        <td style="text-align: center">PC&#x5185;&#x5BB9;&#x6E05;0</td>
+                        <td style="text-align: center">\</td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center">&#x624B;&#x52A8;&#x8109;&#x51B2;</td>
+                        <td style="text-align: center">T3/T4&#x8109;&#x51B2;</td>
+                        <td style="text-align: center">\</td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center">LDAR</td>
+                        <td style="text-align: center">
+                            AR&#x5BC4;&#x5B58;&#x5668;&#x63A5;&#x5165;&#x603B;&#x7EBF;
+                        </td>
+                        <td style="text-align: center">\</td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center">LDAD(LEDB)</td>
+                        <td style="text-align: center">
+                            PC&#x8BA1;&#x6570;&#x5668;&#x63A5;&#x5165;&#x603B;&#x7EBF;&#x3001;LED&#x63A5;&#x5165;&#x603B;&#x7EBF;
+                        </td>
+                        <td style="text-align: center">
+                            PC&#x9700;&#x8981;&#x9009;&#x4E2D;&#x4E5F;&#x5373;LDPC&#x4FE1;&#x53F7;&#x6709;&#x6548;
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center">LDDR1</td>
+                        <td style="text-align: center">DR1&#x63A5;&#x5165;&#x603B;&#x7EBF;</td>
+                        <td style="text-align: center">\</td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center">LDDR2</td>
+                        <td style="text-align: center">DR2&#x63A5;&#x5165;&#x603B;&#x7EBF;</td>
+                        <td style="text-align: center">\</td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center">LDPC</td>
+                        <td style="text-align: center">
+                            PC&#x8BA1;&#x6570;&#x5668;&#x9009;&#x4E2D;
+                        </td>
+                        <td style="text-align: center">\</td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center">CE</td>
+                        <td style="text-align: center">
+                            RAM&#x7247;&#x9009;&#x4FE1;&#x53F7;&#xFF0C;&#x4E5F;&#x5373;RAM&#x6709;&#x6548;
+                        </td>
+                        <td style="text-align: center">\</td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center">WE</td>
+                        <td style="text-align: center">
+                            &#x6709;&#x6548;WRITE&#xFF0C;&#x65E0;&#x6548;READ
+                        </td>
+                        <td style="text-align: center">\</td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center">AR</td>
+                        <td style="text-align: center">
+                            ALU&#x5E26;&#x8FDB;&#x4F4D;&#x8FD0;&#x7B97;&#xFF0C;&#x8FD0;&#x7B97;&#x7ED3;&#x679C;&#x5F71;&#x54CD;ZI&#x3001;CY
+                        </td>
+                        <td style="text-align: center">\</td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center">SWB</td>
+                        <td style="text-align: center">
+                            &#x6570;&#x636E;&#x5F00;&#x5173;&#x6570;&#x636E;&#x9001;&#x5165;&#x603B;&#x7EBF;
+                        </td>
+                        <td style="text-align: center">\</td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center">ALUB</td>
+                        <td style="text-align: center">
+                            ALU&#x8FD0;&#x7B97;&#x7ED3;&#x679C;&#x9001;&#x5165;&#x603B;&#x7EBF;
+                        </td>
+                        <td style="text-align: center">
+                            ALUB&#x662F;ALU&#x8FD0;&#x7B97;&#x5F00;&#x542F;&#x7684;&#x524D;&#x63D0;&#xFF0C;&#x4E5F;&#x5373;&#x4EC5;&#x5728;ALUB&#x4FE1;&#x53F7;&#x6709;&#x6548;&#x65F6;ALU&#x8FDB;&#x884C;&#x8FD0;&#x7B97;
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center">PCB</td>
+                        <td style="text-align: center">
+                            PC&#x8BA1;&#x6570;&#x5668;&#x9001;&#x5165;&#x603B;&#x7EBF;
+                        </td>
+                        <td style="text-align: center">
+                            PC&#x9700;&#x8981;&#x9009;&#x4E2D;&#x4E5F;&#x5373;LDPC&#x4FE1;&#x53F7;&#x6709;&#x6548;
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center">299B</td>
+                        <td style="text-align: center">
+                            299B&#x63A5;&#x5165;/&#x9001;&#x5165;&#x603B;&#x7EBF;
+                        </td>
+                        <td style="text-align: center">&#x7C7B;&#x4F3C;&#x4E8E;ALUB</td>
+                    </tr>
+                </tbody>
+            </table>
+            <h4
+                class="mume-header"
+                id="2163-%E6%95%B0%E6%8D%AE%E8%BE%93%E5%85%A5%E5%8C%BA%E5%9F%9F"
+            >
+                2.1.6.3 &#x6570;&#x636E;&#x8F93;&#x5165;&#x533A;&#x57DF;
+            </h4>
+
+            <div class="img_con">
+                <img
+                    class="img"
+                    src="../../resource/img/product/dvcc/input_signals.png"
+                    alt="&#x6570;&#x636E;&#x8F93;&#x5165;&#x533A;&#x57DF;"
+                />
+                <img
+                    class="img"
+                    src="../../resource/img/product/dvcc/input_auto.png"
+                    alt="&#x6570;&#x636E;&#x8F93;&#x5165;&#x533A;&#x57DF;"
+                />
+            </div>
+            <div class="note">Fig-2-7 &#x6570;&#x636E;&#x8F93;&#x5165;&#x533A;&#x57DF;</div>
+            <p>
+                &#x6570;&#x636E;&#x8F93;&#x5165;&#x533A;&#x57DF;&#x5206;&#x4E3A;&#x4E24;&#x79CD;&#x60C5;&#x51B5;&#xFF1A;
+            </p>
+            <ul>
+                <li>
+                    <p>&#x81EA;&#x52A8;&#x8FD0;&#x884C;( <em>Fig-2-7 &#x53F3;&#x56FE;</em> )</p>
+                    <ul>
+                        <li>
+                            &#x5FAE;&#x6307;&#x4EE4;&#x5F00;&#x59CB;&#x5730;&#x5740;<br />
+                            &#x6BCF;&#x4E00;&#x6761;&#x6307;&#x4EE4;&#x7684;&#x9884;&#x8BBE;&#x5F00;&#x59CB;&#x5730;&#x5740;&#x3002;
+                        </li>
+                        <li>
+                            KD7-KD0<br />
+                            &#x6570;&#x636E;&#x5F00;&#x5173;&#x3002;
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <p>&#x624B;&#x52A8;&#x8FD0;&#x884C;( <em>Fig-2-7 &#x5DE6;&#x56FE;</em> )</p>
+                    <ul>
+                        <li>
+                            KD7-KD0<br />
+                            &#x6570;&#x636E;&#x5F00;&#x5173;&#x3002;<br />
+                            -S3-S0 M CN<br />
+                            ALU&#x7684;&#x529F;&#x80FD;&#x5F00;&#x5173;&#x3002;(&#x8BE6;&#x60C5;&#x89C1;
+                            <a href="#ALU%E5%8A%9F%E8%83%BD%E8%A1%A8"
+                                >2.3.2 ALU&#x529F;&#x80FD;&#x8868;</a
+                            >
+                            )
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <h3 class="mume-header" id="217-%E6%B5%AE%E5%8A%A8%E9%9D%A2%E6%9D%BF%E4%BB%8B%E7%BB%8D">
+                2.1.7 &#x6D6E;&#x52A8;&#x9762;&#x677F;&#x4ECB;&#x7ECD;
+            </h3>
+
+            <img
+                class="img"
+                src="../../resource/img/product/dvcc/ram_rom_pannel.png"
+                alt="ram rom &#x9762;&#x677F;"
+            />
+            <div class="note">
+                Fig-2-8 Ram Rom &#x5185;&#x5B58;&#x9762;&#x677F;(&#x975E;&#x7F16;&#x8F91;&#x6001;)
+            </div>
+            <h4 class="mume-header" id="2171-ram-%E9%9D%A2%E6%9D%BF">
+                2.1.7.1 RAM &#x9762;&#x677F;
+            </h4>
+
+            <img
+                class="img"
+                src="../../resource/img/product/dvcc/ram.png"
+                alt="RAM&#x9762;&#x677F;"
+            />
+            <div class="note">Fig-2-9 RAM&#x9762;&#x677F;</div>
+            <ul>
+                <li>
+                    <p>RAM&#x9762;&#x677F;&#x57FA;&#x672C;&#x6784;&#x6210;</p>
+                    <ul>
+                        <li>
+                            &#x5DE6;&#x4E0A;&#x6807;&#x9898;&#x53EF;&#x4EE5;&#x663E;&#x793A;&#x51FA;&#x76EE;&#x524D;&#x5904;&#x4E8E;&#x7684;&#x72B6;&#x6001;&#xFF0C;&#x5728;&#x7F16;&#x8F91;&#x6A21;&#x5F0F;&#x603B;&#xFF0C;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x53CC;&#x51FB;RAM&#x5185;&#x5B58;&#x5185;&#x5BB9;&#x5355;&#x5143;&#x683C;&#xFF0C;&#x66F4;&#x6539;&#x5BF9;&#x5E94;&#x7684;RAM&#x5185;&#x5B58;&#x7684;&#x5185;&#x5BB9;&#x3002;
+                        </li>
+                        <li>
+                            <code>&#x7F16;&#x8F91;</code
+                            >&#x6309;&#x94AE;&#xFF0C;&#x901A;&#x8FC7;&#x70B9;&#x51FB;&#x7F16;&#x8F91;&#x6309;&#x94AE;&#x53EF;&#x4EE5;&#x66F4;&#x6539;RAM&#x9762;&#x677F;&#x7684;&#x72B6;&#x6001;(&#x67E5;&#x770B;/&#x7F16;&#x8F91;)&#x3002;
+                        </li>
+                        <li>
+                            <code>&#x5237;&#x65B0;&#x5185;&#x5B58;</code
+                            >&#x6309;&#x94AE;&#xFF1A;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x70B9;&#x51FB;&#x8BE5;&#x6309;&#x94AE;&#x6765;&#x5237;&#x65B0;&#x9762;&#x677F;&#x7684;&#x6570;&#x636E;&#x3002;&#x76EE;&#x524D;&#x6D4B;&#x8BD5;&#x4E2D;&#x53EF;&#x4EE5;&#x5B9E;&#x73B0;&#x81EA;&#x52A8;&#x5237;&#x65B0;&#x3002;
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <p>&#x7F16;&#x8F91;&#x8FC7;&#x7A0B;</p>
+                    <ul>
+                        <li>
+                            &#x5982;&#x679C;&#x5904;&#x4E8E;&#x7F16;&#x8F91;&#x6A21;&#x5F0F;&#xFF0C;&#x4F60;&#x53EF;&#x4EE5;&#x76F4;&#x63A5;&#x53CC;&#x51FB;&#x5355;&#x5143;&#x683C;&#x7F16;&#x8F91;&#x5185;&#x5BB9;&#x3002;
+                        </li>
+                        <li>
+                            &#x5982;&#x679C;&#x672A;&#x5904;&#x4E8E;&#x7F16;&#x8F91;&#x6A21;&#x5F0F;&#xFF0C;&#x4F60;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x7F16;&#x8F91;&#x6309;&#x94AE;&#x8FDB;&#x5165;&#x7F16;&#x8F91;&#x6A21;&#x5F0F;&#xFF0C;&#x518D;&#x53CC;&#x51FB;&#x5355;&#x5143;&#x683C;&#x7F16;&#x8F91;&#x3002;
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <p>
+                        &#x8F93;&#x5165;&#x7684;&#x683C;&#x5F0F;&#x4E3A;
+                        <em>Fig-2-10</em>
+                        &#x6240;&#x793A;&#x7684;&#x6B63;&#x5219;&#x5F0F;&#xFF0C;&#x8BF7;&#x6CE8;&#x610F;&#x6B64;&#x5904;&#x4EE5;8Bits&#x73AF;&#x5883;&#x4E3A;&#x4F8B;&#x3002;<br />
+                        <img
+                            class="img"
+                            src="../../resource/img/product/dvcc/ram_regex(8bits).png"
+                            alt=" RAM&#x5185;&#x5BB9;&#x6B63;&#x786E;&#x683C;&#x5F0F;(8Bits&#x4E3A;&#x4F8B;)"
+                        />
+                    </p>
+                </li>
+            </ul>
+            <div class="note">
+                Fig-2-10 RAM&#x5185;&#x5BB9;&#x6B63;&#x786E;&#x683C;&#x5F0F;(8Bits&#x4E3A;&#x4F8B;)
+            </div>
+            <h4 class="mume-header" id="2172-rom-%E9%9D%A2%E6%9D%BF">
+                2.1.7.2 ROM &#x9762;&#x677F;
+            </h4>
+
+            <img
+                class="img"
+                src="../../resource/img/product/dvcc/rom.png"
+                alt="ROM&#x9762;&#x677F;"
+            />
+            <div class="note">Fig-2-11 ROM&#x9762;&#x677F;</div>
+            <ul>
+                <li>
+                    <p>ROM&#x9762;&#x677F;&#x57FA;&#x672C;&#x6784;&#x6210;</p>
+                    <ul>
+                        <li>
+                            &#x5DE6;&#x4E0A;&#x6807;&#x9898;&#x53EF;&#x4EE5;&#x663E;&#x793A;&#x51FA;&#x76EE;&#x524D;&#x5904;&#x4E8E;&#x7684;&#x72B6;&#x6001;&#xFF0C;&#x5728;&#x7F16;&#x8F91;&#x6A21;&#x5F0F;&#x603B;&#xFF0C;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x53CC;&#x51FB;RAM&#x5185;&#x5B58;&#x5185;&#x5BB9;&#x5355;&#x5143;&#x683C;&#xFF0C;&#x66F4;&#x6539;&#x5BF9;&#x5E94;&#x7684;ROM&#x5185;&#x5B58;&#x7684;&#x5185;&#x5BB9;&#x3002;
+                        </li>
+                        <li>
+                            <code>&#x7F16;&#x8F91;</code
+                            >&#x6309;&#x94AE;&#xFF0C;&#x901A;&#x8FC7;&#x70B9;&#x51FB;&#x7F16;&#x8F91;&#x6309;&#x94AE;&#x53EF;&#x4EE5;&#x66F4;&#x6539;ROM&#x9762;&#x677F;&#x7684;&#x72B6;&#x6001;(&#x67E5;&#x770B;/&#x7F16;&#x8F91;)&#x3002;
+                        </li>
+                        <li>
+                            <code>&#x5237;&#x65B0;&#x5185;&#x5B58;</code
+                            >&#x6309;&#x94AE;&#xFF1A;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x70B9;&#x51FB;&#x8BE5;&#x6309;&#x94AE;&#x6765;&#x5237;&#x65B0;&#x9762;&#x677F;&#x7684;&#x6570;&#x636E;&#x3002;&#x76EE;&#x524D;&#x6D4B;&#x8BD5;&#x4E2D;&#x53EF;&#x4EE5;&#x5B9E;&#x73B0;&#x81EA;&#x52A8;&#x5237;&#x65B0;&#x3002;
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <p>&#x7F16;&#x8F91;&#x8FC7;&#x7A0B;</p>
+                    <ul>
+                        <li>
+                            &#x5982;&#x679C;&#x5904;&#x4E8E;&#x7F16;&#x8F91;&#x6A21;&#x5F0F;&#xFF0C;&#x4F60;&#x53EF;&#x4EE5;&#x76F4;&#x63A5;&#x53CC;&#x51FB;&#x5355;&#x5143;&#x683C;&#x7F16;&#x8F91;&#x5185;&#x5BB9;&#x3002;
+                        </li>
+                        <li>
+                            &#x5982;&#x679C;&#x672A;&#x5904;&#x4E8E;&#x7F16;&#x8F91;&#x6A21;&#x5F0F;&#xFF0C;&#x4F60;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x7F16;&#x8F91;&#x6309;&#x94AE;&#x8FDB;&#x5165;&#x7F16;&#x8F91;&#x6A21;&#x5F0F;&#xFF0C;&#x518D;&#x53CC;&#x51FB;&#x5355;&#x5143;&#x683C;&#x7F16;&#x8F91;&#x3002;
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <p>
+                        &#x8F93;&#x5165;&#x7684;&#x683C;&#x5F0F;&#x4E3A;
+                        <em>Fig-2-11</em>
+                        &#x6240;&#x793A;&#x7684;&#x6B63;&#x5219;&#x5F0F;&#xFF0C;&#x8BF7;&#x6CE8;&#x610F;&#xFF0C;&#x8BF7;&#x52FF;&#x5BF9;&#x975E;&#x5185;&#x5BB9;&#x5217;&#x8FDB;&#x884C;&#x7F16;&#x8F91;&#x3002;<br />
+                        <img
+                            class="img"
+                            src="../../resource/img/product/dvcc/rom_regex(24).png"
+                            alt="ROM&#x5185;&#x5BB9;&#x6B63;&#x786E;&#x683C;&#x5F0F;"
+                        />
+                    </p>
+                </li>
+            </ul>
+            <div class="note">Fig-2-11 ROM&#x5185;&#x5BB9;&#x6B63;&#x786E;&#x683C;&#x5F0F;</div>
+            <ul>
+                <li>
+                    <mark>24&#x4F4D;&#x5FAE;&#x4EE3;&#x7801;&#x683C;&#x5F0F;</mark><br />
+                    &#x539F;&#x6765;16&#x8FDB;&#x5236;&#x5BF9;&#x5E94;&#x4F4D;&#x987A;&#x5E8F;&#x4E3A;:
+                    654321(&#x5BF9;&#x5E94;&#x529F;&#x80FD;&#x4F4D;&#x987A;&#x5E8F;&#x4E3A;&#xFF1A;S3-S0&#xB7;&#xB7;&#xB7;U5-U0)&#x5728;&#x6587;&#x4EF6;&#x4E2D;&#x987A;&#x5E8F;&#x4E3A;:
+                    563412&#x3002;
+                </li>
+            </ul>
+            <h4 class="mume-header" id="2173-%E8%BF%90%E8%A1%8C%E6%97%A5%E5%BF%97">
+                2.1.7.3 &#x8FD0;&#x884C;&#x65E5;&#x5FD7;
+            </h4>
+
+            <img
+                class="img"
+                src="../../resource/img/product/dvcc/runLog.png"
+                alt="&#x8FD0;&#x884C;&#x65E5;&#x5FD7;"
+            />
+            <div class="note">Fig-2-11 &#x8FD0;&#x884C;&#x65E5;&#x5FD7;</div>
+            <p>
+                &#x5982;&#x56FE;
+                <em>Fig-2-11</em>
+                &#x6240;&#x793A;&#xFF0C;&#x4F60;&#x53EF;&#x4EE5;&#x5728;&#x8BE5;&#x9762;&#x677F;&#x8FDB;&#x884C;&#x4FDD;&#x5B58;&#xFF0C;&#x67E5;&#x770B;&#x65E5;&#x5FD7;&#x7B49;&#x64CD;&#x4F5C;&#x3002;
+            </p>
+            <h2 class="mume-header" id="22-%E8%AE%BE%E7%BD%AE%E4%BD%BF%E7%94%A8">
+                2.2 &#x8BBE;&#x7F6E;&#x4F7F;&#x7528;
+            </h2>
+
+            <p>&#x8BBE;&#x7F6E;&#x5927;&#x81F4;&#x5206;&#x4E3A; 4 &#x90E8;&#x5206;&#xFF1A;</p>
+            <ol>
+                <li>
+                    <a href="#221-%E9%80%9A%E7%94%A8%E8%AE%BE%E7%BD%AE"
+                        >&#x901A;&#x7528;&#x8BBE;&#x7F6E;</a
+                    >
+                </li>
+                <li>
+                    <a href="#222-%E8%BF%90%E8%A1%8C%E8%AE%BE%E7%BD%AE"
+                        >&#x8FD0;&#x884C;&#x8BBE;&#x7F6E;</a
+                    >
+                </li>
+                <li>
+                    <a href="#223-%E9%AB%98%E7%BA%A7%E8%AE%BE%E7%BD%AE"
+                        >&#x9AD8;&#x7EA7;&#x8BBE;&#x7F6E;</a
+                    >
+                </li>
+                <li>
+                    <a href="#224-%E5%85%B6%E5%AE%83%E8%AE%BE%E7%BD%AE"
+                        >&#x5176;&#x5B83;&#x8BBE;&#x7F6E;</a
+                    >
+                </li>
+            </ol>
+            <h3 class="mume-header" id="221-%E9%80%9A%E7%94%A8%E8%AE%BE%E7%BD%AE">
+                2.2.1 &#x901A;&#x7528;&#x8BBE;&#x7F6E;
+            </h3>
+
+            <p>
+                &#x901A;&#x7528;&#x8BBE;&#x7F6E;&#x53EF;&#x4EE5;&#x8BBE;&#x7F6E;&#x8BED;&#x8A00;&#x3001;&#x4E3B;&#x9898;&#x3001;&#x5B57;&#x4F53;&#x65CF;&#x3001;&#x5B57;&#x4F53;&#x5927;&#x5C0F;&#x3001;&#x7A97;&#x53E3;&#x9ED8;&#x8BA4;&#x5927;&#x5C0F;&#x3002;
+            </p>
+            <ul>
+                <li>
+                    <p>
+                        &#x76EE;&#x524D;&#x652F;&#x6301; 2
+                        &#x79CD;&#x4E3B;&#x9898;(macQss&#x3001;orignal)&#xFF0C;&#x4F60;&#x53EF;&#x4EE5;&#x9009;&#x62E9;&#x81EA;&#x4E3B;&#x5236;&#x4F5C;&#x4E3B;&#x9898;&#xFF0C;&#x8BA9;&#x540E;&#x5C06;&#x4E3B;&#x9898;
+                        qss
+                        &#x6587;&#x4EF6;&#x653E;&#x7F6E;&#x4E8E;&#x7A0B;&#x5E8F;&#x6587;&#x4EF6;&#x5939;&#x4E0B;&#x7684;<code>theme</code>&#x6587;&#x4EF6;&#x5939;(&#x5177;&#x4F53;&#x8DEF;&#x5F84;:
+                        <code>./resource/file_resource/theme/</code> )&#x3002;
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        &#x5B57;&#x4F53;&#x65CF;&#x63A8;&#x8350; &quot;Harmony OS Sans
+                        Sc&quot;,&#x5B57;&#x4F53;&#x5927;&#x4E0B;&#x63A8;&#x8350; 12
+                        &#x53F7;&#x5B57;&#x3002;
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        &#x9ED8;&#x8BA4;&#x63A8;&#x8350;&#x7A97;&#x53E3;&#x5927;&#x5C0F;
+                        <strong>1400x800</strong>
+                    </p>
+                </li>
+                <li>
+                    <p><mark>&#x6CE8;</mark>&#xFF1A;</p>
+                    <ul>
+                        <li>
+                            &#x76EE;&#x524D;&#x8BED;&#x8A00;&#x4EC5;&#x652F;&#x6301;&#x4E2D;&#x6587;&#xFF0C;&#x82F1;&#x6587;&#x7FFB;&#x8BD1;&#x6682;&#x672A;&#x63A8;&#x9001;&#x3002;
+                        </li>
+                        <li>
+                            &#x8BBE;&#x7F6E;&#x5747;&#x5728;&#x4E0B;&#x4E00;&#x6B21;&#x6253;&#x5F00;&#x5E94;&#x7528;&#x65F6;&#x751F;&#x6548;&#x3002;
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <h3 class="mume-header" id="222-%E8%BF%90%E8%A1%8C%E8%AE%BE%E7%BD%AE">
+                2.2.2 &#x8FD0;&#x884C;&#x8BBE;&#x7F6E;
+            </h3>
+
+            <ul>
+                <li>
+                    <p>
+                        &#x8C03;&#x6574;&#x9ED8;&#x8BA4;&#x8D77;&#x59CB;&#x5FAE;&#x5730;&#x5740;&#x5FAE;&#x6307;&#x4EE4;&#x5E8F;&#x53F7;&#xFF1A;&#x9009;&#x62E9;&#x8FD0;&#x884C;&#x8BBE;&#x7F6E;&#x4E2D;&#x7684;<strong>&#x8D77;&#x59CB;&#x5FAE;&#x5730;&#x5740;</strong>&#x8BBE;&#x7F6E;&#x9879;&#xFF0C;&#x5C06;&#x5176;&#x8BBE;&#x7F6E;&#x4E3A;&#x4F60;&#x6240;&#x60F3;&#x8981;&#x7684;&#x8D77;&#x59CB;&#x5730;&#x5740;&#xFF0C;&#x70B9;&#x51FB;&#x4FDD;&#x5B58;&#xFF0C;&#x5373;&#x53EF;&#x8C03;&#x6574;&#x9ED8;&#x8BA4;&#x8D77;&#x59CB;&#x5FAE;&#x5730;&#x5740;&#x3002;
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        &#x901A;&#x8FC7;&#x8BBE;&#x7F6E;<strong>&#x6307;&#x4EE4;&#x8FD0;&#x884C;&#x95F4;&#x9694;&#x65F6;&#x95F4;</strong>&#x6ED1;&#x52A8;&#x6761;&#xFF0C;&#x4F60;&#x53EF;&#x4EE5;&#x8C03;&#x6574;&#x6307;&#x4EE4;&#x8FD0;&#x884C;&#x65F6;&#xFF0C;&#x6BCF;&#x4E00;&#x6761;&#x5FAE;&#x6307;&#x4EE4;&#x7684;&#x95F4;&#x9694;&#x65F6;&#x95F4;&#x3002;(&#x63A8;&#x8350;&#x95F4;&#x9694;&#x65F6;&#x95F4;&#x4E3A;&#xFF1A;1000ms)
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        &#x5B9E;&#x65F6;&#x5237;&#x65B0;<br />
+                        &#x6FC0;&#x6D3B;&#x5B9E;&#x65F6;&#x5237;&#x65B0;&#x540E;&#xFF0C;&#x4F60;&#x7684;&#x4EFB;&#x4F55;&#x64CD;&#x4F5C;&#xFF0C;&#x5C06;&#x4F1A;&#x88AB;&#x7ACB;&#x5373;&#x66F4;&#x65B0;&#x5230;&#x7535;&#x8DEF;&#x56FE;&#x533A;&#x57DF;&#x3002;
+                    </p>
+                    <blockquote>
+                        <p>
+                            <mark>&#x6CE8;</mark
+                            >&#xFF1A;&#x6FC0;&#x6D3B;&#x5B9E;&#x65F6;&#x5237;&#x65B0;&#x5BF9;&#x7535;&#x8111;&#x8D44;&#x6E90;&#x5360;&#x7528;&#x91CF;&#x8F83;&#x5927;&#xFF0C;&#x8BF7;&#x8C28;&#x614E;&#x5F00;&#x542F;&#x3002;<br />
+                            <img
+                                class="img"
+                                src="../../resource/img/product/dvcc/freshInrealTime(false).png"
+                                alt="&#x5B9E;&#x65F6;&#x5237;&#x65B0;&#x5173;&#x95ED;"
+                            />
+                        </p>
+                        <div class="note">
+                            Fig-2-12 &#x5B9E;&#x65F6;&#x5237;&#x65B0;&#x5173;&#x95ED;
+                        </div>
+                        <br />
+                        <img
+                            class="img"
+                            src="../../resource/img/product/dvcc/freshInrealTime(true).png"
+                            alt="&#x5B9E;&#x65F6;&#x5237;&#x65B0;&#x5F00;&#x542F;"
+                        />
+                        <div class="note">
+                            Fig-2-13 &#x5B9E;&#x65F6;&#x5237;&#x65B0;&#x5F00;&#x542F;
+                        </div>
+                        <p></p>
+                    </blockquote>
+                </li>
+            </ul>
+            <h3 class="mume-header" id="223-%E9%AB%98%E7%BA%A7%E8%AE%BE%E7%BD%AE">
+                2.2.3 &#x9AD8;&#x7EA7;&#x8BBE;&#x7F6E;
+            </h3>
+
+            <blockquote>
+                <p>
+                    &#x8BE5;&#x533A;&#x57DF;&#x8BBE;&#x7F6E;&#x8BF7;&#x8C28;&#x614E;&#x8C03;&#x6574;&#x3002;
+                </p>
+            </blockquote>
+            <ul>
+                <li>
+                    <p>
+                        &#x4F60;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x8BE5;&#x533A;&#x57DF;&#x7684;
+                        ram&#xFF0C;rom &#x884C;&#x6570;&#x8C03;&#x6574; DVCC &#x7684; ram&#x3001;rom
+                        &#x957F;&#x5EA6;&#xFF0C;&#x6700;&#x5927;&#x652F;&#x6301;<strong>FFFF</strong>(H)&#x884C;&#x3002;&#x5728;&#x8BBE;&#x7F6E;&#x65F6;&#xFF0C;&#x8BF7;&#x6CE8;&#x610F;&#x4F60;&#x7684;&#x884C;&#x6570;&#x4E0D;&#x5E94;&#x8BE5;&#x5C0F;&#x4E8E;&#x4F60;&#x6240;&#x5BFC;&#x5165;&#x7684;&#x5FAE;&#x4EE3;&#x7801;&#x6587;&#x4EF6;&#x7684;&#x6700;&#x5927;&#x5730;&#x5740;&#x3002;(&#x4F60;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x67E5;&#x770B;&#x5BFC;&#x5165;&#x6210;&#x529F;&#x663E;&#x793A;&#x7684;&#x6D88;&#x606F;&#x6846;&#xFF0C;&#x786E;&#x5B9A;&#x662F;&#x5426;&#x542B;&#x6709;&#x8D85;&#x51FA;&#x5730;&#x5740;&#x8303;&#x56F4;&#x7684;
+                        RAM&#x3001;ROM &#x5185;&#x5BB9;)
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        (&#x672A;&#x5F00;&#x542F;)&#x4F60;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x8BBE;&#x7F6E;&#x73AF;&#x5883;
+                        Bit &#x6570;&#x76EE;&#x6765;&#x8C03;&#x6574; DVCC &#x7684; RAM
+                        &#x7684;&#x957F;&#x5EA6;&#xFF0C;&#x540C;&#x65F6;&#x8BBE;&#x7F6E;&#x603B;&#x4F53;&#x603B;&#x7EBF;&#x7684;&#x957F;&#x5EA6;(&#x6700;&#x5927;
+                        bit &#x6570; 16Bits)
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        (&#x9884;&#x671F;&#x6DFB;&#x52A0;&#x8BBE;&#x7F6E;)&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x8BBE;&#x7F6E;&#xFF0C;&#x9009;&#x62E9;&#x66F4;&#x6362;&#x81EA;&#x52A8;&#x8FD0;&#x884C;&#x72B6;&#x6001;&#x65F6;&#x662F;&#x5426;&#x6E05;&#x9664;&#x5185;&#x5B58;&#x5185;&#x5BB9;&#x3002;
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        &#x6253;&#x5F00;&#x8BBE;&#x8BA1;&#x5668;&#xFF0C;&#x901A;&#x8FC7;&#x9009;&#x4E2D;&#x8BE5;&#x8BBE;&#x7F6E;&#x9879;&#xFF0C;&#x4F60;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;
+                        DVCC
+                        &#x8BBE;&#x7F6E;&#x5668;&#xFF0C;&#x5728;&#x6253;&#x5F00;&#x65F6;&#x4F1A;&#x63D0;&#x793A;&#x8F93;&#x5165;&#x5BC6;&#x94A5;(&#x5BC6;&#x94A5;&#x7684;&#x957F;&#x5EA6;&#x4E3A;
+                        16
+                        &#x4F4D;&#x6570;&#x5B57;&#xFF0C;&#x5728;&#x8F93;&#x5165;&#x65F6;&#x8BF7;&#x4E0D;&#x8981;&#x8F93;&#x5165;&#x4EFB;&#x4F55;&#x975E;&#x6570;&#x5B57;&#x7684;&#x5B57;&#x7B26;&#xFF0C;&#x540C;&#x65F6;&#x8BF7;&#x6CE8;&#x610F;&#x9009;&#x62E9;&#x5173;&#x95ED;&#x8BBE;&#x8BA1;&#x5668;&#x540E;&#xFF0C;&#x518D;&#x6B21;&#x5F00;&#x542F;&#x9700;&#x8981;&#x518D;&#x6B21;&#x63D0;&#x4F9B;&#x5BC6;&#x94A5;)&#xFF0C;&#x4F60;&#x53EF;&#x4EE5;&#x5411;&#x8001;&#x5E08;&#x7533;&#x8BF7;&#x63D0;&#x4F9B;&#x5BC6;&#x94A5;(&#x5982;&#x679C;&#x4F60;&#x662F;&#x8001;&#x5E08;&#xFF0C;&#x60A8;&#x53EF;&#x4EE5;&#x53D1;&#x9001;&#x90AE;&#x4EF6;&#x5230;
+                        <a href="mailto:haley_ehrich@outlook.com">haley_ehrich@outlook.com</a>
+                        &#x83B7;&#x53D6;&#x5BC6;&#x94A5;)&#x3002;
+                    </p>
+                </li>
+            </ul>
+            <h3 class="mume-header" id="224-%E5%85%B6%E5%AE%83%E8%AE%BE%E7%BD%AE">
+                2.2.4 &#x5176;&#x5B83;&#x8BBE;&#x7F6E;
+            </h3>
+
+            <ul>
+                <li>
+                    &#x5728;&#x8BE5;&#x8BBE;&#x7F6E;&#x754C;&#x9762;&#xFF0C;&#x4F60;&#x53EF;&#x4EE5;&#x68C0;&#x67E5;&#x662F;&#x5426;&#x6709;&#x8F6F;&#x4EF6;&#x66F4;&#x65B0;&#xFF0C;&#x4E5F;&#x53EF;&#x4EE5;&#x5C06;&#x6240;&#x6709;&#x8BBE;&#x7F6E;&#x9879;&#x5168;&#x90E8;&#x6062;&#x590D;&#x4E3A;&#x9ED8;&#x8BA4;&#x8BBE;&#x7F6E;
+                </li>
+            </ul>
+            <h2 class="mume-header" id="23-dvcc-%E4%BF%A1%E5%8F%B7%E8%AF%A6%E8%A7%A3">
+                2.3 DVCC &#x4FE1;&#x53F7;&#x8BE6;&#x89E3;
+            </h2>
+
+            <h3
+                class="mume-header"
+                id="231-24%E4%BD%8D%E5%BE%AE%E7%A8%8B%E5%BA%8F%E5%90%AB%E4%B9%89"
+            >
+                2.3.1 24&#x4F4D;&#x5FAE;&#x7A0B;&#x5E8F;&#x542B;&#x4E49;
+            </h3>
+
+            <div class="note">Tab-2-1 ALU&#x529F;&#x80FD;&#x8868;</div>
+            <table>
+                <thead>
+                    <tr>
+                        <th style="text-align: center">S3-S0</th>
+                        <th style="text-align: center">M</th>
+                        <th style="text-align: center">CN</th>
+                        <th style="text-align: center">WE</th>
+                        <th style="text-align: center">B1 B0</th>
+                        <th style="text-align: center">A</th>
+                        <th style="text-align: center">B</th>
+                        <th style="text-align: center">C</th>
+                        <th style="text-align: center">U5-U0</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td style="text-align: center">24 23 22 21</td>
+                        <td style="text-align: center">20</td>
+                        <td style="text-align: center">19</td>
+                        <td style="text-align: center">18</td>
+                        <td style="text-align: center">17 16</td>
+                        <td style="text-align: center">15 14 13</td>
+                        <td style="text-align: center">12 11 10</td>
+                        <td style="text-align: center">9 8 7</td>
+                        <td style="text-align: center">6 5 4 3 2 1</td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center">ALU&#x529F;&#x80FD;&#x9009;&#x62E9;</td>
+                        <td style="text-align: center">ALU&#x529F;&#x80FD;&#x9009;&#x62E9;</td>
+                        <td style="text-align: center">ALU&#x529F;&#x80FD;&#x9009;&#x62E9;</td>
+                        <td style="text-align: center">&#x8BFB;&#x5199;&#x4FE1;&#x53F7;</td>
+                        <td style="text-align: center">
+                            &#x5916;&#x90E8;&#x8BBE;&#x5907;&#x63A5;&#x5165;
+                        </td>
+                        <td style="text-align: center">
+                            &#x8F93;&#x5165;&#x90E8;&#x4EF6;&#x9009;&#x62E9;
+                        </td>
+                        <td style="text-align: center">
+                            &#x8F93;&#x51FA;&#x90E8;&#x4EF6;&#x9009;&#x62E9;
+                        </td>
+                        <td style="text-align: center">
+                            &#x8DF3;&#x8F6C;&#x65B9;&#x5F0F;&#x3001;&#x8FDB;&#x4F4D;&#x8FD0;&#x7B97;
+                        </td>
+                        <td style="text-align: center">&#x4E0B;&#x4E00;&#x5FAE;&#x5730;&#x5740;</td>
+                    </tr>
+                </tbody>
+            </table>
+            <h3 class="mume-header" id="232-alu%E5%8A%9F%E8%83%BD%E8%A1%A8">
+                2.3.2 ALU&#x529F;&#x80FD;&#x8868;
+            </h3>
+
+            <img
+                class="img"
+                src="../../resource/img/product/dvcc/alu.png"
+                alt="ALU&#x529F;&#x80FD;&#x8868;"
+            />
+            <div class="note">Fig-2-14 ALU&#x529F;&#x80FD;&#x8868;</div>
+            <h3 class="mume-header" id="233-b1-b0">2.3.3 B1 B0</h3>
+
+            <div class="note">Tab-2-2 B1B0&#x529F;&#x80FD;&#x8868;</div>
+            <table>
+                <thead>
+                    <tr>
+                        <th style="text-align: center">B1 B0</th>
+                        <th style="text-align: center">&#x529F;&#x80FD;&#x63CF;&#x8FF0;</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td style="text-align: center">00</td>
+                        <td style="text-align: center">
+                            &#x9009;&#x4E2D;&#x5F00;&#x5173;&#x8F93;&#x5165;
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center">01</td>
+                        <td style="text-align: center">&#x9009;&#x4E2D;RAM</td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center">10</td>
+                        <td style="text-align: center">&#x9009;&#x4E2D;LED&#x8F93;&#x51FA;</td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center">11</td>
+                        <td style="text-align: center">NONE</td>
+                    </tr>
+                </tbody>
+            </table>
+            <h3 class="mume-header" id="234-a%E5%AD%97%E6%AE%B5%E5%8A%9F%E8%83%BD%E8%A1%A8">
+                2.3.4 A&#x5B57;&#x6BB5;&#x529F;&#x80FD;&#x8868;
+            </h3>
+
+            <div class="note">Tab-2-3 A&#x5B57;&#x6BB5;&#x529F;&#x80FD;&#x8868;</div>
+            <table>
+                <thead>
+                    <tr>
+                        <th style="text-align: center">A3 A2 A1</th>
+                        <th style="text-align: center">&#x529F;&#x80FD;&#x63CF;&#x8FF0;</th>
+                        <th style="text-align: center">&#x5907;&#x6CE8;</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td style="text-align: center">000</td>
+                        <td style="text-align: center">NONE</td>
+                        <td style="text-align: center"><br /></td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center">001</td>
+                        <td style="text-align: center">LDRi</td>
+                        <td style="text-align: center">
+                            &#x9009;&#x62E9;&#x540C;&#x6307;&#x4EE4;&#x5BC4;&#x5B58;&#x5668;(IR)&#x7684;&#x6700;&#x4F4E;2&#x4F4D;(I1&#xFF0C;I0)&#x914D;&#x5408;&#x3002;<br />I1&#xFF0C;I0=00&#x65F6;&#x4E3A;&#x8F93;&#x5165;&#x5230;R0&#x5BC4;&#x5B58;&#x5668;&#xFF1B;<br />I1&#xFF0C;I0=01&#x65F6;&#x4E3A;R1&#xFF1B;<br />I1&#xFF0C;I0=10&#x65F6;&#x4E3A;R2&#x3002;
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center">010</td>
+                        <td style="text-align: center">LDDR1</td>
+                        <td style="text-align: center">DR1&#x9009;&#x4E2D;</td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center">011</td>
+                        <td style="text-align: center">LDDR2</td>
+                        <td style="text-align: center">DR2&#x9009;&#x4E2D;</td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center">100</td>
+                        <td style="text-align: center">LDIR</td>
+                        <td style="text-align: center">IR&#x9009;&#x4E2D;</td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center">101</td>
+                        <td style="text-align: center">LDAD</td>
+                        <td style="text-align: center">
+                            PC&#x8BA1;&#x6570;&#x5668;&#x9009;&#x4E2D; (
+                            &#x9009;&#x4E2D;PC&#x8BA1;&#x6570;&#x5668;<mark
+                                >&#x4E5F;&#x5373;LDPC&#x6709;&#x6548;</mark
+                            >
+                            )
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center">110</td>
+                        <td style="text-align: center">LDAR</td>
+                        <td style="text-align: center">
+                            &#x5730;&#x5740;&#x5BC4;&#x5B58;&#x5668;&#x9009;&#x4E2D;
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center">111</td>
+                        <td style="text-align: center">NONE</td>
+                        <td style="text-align: center"><br /></td>
+                    </tr>
+                </tbody>
+            </table>
+            <h3 class="mume-header" id="235-b%E5%AD%97%E6%AE%B5%E5%8A%9F%E8%83%BD%E8%A1%A8">
+                2.3.5 B&#x5B57;&#x6BB5;&#x529F;&#x80FD;&#x8868;
+            </h3>
+
+            <div class="note">Tab-2-4 B&#x5B57;&#x6BB5;&#x529F;&#x80FD;&#x8868;</div>
+            <table>
+                <thead>
+                    <tr>
+                        <th style="text-align: center">B3 B2 B1</th>
+                        <th style="text-align: center">&#x529F;&#x80FD;&#x63CF;&#x8FF0;</th>
+                        <th style="text-align: center">&#x5907;&#x6CE8;</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td style="text-align: center">000</td>
+                        <td style="text-align: center">NONE</td>
+                        <td style="text-align: center">
+                            &#x2003; &#x2003; &#x2003; &#x2003; &#x2003; &#x2003; &#x2003; &#x2003;
+                            &#x2003;<br />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center">001</td>
+                        <td style="text-align: center">RS-B</td>
+                        <td style="text-align: center">
+                            I3&#xFF0C;I2=00&#x65F6;&#x4E3A;R0<br />I3&#xFF0C;I2=01&#x65F6;&#x4E3A;R1<br />I3&#xFF0C;I2=10&#x65F6;&#x4E3A;R2
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center">010</td>
+                        <td style="text-align: center">RD-B</td>
+                        <td style="text-align: center">
+                            I1&#xFF0C;I0=00&#x65F6;&#x4E3A;R0<br />I1&#xFF0C;I0=01&#x65F6;&#x4E3A;R1<br />I1&#xFF0C;I0=10&#x65F6;&#x4E3A;R2
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center">011</td>
+                        <td style="text-align: center">RI-B</td>
+                        <td style="text-align: center">
+                            &#x53D8;&#x5740;&#x5BC4;&#x5B58;&#x5668;&#x9009;&#x4E2D;&#xFF0C;&#x9ED8;&#x8BA4;R2&#x5BC4;&#x5B58;&#x5668;
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center">100</td>
+                        <td style="text-align: center">299-B</td>
+                        <td style="text-align: center">299&#x9009;&#x4E2D;&#x8F93;&#x51FA;</td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center">101</td>
+                        <td style="text-align: center">ALU-B</td>
+                        <td style="text-align: center">ALU&#x9009;&#x4E2D;&#x8F93;&#x51FA;</td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center">110</td>
+                        <td style="text-align: center">PC-B</td>
+                        <td style="text-align: center">
+                            PC&#x9009;&#x4E2D;&#x8F93;&#x51FA; (
+                            &#x9009;&#x4E2D;PC&#x8BA1;&#x6570;&#x5668;<mark
+                                >&#x4E5F;&#x5373;LDPC&#x6709;&#x6548;</mark
+                            >
+                            )
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center">111</td>
+                        <td style="text-align: center">NONE</td>
+                        <td style="text-align: center"><br /></td>
+                    </tr>
+                </tbody>
+            </table>
+            <h3 class="mume-header" id="236-c%E5%AD%97%E6%AE%B5%E5%8A%9F%E8%83%BD%E8%A1%A8">
+                2.3.6 C&#x5B57;&#x6BB5;&#x529F;&#x80FD;&#x8868;
+            </h3>
+
+            <div class="note">Tab-2-5 C&#x5B57;&#x6BB5;&#x529F;&#x80FD;&#x8868;</div>
+            <table>
+                <thead>
+                    <tr>
+                        <th style="text-align: center">C3 C2 C1</th>
+                        <th style="text-align: center">&#x529F;&#x80FD;&#x63CF;&#x8FF0;</th>
+                        <th style="text-align: center">&#x5907;&#x6CE8;</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td style="text-align: center">000</td>
+                        <td style="text-align: center">NONE</td>
+                        <td style="text-align: center"><br /></td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center">001</td>
+                        <td style="text-align: center">P(1)</td>
+                        <td style="text-align: center">
+                            &#x5982;&#x679C;U3&#x4E3A;0&#xFF1A;IR7-IR4&#x4F5C;&#x4E3A;&#x6D4B;&#x8BD5;&#x6761;&#x4EF6;&#x3002;IR7-IR4&#x66FF;&#x6362;&#x4E0B;&#x4E00;&#x987A;&#x5E8F;&#x5FAE;&#x5730;&#x5740;&#x7684;U3-U0&#x3002;<br />&#x5982;&#x679C;U3&#x4E3A;1&#xFF1A;IR6-IR4&#x4F5C;&#x4E3A;&#x6D4B;&#x8BD5;&#x6761;&#x4EF6;&#xFF0C;IR6-IR4&#x66FF;&#x6362;&#x4E0B;&#x4E00;&#x987A;&#x5E8F;&#x5FAE;&#x5730;&#x5740;&#x7684;U2-U0&#x3002;<br />&#x200B;<br />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center">010</td>
+                        <td style="text-align: center">P(2)</td>
+                        <td style="text-align: center">
+                            IR3-IR2&#x4F5C;&#x4E3A;&#x6D4B;&#x8BD5;&#x6761;&#x4EF6;&#x3002;IR3-IR2&#x66FF;&#x6362;&#x4E0B;&#x4E00;&#x987A;&#x5E8F;&#x5FAE;&#x5730;&#x5740;&#x7684;U1-U0&#x3002;
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center">011</td>
+                        <td style="text-align: center">P(3)</td>
+                        <td style="text-align: center">
+                            ZI/CY&#x4E3A;true&#xFF0C;&#x4E0B;&#x4E00;&#x987A;&#x5E8F;&#x5FAE;&#x5730;&#x5740;&#x7684;&#x7B2C;U4&#x4F4D;&#x53D8;1
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center">100</td>
+                        <td style="text-align: center">P(4)</td>
+                        <td style="text-align: center">
+                            SWC&#xFF0C;SWA&#x4F5C;&#x4E3A;&#x6D4B;&#x8BD5;&#x6761;&#x4EF6;&#xFF0C;&#x4F7F;&#x7528;SWC&#x3001;SWA&#x66FF;&#x6362;&#x4E0B;&#x4E00;&#x987A;&#x5E8F;&#x5FAE;&#x5730;&#x5740;&#x7684;U1&#x3001;U0&#x3002;
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center">101</td>
+                        <td style="text-align: center">AR</td>
+                        <td style="text-align: center">
+                            ALU&#x5E26;&#x8FDB;&#x4F4D;&#x8FD0;&#x7B97;&#xFF0C;&#x8FD0;&#x7B97;&#x7ED3;&#x679C;&#x5F71;&#x54CD;CY/ZI&#x3002;
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center">110</td>
+                        <td style="text-align: center">LDPC</td>
+                        <td style="text-align: center">
+                            <mark>&#x9009;&#x4E2D;PC&#x8BA1;&#x6570;&#x5668;</mark
+                            >&#xFF0C;&#x53EA;&#x6709;PC&#x8BA1;&#x6570;&#x5668;&#x9009;&#x4E2D;&#x540E;&#xFF0C;PC&#x8BA1;&#x6570;&#x5668;&#x624D;&#x53EF;&#x4EE5;&#x8F93;&#x5165;&#x3001;&#x8F93;&#x51FA;&#x3002;<br />&#x6CE8;&#x610F;&#xFF1A;&#x5728;PC&#x8BA1;&#x6570;&#x5668;&#x8F93;&#x51FA;&#x540E;&#xFF0C;PC&#x5185;&#x5BB9;&#x52A0;1&#x3002;
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center">111</td>
+                        <td style="text-align: center">NONE</td>
+                        <td style="text-align: center"><br /></td>
+                    </tr>
+                </tbody>
+            </table>
+            <h2 class="mume-header" id="24-%E5%BE%AE%E4%BB%A3%E7%A0%81%E6%96%87%E4%BB%B6">
+                2.4 &#x5FAE;&#x4EE3;&#x7801;&#x6587;&#x4EF6;
+            </h2>
+
+            <h3 class="mume-header" id="241-dvc%E5%BE%AE%E4%BB%A3%E7%A0%81%E6%96%87%E4%BB%B6">
+                2.4.1 .dvc&#x5FAE;&#x4EE3;&#x7801;&#x6587;&#x4EF6;
+            </h3>
+
+            <p>
+                dvc&#x6587;&#x4EF6;&#x4E3A;&#x8F6F;&#x4EF6;&#x4E13;&#x7528;&#x5FAE;&#x4EE3;&#x7801;&#x6587;&#x4EF6;&#xFF0C;&#x5730;&#x5740;&#x957F;&#x5EA6;&#x7531;&#x539F;&#x6765;&#x7684;2&#x4F4D;&#x5730;&#x5740;&#x589E;&#x957F;&#x4E3A;4&#x4F4D;&#x5730;&#x5740;&#x3002;&#x5176;&#x652F;&#x6301;&#x7684;&#x683C;&#x5F0F;&#x5982;&#x4E0B;&#x56FE;&#x6240;&#x793A;&#x3002;<br />
+                <img
+                    class="img"
+                    src="../../resource/img/product/dvcc/dvcc ram new pattern.png"
+                    alt="ram dvc &#x6587;&#x4EF6;&#x683C;&#x5F0F;"
+                />
+            </p>
+            <div class="note">Fig-2-15 ram dvc &#x6587;&#x4EF6;&#x683C;&#x5F0F;</div>
+            <p>
+                <img
+                    class="img"
+                    src="../../resource/img/product/dvcc/dvcc rom new pattern.png"
+                    alt="rom dvc &#x6587;&#x4EF6;&#x683C;&#x5F0F;"
+                />
+            </p>
+            <div class="note">Fig-2-16 rom dvc &#x6587;&#x4EF6;&#x683C;&#x5F0F;</div>
+            <p>
+                <strong><code>&#x6CE8;</code></strong
+                >: \uFF04 &#x4E3A;&#xFF1A;<code>&#xFF04;</code>
+                &#x5B57;&#x7B26;&#xFF0C;&#x8BF7;&#x6CE8;&#x610F;&#x4E0E;
+                <code>$</code> &#x533A;&#x522B;&#x3002;
+            </p>
+            <h3 class="mume-header" id="242-txt%E5%BE%AE%E4%BB%A3%E7%A0%81%E6%96%87%E4%BB%B6">
+                2.4.2 .txt&#x5FAE;&#x4EE3;&#x7801;&#x6587;&#x4EF6;
+            </h3>
+
+            <ul>
+                <li>
+                    &#x542F;&#x4E1C;&#x4EA7;&#x54C1;&#x4F7F;&#x7528;txt&#x4F5C;&#x4E3A;&#x5176;&#x5FAE;&#x4EE3;&#x7801;&#x6587;&#x4EF6;&#x3002;&#x5176;&#x4F7F;&#x7528;<code>&#xFF04;</code>(\uFF04)
+                    &#x4F5C;&#x4E3A;&#x5176;&#x8D77;&#x59CB;&#x5B57;&#x7B26;&#xFF0C;&#x8BF7;&#x6CE8;&#x610F;&#x4F7F;&#x7528;<code>$</code>&#x4F5C;&#x4E3A;&#x6BCF;&#x4E00;&#x884C;&#x5FAE;&#x4EE3;&#x7801;&#x7684;&#x8D77;&#x59CB;&#x5B57;&#x7B26;&#x53EF;&#x80FD;&#x4F1A;&#x65E0;&#x6CD5;&#x4F7F;&#x7528;&#x4E8E;&#x542F;&#x4E1C;&#x8054;&#x673A;&#x8F6F;&#x4EF6;&#x3002;
+                </li>
+            </ul>
+            <p>
+                <img
+                    class="img"
+                    src="../../resource/img/product/dvcc/dvcc ram old pattern.png"
+                    alt="ram txt &#x6587;&#x4EF6;&#x683C;&#x5F0F;"
+                />
+            </p>
+            <div class="note">Fig-2-17 ram txt &#x6587;&#x4EF6;&#x683C;&#x5F0F;</div>
+            <p>
+                <img
+                    class="img"
+                    src="../../resource/img/product/dvcc/dvcc rom old pattern.png"
+                    alt="rom txt &#x6587;&#x4EF6;&#x683C;&#x5F0F;"
+                />
+            </p>
+            <div class="note">Fig-2-18 rom txt &#x6587;&#x4EF6;&#x683C;&#x5F0F;</div>
+            <ul>
+                <li>
+                    &#x53EF;&#x4EE5;&#x4F7F;&#x7528;<code>&#x53E6;&#x5B58;</code>&#x83DC;&#x5355;&#x9879;&#x5C06;dvc&#x6587;&#x4EF6;&#x4FDD;&#x5B58;&#x4E3A;&#x6807;&#x51C6;&#x5FAE;&#x4EE3;&#x7801;txt&#x6587;&#x4EF6;&#xFF0C;&#x8BE6;&#x89C1;
+                    <a href="#2121-%E6%96%87%E4%BB%B6%E8%8F%9C%E5%8D%95%E6%A0%8F"
+                        >2.1.2.1 &#x6587;&#x4EF6;&#x83DC;&#x5355;&#x680F;</a
+                    >
+                    &#x3002;&#x4E5F;&#x53EF;&#x4F7F;&#x7528;&#x63D0;&#x4F9B;&#x7684;DVCC&#x8F6C;&#x7801;&#x5668;&#x8F6C;&#x4E3A;&#x6807;&#x51C6;&#x4EE3;&#x7801;&#xFF0C;&#x8BE6;&#x89C1;
+                    <a href="#2123%E5%B7%A5%E5%85%B7%E8%8F%9C%E5%8D%95%E6%A0%8F"
+                        >2.1.2.3 &#x5DE5;&#x5177;&#x83DC;&#x5355;&#x680F;</a
+                    >
+                    &#x3002;
+                </li>
+            </ul>
+            <div class="divi_line"></div>
+            <h1
+                class="mume-header"
+                id="%E4%B8%89-%E9%A1%B9%E7%9B%AE%E4%BF%A1%E6%81%AF%E6%96%87%E4%BB%B6"
+            >
+                &#x4E09; &#x9879;&#x76EE;&#x4FE1;&#x606F;&#x6587;&#x4EF6;
+            </h1>
+
+            <h2 class="mume-header" id="31-%E5%BC%80%E6%BA%90%E5%8D%8F%E8%AE%AE">
+                3.1 &#x5F00;&#x6E90;&#x534F;&#x8BAE;
+            </h2>
+
+            <ul>
+                <li>Apache License 2.0</li>
+            </ul>
+            <blockquote>
+                <p>
+                    A permissive license whose main conditions require preservation of copyright and
+                    license notices. Contributors provide an express grant of patent rights.
+                    Licensed works, modifications, and larger works may be distributed under
+                    different terms and without source code.
+                </p>
+            </blockquote>
+            <h2 class="mume-header" id="32-github-%E4%BB%93%E5%BA%93%E8%AF%B4%E6%98%8E">
+                3.2 Github &#x4ED3;&#x5E93;&#x8BF4;&#x660E;
+            </h2>
+
+            <blockquote>
+                <p>
+                    DvccSimulationEnvironment<br />
+                    &#x251C;&#x2500; LICENSE<br />
+                    &#x251C;&#x2500; <a href="http://README.md">README.md</a><br />
+                    &#x251C;&#x2500; handbook<br />
+                    &#x251C;&#x2500; resource<br />
+                    &#x2502;&#x2003;&#x2003;&#x251C;&#x2500; file_resource<br />
+                    &#x2502;&#x2003;&#x2003;&#x2514;&#x2500; imagine_res<br />
+                    &#x2514;&#x2500; source code<br />
+                    &#x2003;&#x2003;&#x251C;&#x2500; dvcc<br />
+                    &#x2003;&#x2003;&#x251C;&#x2500; dvcc designer<br />
+                    &#x2003;&#x2003;&#x2514;&#x2500; dvcc format converter
+                </p>
+            </blockquote>
+            <ul>
+                <li>handbook&#xFF1A;&#x4F7F;&#x7528;&#x624B;&#x518C;&#x6587;&#x4EF6;&#x5939;</li>
+                <li>resource&#xFF1A;&#x6587;&#x4EF6;&#x8D44;&#x6E90;&#x6587;&#x4EF6;&#x5939;</li>
+                <li>
+                    source code&#xFF1A;
+                    <ul>
+                        <li>dvcc&#xFF1A;dvcc&#x6E90;&#x7801;</li>
+                        <li>dvcc desinger&#xFF1A;dvcc&#x8BBE;&#x8BA1;&#x5668;&#x6E90;&#x7801;</li>
+                        <li>
+                            dvcc format converter&#xFF1A;
+                            dvcc&#x5FAE;&#x4EE3;&#x7801;&#x8F6C;&#x7801;&#x5668;&#x6E90;&#x7801;
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <h2
+                class="mume-header"
+                id="33-%E4%BA%8C%E6%AC%A1%E5%BC%80%E5%8F%91%E7%9B%B8%E5%85%B3%E4%BF%A1%E6%81%AF"
+            >
+                3.3 &#x4E8C;&#x6B21;&#x5F00;&#x53D1;&#x76F8;&#x5173;&#x4FE1;&#x606F;
+            </h2>
+
+            <h3 class="mume-header" id="331-%E9%A1%B9%E7%9B%AE%E6%96%87%E4%BB%B6%E4%BF%A1%E6%81%AF">
+                3.3.1 &#x9879;&#x76EE;&#x6587;&#x4EF6;&#x4FE1;&#x606F;
+            </h3>
+
+            <blockquote>
+                <p>
+                    DVCC<br />
+                    &#x251C;&#x2500; <a href="http://DVCC.pro">DVCC.pro</a><br />
+                    &#x251C;&#x2500; DVCC.pro.user<br />
+                    &#x251C;&#x2500; DVCC_zh_CN.qm<br />
+                    &#x251C;&#x2500; DVCC_zh_CN.ts<br />
+                    &#x251C;&#x2500; configset.cpp<br />
+                    &#x251C;&#x2500; configset.h<br />
+                    &#x251C;&#x2500; functionset.cpp<br />
+                    &#x251C;&#x2500; functionset.h<br />
+                    &#x251C;&#x2500; logo.ico<br />
+                    &#x251C;&#x2500; main.cpp<br />
+                    &#x251C;&#x2500; mainwindow.cpp<br />
+                    &#x251C;&#x2500; mainwindow.h<br />
+                    &#x251C;&#x2500; mainwindow.ui<br />
+                    &#x251C;&#x2500; paint<br />
+                    &#x2502; &#x251C;&#x2500; aluqgitem.cpp<br />
+                    &#x2502; &#x251C;&#x2500; aluqgitem.h<br />
+                    &#x2502; &#x251C;&#x2500; arqgitem.cpp<br />
+                    &#x2502; &#x251C;&#x2500; arqgitem.h<br />
+                    &#x2502; &#x251C;&#x2500; cirgraphicsview.cpp<br />
+                    &#x2502; &#x251C;&#x2500; cirgraphicsview.h<br />
+                    &#x2502; &#x251C;&#x2500; dr1qgitem.cpp<br />
+                    &#x2502; &#x251C;&#x2500; dr1qgitem.h<br />
+                    &#x2502; &#x251C;&#x2500; dr2qgitem.cpp<br />
+                    &#x2502; &#x251C;&#x2500; dr2qgitem.h<br />
+                    &#x2502; &#x251C;&#x2500; inputqgitem.cpp<br />
+                    &#x2502; &#x251C;&#x2500; inputqgitem.h<br />
+                    &#x2502; &#x251C;&#x2500; irqgitem.cpp<br />
+                    &#x2502; &#x251C;&#x2500; irqgitem.h<br />
+                    &#x2502; &#x251C;&#x2500; microconqgitem.cpp<br />
+                    &#x2502; &#x251C;&#x2500; microconqgitem.h<br />
+                    &#x2502; &#x251C;&#x2500; outputqgitem.cpp<br />
+                    &#x2502; &#x251C;&#x2500; outputqgitem.h<br />
+                    &#x2502; &#x251C;&#x2500; pcqgitem.cpp<br />
+                    &#x2502; &#x251C;&#x2500; pcqgitem.h<br />
+                    &#x2502; &#x251C;&#x2500; r0qgitem.cpp<br />
+                    &#x2502; &#x251C;&#x2500; r0qgitem.h<br />
+                    &#x2502; &#x251C;&#x2500; r1qgitem.cpp<br />
+                    &#x2502; &#x251C;&#x2500; r1qgitem.h<br />
+                    &#x2502; &#x251C;&#x2500; r2qgitem.cpp<br />
+                    &#x2502; &#x251C;&#x2500; r2qgitem.h<br />
+                    &#x2502; &#x251C;&#x2500; ramqgitem.cpp<br />
+                    &#x2502; &#x251C;&#x2500; ramqgitem.h<br />
+                    &#x2502; &#x251C;&#x2500; shifter299qgitem.cpp<br />
+                    &#x2502; &#x251C;&#x2500; shifter299qgitem.h<br />
+                    &#x2502; &#x251C;&#x2500; signalsqgitem.cpp<br />
+                    &#x2502; &#x2514;&#x2500; signalsqgitem.h<br />
+                    &#x251C;&#x2500; resource<br />
+                    &#x2502; &#x251C;&#x2500; file_resource<br />
+                    &#x2502; &#x2502; &#x251C;&#x2500; configuration.ini<br />
+                    &#x2502; &#x2502; &#x251C;&#x2500; font<br />
+                    &#x2502; &#x2502; &#x251C;&#x2500; presetcode<br />
+                    &#x2502; &#x2502; &#x2514;&#x2500; theme<br />
+                    &#x2502; &#x2514;&#x2500; imagine_res<br />
+                    &#x2502; &#x251C;&#x2500; con_img<br />
+                    &#x2502; &#x251C;&#x2500; icon<br />
+                    &#x2502; &#x251C;&#x2500; img<br />
+                    &#x2502; &#x251C;&#x2500; menubar<br />
+                    &#x2502; &#x2514;&#x2500; window_img<br />
+                    &#x251C;&#x2500; systemdataset.cpp<br />
+                    &#x251C;&#x2500; systemdataset.h<br />
+                    &#x251C;&#x2500; toolpannel<br />
+                    &#x2502; &#x251C;&#x2500; componentsettingpannel.cpp<br />
+                    &#x2502; &#x251C;&#x2500; componentsettingpannel.h<br />
+                    &#x2502; &#x251C;&#x2500; componentsettingpannel.ui<br />
+                    &#x2502; &#x251C;&#x2500; logpannel.cpp<br />
+                    &#x2502; &#x251C;&#x2500; logpannel.h<br />
+                    &#x2502; &#x251C;&#x2500; logpannel.ui<br />
+                    &#x2502; &#x251C;&#x2500; ramcheck.cpp<br />
+                    &#x2502; &#x251C;&#x2500; ramcheck.h<br />
+                    &#x2502; &#x251C;&#x2500; ramcheck.ui<br />
+                    &#x2502; &#x251C;&#x2500; romcheck.cpp<br />
+                    &#x2502; &#x251C;&#x2500; romcheck.h<br />
+                    &#x2502; &#x251C;&#x2500; romcheck.ui<br />
+                    &#x2502; &#x251C;&#x2500; settingpannel.cpp<br />
+                    &#x2502; &#x251C;&#x2500; settingpannel.h<br />
+                    &#x2502; &#x2514;&#x2500; settingpannel.ui<br />
+                    &#x251C;&#x2500; versioninfo.cpp<br />
+                    &#x2514;&#x2500; versioninfo.h
+                </p>
+            </blockquote>
+            <ul>
+                <li>
+                    &#x6D6E;&#x52A8;&#x9762;&#x677F;&#x5747;&#x5904;&#x4E8E; tool
+                    pannel&#x6587;&#x4EF6;&#x5939;&#x5185;
+                </li>
+                <li>
+                    &#x7535;&#x8DEF;&#x56FE;&#x90E8;&#x4EF6;&#x7ED8;&#x5236;&#x5904;&#x4E8E;paint&#x6587;&#x4EF6;&#x5939;&#x5185;&#xFF0C;&#x91CD;&#x8F7D;QGraphicsItem&#x3002;
+                </li>
+                <li>
+                    &#x5404;&#x90E8;&#x4EF6;&#x903B;&#x8F91;&#x5B9E;&#x73B0;&#x5904;&#x4E8E;<code
+                        >fuctionset.cpp</code
+                    >
+                </li>
+                <li>
+                    &#x6570;&#x636E;&#x5B58;&#x50A8;&#xFF0C;&#x4EE5;&#x53CA;&#x4FE1;&#x53F7;&#x4F7F;&#x7528;&#x53D8;&#x91CF;&#x4F4D;&#x4E8E;<code
+                        >systemdatset.cpp</code
+                    >
+                </li>
+                <li>
+                    &#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x7BA1;&#x7406;&#x4F4D;&#x4E8E;<code
+                        >configset.cpp</code
+                    >
+                </li>
+                <li>
+                    &#x7248;&#x672C;&#x4FE1;&#x606F;&#x7BA1;&#x7406;&#x4F4D;&#x4E8E;<code
+                        >versioninfo.cpp</code
+                    >
+                </li>
+            </ul>
+            <h3 class="mume-header" id="332-%E4%BA%8C%E6%AC%A1%E5%BC%80%E5%8F%91%E5%BB%BA%E8%AE%AE">
+                3.3.2 &#x4E8C;&#x6B21;&#x5F00;&#x53D1;&#x5EFA;&#x8BAE;
+            </h3>
+
+            <ul>
+                <li>
+                    &#x5728;&#x5F00;&#x53D1;&#x65B0;&#x90E8;&#x4EF6;&#x65F6;&#x8BF7;&#x6CE8;&#x610F;&#x90E8;&#x4EF6;&#x5728;&#x91CD;&#x7ED8;&#x65F6;&#x6240;&#x9700;&#x8981;&#x5360;&#x7528;&#x7684;&#x8D44;&#x6E90;&#xFF0C;&#x63A8;&#x8350;&#x4ECD;&#x4F7F;&#x7528;&#x76EE;&#x524D;&#x4F7F;&#x7528;&#x7684;QGraphics&#x67B6;&#x6784;&#x8FDB;&#x884C;&#x7ED8;&#x56FE;&#x64CD;&#x4F5C;&#x3002;
+                </li>
+                <li>
+                    &#x5728;&#x65B0;&#x5EFA;&#x90E8;&#x4EF6;&#x903B;&#x8F91;&#x5904;&#x7406;&#x51FD;&#x6570;&#x65F6;&#xFF0C;&#x63A8;&#x8350;&#x4F7F;&#x7528;&#x72EC;&#x7ACB;&#x7684;&#x51FD;&#x6570;&#xFF0C;&#x6BCF;&#x6B21;&#x4F20;&#x5165;&#x6570;&#x636E;&#x6307;&#x9488;&#xFF0C;&#x5185;&#x90E8;&#x4F7F;&#x7528;&#x6307;&#x9488;&#x5B8C;&#x6210;&#x6570;&#x636E;&#x4F20;&#x9012;&#xFF0C;&#x800C;&#x975E;&#x7ED1;&#x5B9A;&#x6570;&#x636E;&#xFF0C;&#x8FD9;&#x6837;&#x4FBF;&#x4E8E;&#x540E;&#x671F;&#x505A;&#x51FA;&#x754C;&#x9762;&#x66F4;&#x6539;&#x65F6;&#x800C;&#x4E0D;&#x9700;&#x8981;&#x5BF9;&#x903B;&#x8F91;&#x51FD;&#x6570;&#x8FDB;&#x884C;&#x5927;&#x8303;&#x56F4;&#x4FEE;&#x6539;&#x3002;
+                </li>
+            </ul>
+            <div class="divi_line"></div>
+            <h1 class="mume-header" id="%E5%9B%9B-qa">&#x56DB; Q&amp;A</h1>
+
+            <p>
+                <strong
+                    >Q:
+                    DVCC&#x4E0E;&#x542F;&#x4E1C;&#x7CFB;&#x5217;&#x5B9E;&#x9A8C;&#x8BBE;&#x5907;&#x662F;&#x5426;&#x5177;&#x6709;&#x533A;&#x522B;?</strong
+                ><br />
+                &#x2003;<em
+                    >A:
+                    DVCC&#x5728;&#x57FA;&#x672C;&#x7ED3;&#x6784;&#x4E0A;&#x4E0E;&#x542F;&#x4E1C;&#x7684;&#x4FDD;&#x6301;&#x4E00;&#x81F4;&#xFF0C;&#x533A;&#x522B;&#x5728;&#x4E8E;&#x90E8;&#x5206;&#x4FE1;&#x53F7;&#x7531;&#x4F4E;&#x7535;&#x5E73;&#x6709;&#x6548;&#x53D8;&#x4E3A;&#x9AD8;&#x7535;&#x5E73;&#x6709;&#x6548;&#xFF0C;&#x4F46;&#x5728;DVCC&#x5185;
+                    <strong>&#x9AD8;&#x7535;&#x5E73;</strong>
+                    &#x4E00;&#x822C;&#x90FD;&#x4EE3;&#x8868;&#x4E3A;&#x6709;&#x6548;&#xFF0C;&#x800C;&#x975E;&#x7535;&#x5E73;&#x7684;&#x9AD8;&#x4F4E;&#xFF0C;&#x6B64;&#x5904;&#x4E5F;&#x662F;&#x4E3A;&#x4E86;&#x80FD;&#x591F;&#x533A;&#x522B;&#x4E8E;&#x5728;&#x6570;&#x5B57;&#x903B;&#x8F91;&#x7B49;&#x8BFE;&#x7A0B;&#x4E2D;&#x7684;&#x9AD8;&#x4F4E;&#x7535;&#x5E73;&#x95EE;&#x9898;&#xFF0C;&#x4E2A;&#x4EBA;&#x8BA4;&#x4E3A;&#x8BA1;&#x7B97;&#x673A;&#x7EC4;&#x6210;&#x539F;&#x7406;&#x8BFE;&#x7A0B;&#x66F4;&#x5E94;&#x8BE5;&#x5173;&#x6CE8;&#x4E8E;&#x6574;&#x4E2A;&#x8BA1;&#x7B97;&#x673A;&#x57FA;&#x672C;&#x6784;&#x6210;&#xFF0C;&#x4EE5;&#x53CA;&#x8BA1;&#x7B97;&#x673A;&#x662F;&#x5982;&#x4F55;&#x5B9E;&#x73B0;&#x8FD0;&#x884C;&#x800C;&#x975E;&#x7EA0;&#x7ED3;&#x4E8E;&#x7535;&#x5E73;&#x9AD8;&#x4F4E;&#x95EE;&#x9898;&#x3002;</em
+                >
+            </p>
+            <p>
+                <strong
+                    >Q:
+                    &#x8BBE;&#x8BA1;&#x5668;&#x5BC6;&#x94A5;&#x5982;&#x4F55;&#x83B7;&#x53D6;&#xFF1F;</strong
+                ><br />
+                &#x2003;<em
+                    >A:
+                    &#x4F60;&#x53EF;&#x4EE5;&#x5411;&#x4F60;&#x7684;&#x4EFB;&#x8BFE;&#x6559;&#x5E08;&#x7533;&#x8BF7;&#x83B7;&#x53D6;&#x8BE5;&#x5BC6;&#x94A5;&#x3002;</em
+                >
+            </p>
+            <p>
+                <strong
+                    >Q:&#x662F;&#x5426;&#x53EF;&#x4EE5;&#x4E8C;&#x6B21;&#x5F00;&#x53D1;&#x5546;&#x7528;&#xFF1F;</strong
+                ><br />
+                &#x2003;<em
+                    >A:
+                    &#x53EF;&#x4EE5;&#x4E8C;&#x6B21;&#x5F00;&#x53D1;&#x5546;&#x7528;&#xFF0C;&#x5177;&#x4F53;&#x7EC6;&#x8282;&#x8BF7;&#x67E5;&#x9605;&#x9879;&#x76EE;&#x5F00;&#x6E90;&#x534F;&#x8BAE;&#x3002;</em
+                >
+            </p>
         </div>
-        <h4 class="mume-header" id="2171-ram%E9%9D%A2%E6%9D%BF">2.1.7.1 RAM&#x9762;&#x677F;</h4>
+        <div class="md-sidebar-toc">
+            <ul>
+                <li><a href="#%E4%B8%80-%E7%AE%80%E4%BB%8B">&#x4E00; &#x7B80;&#x4ECB;</a></li>
+                <li>
+                    <a href="#%E4%BA%8C-dvcc-%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C"
+                        >&#x4E8C; DVCC &#x4F7F;&#x7528;&#x624B;&#x518C;</a
+                    >
+                    <ul>
+                        <li>
+                            <a href="#21-%E7%95%8C%E9%9D%A2">2.1 &#x754C;&#x9762;</a>
+                            <ul>
+                                <li>
+                                    <a href="#211-%E7%95%8C%E9%9D%A2%E6%A6%82%E8%BF%B0"
+                                        >2.1.1 &#x754C;&#x9762;&#x6982;&#x8FF0;</a
+                                    >
+                                </li>
+                                <li>
+                                    <a href="#212-%E8%8F%9C%E5%8D%95%E6%A0%8F%E4%BB%8B%E7%BB%8D"
+                                        >2.1.2 &#x83DC;&#x5355;&#x680F;&#x4ECB;&#x7ECD;</a
+                                    >
+                                </li>
+                                <li>
+                                    <a
+                                        href="#213-%E7%94%B5%E8%B7%AF%E5%9B%BE%E5%8C%BA%E5%9F%9F%E4%BB%8B%E7%BB%8D"
+                                        >2.1.3
+                                        &#x7535;&#x8DEF;&#x56FE;&#x533A;&#x57DF;&#x4ECB;&#x7ECD;</a
+                                    >
+                                </li>
+                                <li>
+                                    <a
+                                        href="#214-%E5%BE%AE%E6%8C%87%E4%BB%A4%E4%BF%A1%E6%81%AF%E5%8C%BA%E5%9F%9F"
+                                        >2.1.4
+                                        &#x5FAE;&#x6307;&#x4EE4;&#x4FE1;&#x606F;&#x533A;&#x57DF;</a
+                                    >
+                                </li>
+                                <li>
+                                    <a
+                                        href="#215-%E8%BF%90%E8%A1%8C%E7%8A%B6%E6%80%81%E5%8C%BA%E5%9F%9F"
+                                        >2.1.5 &#x8FD0;&#x884C;&#x72B6;&#x6001;&#x533A;&#x57DF;</a
+                                    >
+                                </li>
+                                <li>
+                                    <a
+                                        href="#216-%E5%BF%AB%E6%8D%B7%E6%8C%89%E9%92%AE%E4%BF%A1%E5%8F%B7%E6%8E%A7%E5%88%B6%E5%8C%BA%E5%9F%9F"
+                                        >2.1.6
+                                        &#x5FEB;&#x6377;&#x6309;&#x94AE;&amp;&#x4FE1;&#x53F7;&#x63A7;&#x5236;&#x533A;&#x57DF;</a
+                                    >
+                                </li>
+                                <li>
+                                    <a
+                                        href="#217-%E6%B5%AE%E5%8A%A8%E9%9D%A2%E6%9D%BF%E4%BB%8B%E7%BB%8D"
+                                        >2.1.7 &#x6D6E;&#x52A8;&#x9762;&#x677F;&#x4ECB;&#x7ECD;</a
+                                    >
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#22-%E8%AE%BE%E7%BD%AE%E4%BD%BF%E7%94%A8"
+                                >2.2 &#x8BBE;&#x7F6E;&#x4F7F;&#x7528;</a
+                            >
+                            <ul>
+                                <li>
+                                    <a href="#221-%E9%80%9A%E7%94%A8%E8%AE%BE%E7%BD%AE"
+                                        >2.2.1 &#x901A;&#x7528;&#x8BBE;&#x7F6E;</a
+                                    >
+                                </li>
+                                <li>
+                                    <a href="#222-%E8%BF%90%E8%A1%8C%E8%AE%BE%E7%BD%AE"
+                                        >2.2.2 &#x8FD0;&#x884C;&#x8BBE;&#x7F6E;</a
+                                    >
+                                </li>
+                                <li>
+                                    <a href="#223-%E9%AB%98%E7%BA%A7%E8%AE%BE%E7%BD%AE"
+                                        >2.2.3 &#x9AD8;&#x7EA7;&#x8BBE;&#x7F6E;</a
+                                    >
+                                </li>
+                                <li>
+                                    <a href="#224-%E5%85%B6%E5%AE%83%E8%AE%BE%E7%BD%AE"
+                                        >2.2.4 &#x5176;&#x5B83;&#x8BBE;&#x7F6E;</a
+                                    >
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#23-dvcc-%E4%BF%A1%E5%8F%B7%E8%AF%A6%E8%A7%A3"
+                                >2.3 DVCC &#x4FE1;&#x53F7;&#x8BE6;&#x89E3;</a
+                            >
+                            <ul>
+                                <li>
+                                    <a
+                                        href="#231-24%E4%BD%8D%E5%BE%AE%E7%A8%8B%E5%BA%8F%E5%90%AB%E4%B9%89"
+                                        >2.3.1 24&#x4F4D;&#x5FAE;&#x7A0B;&#x5E8F;&#x542B;&#x4E49;</a
+                                    >
+                                </li>
+                                <li>
+                                    <a href="#232-alu%E5%8A%9F%E8%83%BD%E8%A1%A8"
+                                        >2.3.2 ALU&#x529F;&#x80FD;&#x8868;</a
+                                    >
+                                </li>
+                                <li><a href="#233-b1-b0">2.3.3 B1 B0</a></li>
+                                <li>
+                                    <a href="#234-a%E5%AD%97%E6%AE%B5%E5%8A%9F%E8%83%BD%E8%A1%A8"
+                                        >2.3.4 A&#x5B57;&#x6BB5;&#x529F;&#x80FD;&#x8868;</a
+                                    >
+                                </li>
+                                <li>
+                                    <a href="#235-b%E5%AD%97%E6%AE%B5%E5%8A%9F%E8%83%BD%E8%A1%A8"
+                                        >2.3.5 B&#x5B57;&#x6BB5;&#x529F;&#x80FD;&#x8868;</a
+                                    >
+                                </li>
+                                <li>
+                                    <a href="#236-c%E5%AD%97%E6%AE%B5%E5%8A%9F%E8%83%BD%E8%A1%A8"
+                                        >2.3.6 C&#x5B57;&#x6BB5;&#x529F;&#x80FD;&#x8868;</a
+                                    >
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#24-%E5%BE%AE%E4%BB%A3%E7%A0%81%E6%96%87%E4%BB%B6"
+                                >2.4 &#x5FAE;&#x4EE3;&#x7801;&#x6587;&#x4EF6;</a
+                            >
+                            <ul>
+                                <li>
+                                    <a href="#241-dvc%E5%BE%AE%E4%BB%A3%E7%A0%81%E6%96%87%E4%BB%B6"
+                                        >2.4.1 .dvc&#x5FAE;&#x4EE3;&#x7801;&#x6587;&#x4EF6;</a
+                                    >
+                                </li>
+                                <li>
+                                    <a href="#242-txt%E5%BE%AE%E4%BB%A3%E7%A0%81%E6%96%87%E4%BB%B6"
+                                        >2.4.2 .txt&#x5FAE;&#x4EE3;&#x7801;&#x6587;&#x4EF6;</a
+                                    >
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#%E4%B8%89-%E9%A1%B9%E7%9B%AE%E4%BF%A1%E6%81%AF%E6%96%87%E4%BB%B6"
+                        >&#x4E09; &#x9879;&#x76EE;&#x4FE1;&#x606F;&#x6587;&#x4EF6;</a
+                    >
+                    <ul>
+                        <li>
+                            <a href="#31-%E5%BC%80%E6%BA%90%E5%8D%8F%E8%AE%AE"
+                                >3.1 &#x5F00;&#x6E90;&#x534F;&#x8BAE;</a
+                            >
+                        </li>
+                        <li>
+                            <a href="#32-github-%E4%BB%93%E5%BA%93%E8%AF%B4%E6%98%8E"
+                                >3.2 Github &#x4ED3;&#x5E93;&#x8BF4;&#x660E;</a
+                            >
+                        </li>
+                        <li>
+                            <a
+                                href="#33-%E4%BA%8C%E6%AC%A1%E5%BC%80%E5%8F%91%E7%9B%B8%E5%85%B3%E4%BF%A1%E6%81%AF"
+                                >3.3
+                                &#x4E8C;&#x6B21;&#x5F00;&#x53D1;&#x76F8;&#x5173;&#x4FE1;&#x606F;</a
+                            >
+                            <ul>
+                                <li>
+                                    <a
+                                        href="#331-%E9%A1%B9%E7%9B%AE%E6%96%87%E4%BB%B6%E4%BF%A1%E6%81%AF"
+                                        >3.3.1 &#x9879;&#x76EE;&#x6587;&#x4EF6;&#x4FE1;&#x606F;</a
+                                    >
+                                </li>
+                                <li>
+                                    <a
+                                        href="#332-%E4%BA%8C%E6%AC%A1%E5%BC%80%E5%8F%91%E5%BB%BA%E8%AE%AE"
+                                        >3.3.2 &#x4E8C;&#x6B21;&#x5F00;&#x53D1;&#x5EFA;&#x8BAE;</a
+                                    >
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li><a href="#%E5%9B%9B-qa">&#x56DB; Q&amp;A</a></li>
+            </ul>
+        </div>
+        <a id="sidebar-toc-btn">&#x2261;</a>
 
-        <h4 class="mume-header" id="2172-rom%E9%9D%A2%E6%9D%BF">2.1.7.2 ROM&#x9762;&#x677F;</h4>
+        <script>
+            var sidebarTOCBtn = document.getElementById("sidebar-toc-btn");
+            sidebarTOCBtn.addEventListener("click", function (event) {
+                event.stopPropagation();
+                if (document.body.hasAttribute("html-show-sidebar-toc")) {
+                    document.body.removeAttribute("html-show-sidebar-toc");
+                } else {
+                    document.body.setAttribute("html-show-sidebar-toc", true);
+                }
+            });
+        </script>
+    </body>
 
-        <h4 class="mume-header" id="2173-%E8%BF%90%E8%A1%8C%E6%97%A5%E5%BF%97">
-            2.1.7.3 &#x8FD0;&#x884C;&#x65E5;&#x5FD7;
-        </h4>
-
-        <h3 class="mume-header" id="218-%E8%AE%BE%E7%BD%AE%E4%BD%BF%E7%94%A8">
-            2.1.8 &#x8BBE;&#x7F6E;&#x4F7F;&#x7528;
-        </h3>
-
-        <h3 class="mume-header" id="219-dvcc%E4%BF%A1%E5%8F%B7%E8%AF%A6%E8%A7%A3">
-            2.1.9 DVCC&#x4FE1;&#x53F7;&#x8BE6;&#x89E3;
-        </h3>
-
-        <h3 class="mume-header" id="2110-%E5%BE%AE%E4%BB%A3%E7%A0%81%E6%96%87%E4%BB%B6">
-            2.1.10 &#x5FAE;&#x4EE3;&#x7801;&#x6587;&#x4EF6;
-        </h3>
-
-        <h3
-            class="mume-header"
-            id="2111-dvcc%E8%AE%BE%E8%AE%A1%E5%99%A8-dvcc%E8%BD%AC%E6%8D%A2%E5%99%A8"
-        >
-            2.1.11 DVCC&#x8BBE;&#x8BA1;&#x5668; &amp;&amp; DVCC&#x8F6C;&#x6362;&#x5668;
-        </h3>
-
-        <h4 class="mume-header" id="21111-dvcc%E8%AE%BE%E8%AE%A1%E5%99%A8">
-            2.1.11.1 DVCC&#x8BBE;&#x8BA1;&#x5668;
-        </h4>
-
-        <h4 class="mume-header" id="21112-dvcc%E8%BD%AC%E6%8D%A2%E5%99%A8">
-            2.1.11.2 DVCC&#x8F6C;&#x6362;&#x5668;
-        </h4>
-
-        <div class="divi_line"></div>
-        <h1 class="mume-header" id="3-%E9%A1%B9%E7%9B%AE%E4%BF%A1%E6%81%AF%E6%96%87%E4%BB%B6">
-            3 &#x9879;&#x76EE;&#x4FE1;&#x606F;&#x6587;&#x4EF6;
-        </h1>
-    </div>
-
-    <div class="md-sidebar-toc">
-        <ul>
-            <li><a href="#1-%E7%AE%80%E4%BB%8B">1 &#x7B80;&#x4ECB;</a></li>
-            <li>
-                <a href="#2-dvcc%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C"
-                    >2 DVCC&#x4F7F;&#x7528;&#x624B;&#x518C;</a
-                >
-                <ul>
-                    <li>
-                        <a href="#21-%E7%95%8C%E9%9D%A2">2.1 &#x754C;&#x9762;</a>
-                        <ul>
-                            <li>
-                                <a href="#211-%E7%95%8C%E9%9D%A2%E6%A6%82%E8%BF%B0"
-                                    >2.1.1 &#x754C;&#x9762;&#x6982;&#x8FF0;</a
-                                >
-                            </li>
-                            <li>
-                                <a href="#212-%E8%8F%9C%E5%8D%95%E6%A0%8F%E4%BB%8B%E7%BB%8D"
-                                    >2.1.2 &#x83DC;&#x5355;&#x680F;&#x4ECB;&#x7ECD;</a
-                                >
-                            </li>
-                            <li>
-                                <a
-                                    href="#213-%E7%94%B5%E8%B7%AF%E5%9B%BE%E5%8C%BA%E5%9F%9F%E4%BB%8B%E7%BB%8D"
-                                    >2.1.3
-                                    &#x7535;&#x8DEF;&#x56FE;&#x533A;&#x57DF;&#x4ECB;&#x7ECD;</a
-                                >
-                            </li>
-                            <li>
-                                <a
-                                    href="#214-%E5%BE%AE%E6%8C%87%E4%BB%A4%E4%BF%A1%E6%81%AF%E5%8C%BA%E5%9F%9F"
-                                    >2.1.4
-                                    &#x5FAE;&#x6307;&#x4EE4;&#x4FE1;&#x606F;&#x533A;&#x57DF;</a
-                                >
-                            </li>
-                            <li>
-                                <a
-                                    href="#215-%E8%BF%90%E8%A1%8C%E7%8A%B6%E6%80%81%E5%8C%BA%E5%9F%9F"
-                                    >2.1.5 &#x8FD0;&#x884C;&#x72B6;&#x6001;&#x533A;&#x57DF;</a
-                                >
-                            </li>
-                            <li>
-                                <a
-                                    href="#216-%E5%BF%AB%E6%8D%B7%E6%8C%89%E9%92%AE%E4%BF%A1%E5%8F%B7%E6%8E%A7%E5%88%B6%E5%8C%BA%E5%9F%9F"
-                                    >2.1.6
-                                    &#x5FEB;&#x6377;&#x6309;&#x94AE;&amp;&#x4FE1;&#x53F7;&#x63A7;&#x5236;&#x533A;&#x57DF;</a
-                                >
-                            </li>
-                            <li>
-                                <a
-                                    href="#217-%E6%B5%AE%E5%8A%A8%E9%9D%A2%E6%9D%BF%E4%BB%8B%E7%BB%8D"
-                                    >2.1.7 &#x6D6E;&#x52A8;&#x9762;&#x677F;&#x4ECB;&#x7ECD;</a
-                                >
-                            </li>
-                            <li>
-                                <a href="#218-%E8%AE%BE%E7%BD%AE%E4%BD%BF%E7%94%A8"
-                                    >2.1.8 &#x8BBE;&#x7F6E;&#x4F7F;&#x7528;</a
-                                >
-                            </li>
-                            <li>
-                                <a href="#219-dvcc%E4%BF%A1%E5%8F%B7%E8%AF%A6%E8%A7%A3"
-                                    >2.1.9 DVCC&#x4FE1;&#x53F7;&#x8BE6;&#x89E3;</a
-                                >
-                            </li>
-                            <li>
-                                <a href="#2110-%E5%BE%AE%E4%BB%A3%E7%A0%81%E6%96%87%E4%BB%B6"
-                                    >2.1.10 &#x5FAE;&#x4EE3;&#x7801;&#x6587;&#x4EF6;</a
-                                >
-                            </li>
-                            <li>
-                                <a
-                                    href="#2111-dvcc%E8%AE%BE%E8%AE%A1%E5%99%A8-dvcc%E8%BD%AC%E6%8D%A2%E5%99%A8"
-                                    >2.1.11 DVCC&#x8BBE;&#x8BA1;&#x5668; &amp;&amp;
-                                    DVCC&#x8F6C;&#x6362;&#x5668;</a
-                                >
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
-            </li>
-            <li>
-                <a href="#3-%E9%A1%B9%E7%9B%AE%E4%BF%A1%E6%81%AF%E6%96%87%E4%BB%B6"
-                    >3 &#x9879;&#x76EE;&#x4FE1;&#x606F;&#x6587;&#x4EF6;</a
-                >
-            </li>
-        </ul>
-    </div>
-
-    <a id="sidebar-toc-btn">&#x2261;</a>
-
-    <script>
-        document.body.setAttribute("html-show-sidebar-toc", true);
-        var sidebarTOCBtn = document.getElementById("sidebar-toc-btn");
-        sidebarTOCBtn.addEventListener("click", function (event) {
-            event.stopPropagation();
-            if (document.body.hasAttribute("html-show-sidebar-toc")) {
-                document.body.removeAttribute("html-show-sidebar-toc");
-            } else {
-                document.body.setAttribute("html-show-sidebar-toc", true);
-            }
-        });
-    </script>
-</body>
-
-<footer>
     <footer>
-        <a href="mailto: haley_ehrich@outlook.com">E-mail: haley_ehrich@outlook.com</a>
-        &nbsp
-        <a href="https://github.com/HaleyEhrich?tab=repositories">View On Github</a>
-        &nbsp
-        <a href="../../index.html">访问主页/View My homepage</a>
+        <footer>
+            <a href="mailto: haley_ehrich@outlook.com">E-mail: haley_ehrich@outlook.com</a>
+            &nbsp
+            <a href="https://github.com/HaleyEhrich?tab=repositories">View On Github</a>
+            &nbsp
+            <a href="../../index.html">访问主页/View My homepage</a>
+        </footer>
     </footer>
-</footer>
-
 </html>
 
 <!-- 
