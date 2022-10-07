@@ -13,6 +13,86 @@
     src: url(./resource/font/HarmonyOS_Sans_Naskh_Arabic_Regular.ttf);
 }
 
+@font-face {
+    font-family: "Noto Sans Mono CJK SC Regular";
+    src: url(./resource/font/NotoSansMonoCJKsc-Regular.otf);
+}
+
+@font-face {
+    font-family: "Noto Sans Mono CJK SC Bold";
+    src: url(./resource/font/NotoSansMonoCJKsc-Bold.otf);
+}
+
+/*Max size*/
+
+@media (min-width: 1400px) {
+    .website_name {
+        text-align: center;
+        font-family: "EDIX", sans-serif;
+        font-size: 92px;
+        font-style: italic;
+    }
+
+    .slogan {
+        font-family: "HarmonyOS Sans Regular", sans-serif, serif;
+        font-size: 36px;
+        margin-top: 10px;
+        text-align: center;
+    }
+}
+
+@media (max-width: 1400px) {
+    .website_name {
+        text-align: center;
+        font-family: "EDIX", sans-serif;
+        font-size: 88px;
+        font-style: italic;
+    }
+
+    .slogan {
+        font-family: "HarmonyOS Sans Regular", sans-serif, serif;
+        font-size: 30px;
+        margin-top: 10px;
+        text-align: center;
+    }
+}
+
+@media (max-width: 992px) {
+    .website_name {
+        text-align: center;
+        font-family: "EDIX", sans-serif;
+        font-size: 64px;
+        font-style: italic;
+    }
+}
+
+@media (max-width: 768px) {
+    .website_name {
+        text-align: center;
+        font-family: "EDIX", sans-serif;
+        font-size: 40px;
+        font-style: italic;
+    }
+}
+
+@media (max-width: 640px) {
+    .website_name {
+        text-align: center;
+        font-family: "EDIX", sans-serif;
+        font-size: 32px;
+        font-style: italic;
+    }
+
+    .slogan {
+        font-family: "HarmonyOS Sans Regular", sans-serif, serif;
+        font-size: 18px;
+        margin-top: 10px;
+        text-align: center;
+    }
+}
+
+
+
 /* Main body css set */
 html {
     background-color: white;
@@ -43,26 +123,14 @@ header {
     position: relative;
 }
 
-.website_name {
-    text-align: center;
-    font-family: "EDIX", sans-serif;
-    font-size: 100px;
-    font-style: italic;
-}
 
-.slogan {
-    font-family: "HarmonyOS Sans Regular", sans-serif, serif;
-    font-size: 30px;
-    margin-top: 10px;
-    text-align: center;
-}
 
 .scroll_tip {
     bottom: 10vh;
     color: white;
     font-family: "HarmonyOS Sans Regular", sans-serif, serif;
     font-weight: bold;
-    font-size: 10px;
+    font-size: 1vw;
     font-style: italic;
     position: absolute;
     text-align: center;
@@ -107,7 +175,7 @@ header {
     color: black;
 
     font-family: "EDIX";
-    font-size: 15px;
+    font-size: 1vw;
     text-decoration: none;
 }
 
@@ -133,7 +201,7 @@ header {
 /* Passage container css set */
 
 .sec_pass_container {
-    border-radius: 10px;
+    border-radius: 16px;
     background: #ffffff;
     box-shadow: 10px 10px 40px #737678, -10px -10px 40px #ffffff;
     display: flex;
@@ -149,55 +217,64 @@ header {
     position: relative;
 }
 
+/* 博客文章图片 */
 .sec_pass_img {
-    border-radius: 5px;
-    bottom: 10%;
-    height: 80%;
+    border-radius: 16px;
+    bottom: 8%;
+    height: 84%;
     object-fit:cover;
     position: absolute;
     right: 2%;
-    top: 10%;
-    width: 40%;
+    top: 8%;
+    width: 36%;
 
 }
 
+/* 文章段落 */
 .sec_pass {
     cursor: default;
     font-family: "HarmonyOS Sans Regular", sans-serif, serif;
     height: auto;
     width: 55%;
 }
+
+/* 文章h1标题 */
 .sec_pass h1{
-    font-family: inherit;
-    font-size: 20px;
+    /* font-family: inherit; */
+    font-size: 1.5vw;
     font-style: bold;
-    line-height: 10px;
+    line-height: 32px;
 }
+
+/* 文章 h2 标题 */
 .sec_pass h2{
     font-family: inherit;
-    font-size: 15px;
+    font-size: 1.2vw;
     font-style: bold;
     line-height: 10px;
 }
 
+/* 文章 h3-7 标题 */
 .sec_pass h3,.sec_pass h4,.sec_pass h5,.sec_pass h6,.sec_pass h7{
-    font-family: inherit;
-    font-size: 10px;
+    font-family: "HarmonyOS Sans Regular", sans-serif, serif;
+    font-size: 1vw;
     font-style: bold;
     line-height: 10px;
 }
 
+/* 文章内列表框 */
 .sec_pass ul{
-    font-family: inherit;
-    font-size: 10px;
+    font-family: "HarmonyOS Sans Regular", sans-serif, serif;
+    font-size: 1vw;
     font-style: normal;
     line-height: 20px;
-    padding-left: 5px;
+    padding-left: 0px;
 }
 
+/* 文章内列表项 */
 .sec_pass ul li,.sec_pass_li{
-    font-family: inherit;
-    font-size: 8px;
+    font-family: "HarmonyOS Sans Regular", sans-serif, serif;
+    font-size: 1vw;
     font-style: normal;
     line-height: 15px;
     text-decoration: none;
@@ -205,35 +282,40 @@ header {
 
 }
 
+/* 文章内文字段落 */
 .sec_pass p,.sec_pass_p{
-    font-family: inherit;
-    font-size: 8px;
-    font-style: italic;
+    font-family: "HarmonyOS Sans Regular", sans-serif, serif;
+    font-size: 1vw;
+    /* font-style: italic; */
     line-height: 15px;
     text-indent: 10px;
 }
 
+/* 文章内链接 */
 .sec_pass_a{
     color: black;
-    font-family: inherit;
-    font-size: 8px;
-    font-style: italic;
+    font-family: "HarmonyOS Sans Regular", sans-serif, serif;
+    font-size: 1vw;
+    font-style: normal;
     line-height: 15px;
     text-decoration: none;
     text-indent: 10px;   
 }
 
+/* 文章内链接--悬浮 */
 .sec_pass_a:hover{
     text-decoration: underline;
+    
 }
 
+/* 文章内链接 */
 .sec_pass_link {
     bottom: 5%;
     color: black;
     cursor: default;
-    font-family: "HarmonyOS Sans Regular", sans-serif, serif;
-    font-style: italic;
-    font-size: 10px;
+    font-family: "Noto Sans Mono CJK SC Regular";
+    font-style: normal;
+    font-size: 16px;
     margin-top: 2%;
     text-align: right;
     text-decoration: none;
@@ -241,9 +323,12 @@ header {
     /* border: black solid 3px; */
 }
 
+/* 文章内链接--悬浮 */
 .sec_pass_link:hover {
     cursor: pointer;
-    text-decoration: underline 2px #000000;
+    color: rgb(0, 108, 250);
+    font-style: bold;
+    /* text-decoration: underline 2px #000000; */
 }
 
 /* Footer css set */
@@ -257,12 +342,15 @@ footer {
 
 footer a {
     color: black;
-    font-family: "HarmonyOS Sans Regular", sans-serif, serif;
-    font-size: 15px;
+    font-family: "Noto Sans Mono CJK SC Regular";
+    font-size: 1.8vh;
+    letter-spacing: 1px;
     text-decoration: none;
+    word-spacing: 2px;
 }
 
 footer a:hover{
     color: rgba(0, 0, 0, 0.5);
-    text-decoration: underline rgba(0, 0, 0, 0.5) 2px;
+    color: rgb(0, 108, 250);
+    font-style: bold;
 }
