@@ -6,6 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link href="./index.css" rel="stylesheet" />
         <link rel="Shortcut Icon" href="./resource/img/indexPage/web_icon.ico" type="image/x-icon" />
+        <script src="./index.js"></script>
         <title>haley_ehrich</title>
     </head>
 
@@ -16,21 +17,29 @@
             <div class="scroll_tip">SCROLL DOWN FOR MORE</div>
         </header>
 
-        <nav>
-            <ul class="page_nav_ul">
-                <li>
-                    <a class="selectedPage" href="./index_en.html"> Home </a>
-                </li>
-                <li>
-                    <a href="./product/index_product.html"> Software </a>
-                </li>
 
-                <li>
-                    <a href="./blog/index_blog.html"> Blog </a>
-                </li>
-            </ul>
-        </nav>
+        <div class="nav_container">
+            <!-- <button calss="nav_fold_button" onclick="nav_change()" >点击我</button> -->
+    
+            <div class="nav">
+                <ul>
+                    <li>
+                        <a class="selectedPage" href="./index_en.html"> Home </a>
+                    </li>
+                    <li>
+                        <a href="./product/index_product.html"> Software </a>
+                    </li>
+    
+                    <li>
+                        <a href="./blog/index_blog.html"> Blog </a>
+                    </li>
+                    <div class="nav-box"></div>
+                </ul>
+            </div>
+    
+        </div>
 
+       
         <section class="sec_container">
             <h1 class="sec_title">TOP ARTICLE</h1>
             <div class="sec_pass_container">
@@ -70,10 +79,6 @@
                     <p class="sec_pass_p">
                         C/C++、Qt(C++)、RUST、Golang
                     </p>
-
-                    
-
-                    
 
                     <h2>Contact</h3>
 

@@ -91,8 +91,6 @@
     }
 }
 
-
-
 /* Main body css set */
 html {
     background-color: white;
@@ -123,8 +121,6 @@ header {
     position: relative;
 }
 
-
-
 .scroll_tip {
     bottom: 10vh;
     color: white;
@@ -137,17 +133,17 @@ header {
 }
 
 /* Navigater css set */
-.page_nav_ul {
+/* .page_nav_ul {
     align-items: center;
-    /* border-top: #000000 solid 1px;
-    border-bottom: #000000 solid 1px; */
+    / * border-top: #000000 solid 1px;
+    border-bottom: #000000 solid 1px; * /
 
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     font-family: "Times New Roman", Times, serif;
     height: auto;
-    justify-content: center; /* ??? */
+    justify-content: center; / * ??? * /
     margin-top: 0px;
     margin-bottom: 0px;
     padding: 0px;
@@ -177,7 +173,7 @@ header {
     font-family: "EDIX";
     font-size: 1vw;
     text-decoration: none;
-}
+} */
 
 /* Section css set */
 
@@ -222,12 +218,11 @@ header {
     border-radius: 16px;
     bottom: 8%;
     height: 84%;
-    object-fit:cover;
+    object-fit: cover;
     position: absolute;
     right: 2%;
     top: 8%;
     width: 36%;
-
 }
 
 /* 文章段落 */
@@ -239,7 +234,7 @@ header {
 }
 
 /* 文章h1标题 */
-.sec_pass h1{
+.sec_pass h1 {
     /* font-family: inherit; */
     font-size: 1.5vw;
     font-style: bold;
@@ -247,7 +242,7 @@ header {
 }
 
 /* 文章 h2 标题 */
-.sec_pass h2{
+.sec_pass h2 {
     font-family: inherit;
     font-size: 1.2vw;
     font-style: bold;
@@ -255,7 +250,11 @@ header {
 }
 
 /* 文章 h3-7 标题 */
-.sec_pass h3,.sec_pass h4,.sec_pass h5,.sec_pass h6,.sec_pass h7{
+.sec_pass h3,
+.sec_pass h4,
+.sec_pass h5,
+.sec_pass h6,
+.sec_pass h7 {
     font-family: "HarmonyOS Sans Regular", sans-serif, serif;
     font-size: 1vw;
     font-style: bold;
@@ -263,7 +262,7 @@ header {
 }
 
 /* 文章内列表框 */
-.sec_pass ul{
+.sec_pass ul {
     font-family: "HarmonyOS Sans Regular", sans-serif, serif;
     font-size: 1vw;
     font-style: normal;
@@ -272,18 +271,19 @@ header {
 }
 
 /* 文章内列表项 */
-.sec_pass ul li,.sec_pass_li{
+.sec_pass ul li,
+.sec_pass_li {
     font-family: "HarmonyOS Sans Regular", sans-serif, serif;
     font-size: 1vw;
     font-style: normal;
     line-height: 15px;
     text-decoration: none;
     list-style: none;
-
 }
 
 /* 文章内文字段落 */
-.sec_pass p,.sec_pass_p{
+.sec_pass p,
+.sec_pass_p {
     font-family: "HarmonyOS Sans Regular", sans-serif, serif;
     font-size: 1vw;
     /* font-style: italic; */
@@ -292,20 +292,19 @@ header {
 }
 
 /* 文章内链接 */
-.sec_pass_a{
+.sec_pass_a {
     color: black;
     font-family: "HarmonyOS Sans Regular", sans-serif, serif;
     font-size: 1vw;
     font-style: normal;
     line-height: 15px;
     text-decoration: none;
-    text-indent: 10px;   
+    text-indent: 10px;
 }
 
 /* 文章内链接--悬浮 */
-.sec_pass_a:hover{
+.sec_pass_a:hover {
     text-decoration: underline;
-    
 }
 
 /* 文章内链接 */
@@ -349,8 +348,83 @@ footer a {
     word-spacing: 2px;
 }
 
-footer a:hover{
+footer a:hover {
     color: rgba(0, 0, 0, 0.5);
     color: rgb(0, 108, 250);
     font-style: bold;
+}
+
+.nav_container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 24px;
+
+    position: sticky;
+    top: 24px;
+
+    z-index:999
+}
+
+.nav {
+    width: 800px;
+    height: 64px;
+    position: relative;
+    top: 0;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+    border-radius: 8px;
+    background-color: #fff;
+}
+
+.nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    text-decoration: none;
+
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    right: 5%;
+}
+.nav ul .nav-box {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    /* 如果导航栏就六个导航，那么每个导航的宽度都是整个导航
+    的六分之一 */
+    width: calc((100% / 3) * 1);
+    height: 10px;
+    border-radius: 2px;
+    transition: 0.5s;
+}
+.nav ul li {
+    width: 100%;
+    text-align: center;
+}
+.nav ul li a {
+    color: rgb(70, 100, 180);
+    font: 100 30px "优设标题黑";
+
+    font-family: "EDIX";
+    font-size: 1vw;
+    text-decoration: none;
+
+    display: block;
+    width: 100%;
+    height: 100%;
+    line-height: 70px;
+}
+.nav ul li:nth-child(1):hover ~ .nav-box {
+    left: calc(100% / 3 * 0);
+    background-color: rgb(103, 209, 195);
+}
+.nav ul li:nth-child(2):hover ~ .nav-box {
+    left: calc(100% / 3 * 1);
+    background-color: rgb(145, 194, 144);
+}
+.nav ul li:nth-child(3):hover ~ .nav-box {
+    left: calc(100% / 3 * 2);
+    background-color: #e0c4dc;
 }

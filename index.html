@@ -1,23 +1,29 @@
 <!DOCTYPE html>
 <html lang="zh">
-    <head>
-        <meta charset="UTF-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link href="./index.css" rel="stylesheet" />
-        <link rel="Shortcut Icon" href="./resource/img/indexPage/web_icon.ico" type="image/x-icon" />
-        <title>harley_ehrich</title>
-    </head>
 
-    <body>
-        <header>
-            <div class="website_name">Harley Ehrich</div>
-            <div class="slogan">纵有疾风起 生命不言弃</div>
-            <div class="scroll_tip">下滑访问更多内容</div>
-        </header>
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="./index.css" rel="stylesheet" />
+    <link rel="Shortcut Icon" href="./resource/img/indexPage/web_icon.ico" type="image/x-icon" />
+    <script src="./index.js"></script>
+    <title>harley_ehrich</title>
+</head>
 
-        <nav>
-            <ul class="page_nav_ul">
+<body>
+    <header>
+        <div class="website_name">Harley Ehrich</div>
+        <div class="slogan">纵有疾风起 生命不言弃</div>
+        <div class="scroll_tip">下滑访问更多内容</div>
+    </header>
+
+
+    <div class="nav_container">
+        <!-- <button calss="nav_fold_button" onclick="nav_change()" >点击我</button> -->
+
+        <div class="nav">
+            <ul>
                 <li>
                     <a class="selectedPage" href="./index.html"> Home </a>
                 </li>
@@ -28,73 +34,81 @@
                 <li>
                     <a href="./blog/index_blog.html"> Blog </a>
                 </li>
+                <div class="nav-box"></div>
             </ul>
-        </nav>
+        </div>
 
-        <!-- 引入在线资源 -->
+    </div>
 
-        <section class="sec_container">
-            <h1 class="sec_title">置顶文章</h1>
-            <div class="sec_pass_container">
-                <img class="sec_pass_img" src="./resource/img/indexPage/dvcc_icon.jpg" alt="dvccPostImg" />
-                <div class="sec_pass">
-                    <h1>DVCC</h1>
-                    <h5>版本信息</h5>
-                    <ul>
-                        <li class="sec_pass_li"><p>最新版本: 1.4.3.0 </p></li>
-                        <li class="sec_pass_li"><p>更新时间: 2022/08/27 </p></li>
-                    </ul>
-                    <h5>应用简介</h5>
-                    <p>​
-                        DVCC是一个独立的模拟软件，适用于《计算机组成原理》课程。通过DVCC，你可以离线测试你的实验代码。
-                    </p>
-                </div>
-                <a class="sec_pass_link" href="./product/dvcc/dvcc_index.html">
-                    > 详细信息
-                </a>
+
+    <!-- 引入在线资源 -->
+    <section class="sec_container">
+        <h1 class="sec_title">置顶文章</h1>
+        <div class="sec_pass_container">
+            <img class="sec_pass_img" src="./resource/img/indexPage/dvcc_icon.jpg" alt="dvccPostImg" />
+            <div class="sec_pass">
+                <h1>DVCC</h1>
+                <h5>版本信息</h5>
+                <ul>
+                    <li class="sec_pass_li">
+                        <p>最新版本: 1.4.3.0 </p>
+                    </li>
+                    <li class="sec_pass_li">
+                        <p>更新时间: 2022/08/27 </p>
+                    </li>
+                </ul>
+                <h5>应用简介</h5>
+                <p>​
+                    DVCC是一个独立的模拟软件，适用于《计算机组成原理》课程。通过DVCC，你可以离线测试你的实验代码。
+                </p>
             </div>
-        </section>
+            <a class="sec_pass_link" href="./product/dvcc/dvcc_index.html">
+                > 详细信息
+            </a>
+        </div>
+    </section>
 
-        <section class="sec_container">
-            <h1 class="sec_title">关于我</h1>
-            <div class="sec_pass_container">
-                <img class="sec_pass_img" src="./resource/img/indexPage/about_me.jpg" alt="personInfoImg" />
-                <div class="sec_pass">
+    <section class="sec_container">
+        <h1 class="sec_title">关于我</h1>
+        <div class="sec_pass_container">
+            <img class="sec_pass_img" src="./resource/img/indexPage/about_me.jpg" alt="personInfoImg" />
+            <div class="sec_pass">
 
-                    <h3>近期兴趣</h3>
+                <h3>近期兴趣</h3>
 
-                    <p class="sec_pass_p">
-                        Qt桌面应用程序的开发、网络安全
-                    </p>
+                <p class="sec_pass_p">
+                    Qt桌面应用程序的开发、网络安全
+                </p>
 
-                    <h3>编程语言</h3>
+                <h3>编程语言</h3>
 
-                    <p class="sec_pass_p">
-                        C/C++、Qt(C++)、RUST、Golang
-                    </p>
+                <p class="sec_pass_p">
+                    C/C++、Qt(C++)、RUST、Golang
+                </p>
 
 
-                    <h3>联系方式</h3>
+                <h3>联系方式</h3>
 
-                    <p class="sec_pass_p">
-                        <a class="sec_pass_a" href="mailto: harley_ehrich@outlook.com">E-mail: harley_ehrich@outlook.com</a>
-                    </p>
+                <p class="sec_pass_p">
+                    <a class="sec_pass_a" href="mailto: harley_ehrich@outlook.com">E-mail: harley_ehrich@outlook.com</a>
+                </p>
 
-                </div>
-                <a class="sec_pass_link" href="https://github.com/HarleyEhrich?tab=repositories">
-                    > 访问我的Github主页
-                </a>
             </div>
-        </section>
+            <a class="sec_pass_link" href="https://github.com/HarleyEhrich?tab=repositories">
+                > 访问我的Github主页
+            </a>
+        </div>
+    </section>
 
-        <footer>
-            <a href="mailto: harley_ehrich@outlook.com">E-mail: harley_ehrich@outlook.com</a>
-            &nbsp
-            <a href="https://github.com/HarleyEhrich?tab=repositories">View On Github</a>
-            &nbsp
-            <a href="./index_en.html">访问英文主页/View in English</a>
-        </footer>
-    </body>
+    <footer>
+        <a href="mailto: harley_ehrich@outlook.com">E-mail: harley_ehrich@outlook.com</a>
+        &nbsp
+        <a href="https://github.com/HarleyEhrich?tab=repositories">View On Github</a>
+        &nbsp
+        <a href="./index_en.html">访问英文主页/View in English</a>
+    </footer>
+</body>
+
 </html>
 
 <!-- 
